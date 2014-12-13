@@ -17,6 +17,8 @@ tmp/
 *.swp
 *~.nib
 *.zip
+*.iml
+.idea/workspace.xml
 
 # OS generated files #
 .DS_Store

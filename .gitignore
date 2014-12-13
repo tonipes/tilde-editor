@@ -3,7 +3,7 @@
 # Directories #
 out/
 bin/
-lib/resources
+lib/res
 lib/native/freebsd
 lib/native/linux
 lib/native/solaris

@@ -7,13 +7,13 @@ import tilde.log.Log
  */
 class Game {
 
-  def create(): Unit ={
-  Log.test()
+  def create(): Unit = {
+    Log.test()
   }
 
-  def render(): Unit ={
+  def render(): Unit = {
   }
 
-  def update(delta: Long): Unit ={
+  def update(delta: Long): Unit = {
   }
 }

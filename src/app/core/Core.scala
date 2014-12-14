@@ -1,7 +1,7 @@
 package app.core
 
 import org.lwjgl.LWJGLException
-import org.lwjgl.opengl.{Display, DisplayMode}
+import org.lwjgl.opengl.{GL11, Display, DisplayMode}
 import tilde.game.Game
 import tilde.log.Log
 
@@ -15,12 +15,13 @@ class Core {
 
   def start() = {
 
-
     try {
       Display.setDisplayMode(new DisplayMode(800, 600))
       Display.setResizable(false)
       Display.setVSyncEnabled(true)
       Display.create()
+      GL11.glViewport(0,0,800,600)
+
     } catch {
       case e: LWJGLException =>
         Log.error(e.toString)
@@ -34,6 +35,7 @@ class Core {
       update(getDelta)
       render()
       Display.update()
+      Display.sync(60)
     }
     Display.destroy()
 
@@ -47,12 +49,12 @@ class Core {
     game.render()
   }
 
-  private def getDelta():Long =  {
-    val time = getTime()
+  private def getDelta:Long =  {
+    val time = getTime
     val delta = time - lastFrame
     lastFrame = time
     delta
   }
 
-  private def getTime(): Long = System.currentTimeMillis()
+  private def getTime: Long = System.currentTimeMillis()
 }

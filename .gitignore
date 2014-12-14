@@ -7,11 +7,10 @@ lib/res
 lib/native/freebsd
 lib/native/linux
 lib/native/solaris
+.idea/
 
-.idea\workspace.xml
 .metadata
 .gradle
-.idea/workspace.xml
 local.properties
 tmp/
 *.tmp

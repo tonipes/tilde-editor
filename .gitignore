@@ -33,3 +33,5 @@ tmp/
 .settings/org.eclipse.jdt.core.prefs
 ehthumbs.db
 Thumbs.db
+
+.idea

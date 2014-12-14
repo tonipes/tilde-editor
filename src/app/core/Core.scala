@@ -1,4 +1,4 @@
-package core
+package app.core
 
 import org.lwjgl.LWJGLException
 import org.lwjgl.opengl.{Display, DisplayMode}
@@ -26,6 +26,7 @@ class Core {
     }
     println("Creating game")
     game.create()
+    println("Game created")
 
 
     while (!Display.isCloseRequested) {

@@ -1,6 +1,6 @@
-package game.main
+package app.main
 
-import core.Core
+import app.core.Core
 
 /**
  * Created by Toni on 13.12.2014.

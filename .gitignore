@@ -8,6 +8,7 @@ lib/native/freebsd
 lib/native/linux
 lib/native/solaris
 
+.idea\workspace.xml
 .metadata
 .gradle
 .idea/workspace.xml

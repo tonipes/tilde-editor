@@ -1,7 +1,7 @@
 package app.core
 
 import org.lwjgl.LWJGLException
-import org.lwjgl.opengl.{GL11, Display, DisplayMode}
+import org.lwjgl.opengl._
 import tilde.game.Game
 import tilde.log.Log
 
@@ -15,11 +15,18 @@ class Core {
 
   def start() = {
 
+//    val pixFormat = new PixelFormat()
+//    val context = new ContextAttribs(4,2).withForwardCompatible(true).withProfileCore(true)
+
     try {
       Display.setDisplayMode(new DisplayMode(800, 600))
       Display.setResizable(false)
       Display.setVSyncEnabled(true)
+
+     // Display.create(pixFormat,context)
       Display.create()
+      Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
+
       GL11.glViewport(0,0,800,600)
 
     } catch {

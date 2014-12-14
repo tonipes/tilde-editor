@@ -10,10 +10,8 @@ class Game {
   }
 
   def render(): Unit ={
-    println("Game render method")
   }
 
   def update(delta: Long): Unit ={
-    println("Game update method with delta: " + delta)
   }
 }

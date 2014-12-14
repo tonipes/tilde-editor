@@ -10,7 +10,7 @@ import tilde.game.Game
 class Core {
 
   private var lastFrame: Long = 0
-  private var game: Game = null
+  private val game: Game = new Game()
 
   def start() = {
 
@@ -24,8 +24,7 @@ class Core {
         e.printStackTrace()
         System.exit(0)
     }
-
-    game = new Game()
+    println("Creating game")
     game.create()
 
 
@@ -50,7 +49,6 @@ class Core {
 
   private def getDelta():Long =  {
     val time = getTime()
-    println("Calculating delta. last: " + lastFrame + ", new: " + time)
     val delta = time - lastFrame
     lastFrame = time
     delta

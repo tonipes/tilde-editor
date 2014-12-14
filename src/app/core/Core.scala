@@ -3,6 +3,7 @@ package app.core
 import org.lwjgl.LWJGLException
 import org.lwjgl.opengl.{Display, DisplayMode}
 import tilde.game.Game
+import tilde.log.Log
 
 /**
  * Created by Toni on 13.12.2014.
@@ -14,6 +15,7 @@ class Core {
 
   def start() = {
 
+
     try {
       Display.setDisplayMode(new DisplayMode(800, 600))
       Display.setResizable(false)
@@ -21,19 +23,18 @@ class Core {
       Display.create()
     } catch {
       case e: LWJGLException =>
-        e.printStackTrace()
+        Log.error(e.toString)
         System.exit(0)
     }
 
     game.create()
-    
+
     while (!Display.isCloseRequested) {
       // Main loop
       update(getDelta)
       render()
       Display.update()
     }
-
     Display.destroy()
 
   }

@@ -1,12 +1,14 @@
 package tilde.game
 
+import tilde.log.Log
+
 /**
  * Created by Toni on 13.12.2014.
  */
 class Game {
 
   def create(): Unit ={
-    println("Game create method")
+  Log.test()
   }
 
   def render(): Unit ={

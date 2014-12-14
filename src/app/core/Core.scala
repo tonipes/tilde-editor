@@ -24,11 +24,9 @@ class Core {
         e.printStackTrace()
         System.exit(0)
     }
-    println("Creating game")
+
     game.create()
-    println("Game created")
-
-
+    
     while (!Display.isCloseRequested) {
       // Main loop
       update(getDelta)

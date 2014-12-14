@@ -16,10 +16,10 @@ class Game {
   def create(): Unit = {
     // Vertices, the order is not important.
     val vertices = Array[Float](
-      -0.75f, 0.5f, 0f,    // Left top         ID: 0
-      -0.5f, -0.5f, 0f,   // Left bottom      ID: 1
-      0.5f, -0.5f, 0f,    // Right bottom     ID: 2
-      0.5f, 0.5f, 0f      // Right left       ID: 3
+      -0.5f, 0.5f, 0f, 1f,
+      -0.5f, -0.5f, 0f, 1f,
+      0.5f, -0.5f, 0f, 1f,
+      0.5f, 0.5f, 0f, 1f
     )
     // Sending data to OpenGL requires the usage of (flipped) byte buffers
     val verticesBuffer = BufferUtils.createFloatBuffer(vertices.length)
@@ -85,7 +85,7 @@ class Game {
 
   var x = 0
   var y = 0
-  def update(delta: Long): Unit = {
+  def update(delta: Float): Unit = {
     GL11.glViewport(x,y,800,600)
     x += 1
     y += 1

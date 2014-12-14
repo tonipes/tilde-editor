@@ -25,7 +25,8 @@ class Core {
 
      // Display.create(pixFormat,context)
       Display.create()
-      Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
+
+
 
       GL11.glViewport(0,0,800,600)
 
@@ -34,6 +35,10 @@ class Core {
         Log.error(e.toString)
         System.exit(0)
     }
+
+    Log.info("Platform: " + System.getProperty("os.name"))
+    Log.info("GPU vendor: " + GL11.glGetString(GL11.GL_VENDOR))
+    Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
 
     game.create()
 
@@ -48,7 +53,7 @@ class Core {
 
   }
 
-  private def update(delta: Long) = {
+  private def update(delta: Float) = {
     game.update(delta)
   }
 
@@ -56,12 +61,12 @@ class Core {
     game.render()
   }
 
-  private def getDelta:Long =  {
+  private def getDelta:Float =  {
     val time = getTime
     val delta = time - lastFrame
     lastFrame = time
-    delta
+    (delta / 1000000000.0).toFloat
   }
 
-  private def getTime: Long = System.currentTimeMillis()
+  private def getTime: Long = System.nanoTime()
 }

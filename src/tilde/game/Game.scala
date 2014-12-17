@@ -12,8 +12,14 @@ class Game {
   }
 
   def render(): Unit = {
+
   }
 
   def update(delta: Long): Unit = {
+
+  }
+
+  def resize(width: Int, height: Int): Unit = {
+    Log.info("Game resized", "new size is " + width + ", " + height)
   }
 }

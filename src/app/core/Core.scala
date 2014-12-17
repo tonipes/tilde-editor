@@ -17,7 +17,7 @@ class Core {
 
     try {
       Display.setDisplayMode(new DisplayMode(800, 600))
-      Display.setResizable(false)
+      Display.setResizable(true)
       Display.setVSyncEnabled(true)
       Display.create()
       GL11.glViewport(0,0,800,600)
@@ -25,19 +25,30 @@ class Core {
     } catch {
       case e: LWJGLException =>
         Log.error(e.toString)
-        System.exit(0)
+        System.exit(-1)
     }
 
     game.create()
-
     while (!Display.isCloseRequested) {
-      // Main loop
-      update(getDelta)
-      render()
-      Display.update()
-      Display.sync(60)
+      gameLoop()
+
     }
     Display.destroy()
+
+  }
+
+  private def gameLoop() = {
+    if(Display.wasResized()){
+      game.resize(Display.getWidth,Display.getHeight)
+    }
+
+    update(getDelta)
+
+    render()
+
+    Display.update()
+
+    Display.sync(60)
 
   }
 

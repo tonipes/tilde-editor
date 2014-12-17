@@ -1,7 +1,7 @@
 package app.core
 
 import org.lwjgl.LWJGLException
-import org.lwjgl.opengl.{GL11, Display, DisplayMode}
+import org.lwjgl.opengl._
 import tilde.game.Game
 import tilde.log.Log
 
@@ -15,11 +15,17 @@ class Core {
 
   def start() = {
 
+   val pixFormat = new PixelFormat()
+   val context = new ContextAttribs(3,2).withForwardCompatible(true).withProfileCore(true)
+
     try {
       Display.setDisplayMode(new DisplayMode(800, 600))
       Display.setResizable(true)
       Display.setVSyncEnabled(true)
-      Display.create()
+
+      Display.create(pixFormat,context)
+      //Display.create()
+
       GL11.glViewport(0,0,800,600)
 
     } catch {
@@ -27,6 +33,10 @@ class Core {
         Log.error(e.toString)
         System.exit(-1)
     }
+
+    Log.info("Platform: " + System.getProperty("os.name"))
+    Log.info("GPU vendor: " + GL11.glGetString(GL11.GL_VENDOR))
+    Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
 
     game.create()
     while (!Display.isCloseRequested) {
@@ -52,7 +62,7 @@ class Core {
 
   }
 
-  private def update(delta: Long) = {
+  private def update(delta: Float) = {
     game.update(delta)
   }
 
@@ -60,12 +70,12 @@ class Core {
     game.render()
   }
 
-  private def getDelta:Long =  {
+  private def getDelta:Float =  {
     val time = getTime
     val delta = time - lastFrame
     lastFrame = time
-    delta
+    (delta / 1000000000.0).toFloat
   }
 
-  private def getTime: Long = System.currentTimeMillis()
+  private def getTime: Long = System.nanoTime()
 }

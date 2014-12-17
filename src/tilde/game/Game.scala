@@ -1,5 +1,7 @@
 package tilde.game
 
+import org.lwjgl.BufferUtils
+import org.lwjgl.opengl.{GL11, GL20, GL15, GL30}
 import tilde.log.Log
 
 /**
@@ -8,18 +10,18 @@ import tilde.log.Log
 class Game {
 
   def create(): Unit = {
-    Log.test()
+
   }
 
   def render(): Unit = {
 
   }
 
-  def update(delta: Long): Unit = {
-
+  def resize(width: Int, height: Int): Unit = {
+    Log.info("Game resize", ""+ width + ", " + height)
   }
 
-  def resize(width: Int, height: Int): Unit = {
-    Log.info("Game resized", "new size is " + width + ", " + height)
+  def update(delta: Float): Unit = {
+
   }
 }

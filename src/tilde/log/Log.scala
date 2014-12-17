@@ -87,12 +87,5 @@ object Log {
   def error(name:String, message:String = "") = logMessage(Level.ERROR, name, message)
   def warning(name:String, message:String = "") = logMessage(Level.WARNING, name, message)
   def info(name:String, message:String = "") = logMessage(Level.INFO, name, message)
-
-  def test() = {
-    debug("Log debug testing")
-    info("Log info testing")
-    warning("Log warning testing")
-    error("Log info testing")
-  }
 }
 

@@ -19,14 +19,14 @@ class Core {
    val context = new ContextAttribs(3,2).withForwardCompatible(true).withProfileCore(true)
 
     try {
-      Display.setDisplayMode(new DisplayMode(800, 600))
+      Display.setDisplayMode(new DisplayMode(512, 512))
       Display.setResizable(true)
       Display.setVSyncEnabled(true)
 
       Display.create(pixFormat,context)
       //Display.create()
-
-      GL11.glViewport(0,0,800,600)
+      Display.setTitle("Tilde engine")
+      GL11.glViewport(0,0,512,512)
 
     } catch {
       case e: LWJGLException =>
@@ -39,6 +39,7 @@ class Core {
     Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
 
     game.create()
+
     while (!Display.isCloseRequested) {
       gameLoop()
 

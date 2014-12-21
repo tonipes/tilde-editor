@@ -19,14 +19,14 @@ class Core {
    val context = new ContextAttribs(3,2).withForwardCompatible(true).withProfileCore(true)
 
     try {
-      Display.setDisplayMode(new DisplayMode(512, 512))
+      Display.setDisplayMode(new DisplayMode(800, 600))
       Display.setResizable(true)
       Display.setVSyncEnabled(true)
 
       Display.create(pixFormat,context)
       //Display.create()
       Display.setTitle("Tilde engine")
-      GL11.glViewport(0,0,512,512)
+      GL11.glViewport(0,0,800,600)
 
     } catch {
       case e: LWJGLException =>

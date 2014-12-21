@@ -1,15 +1,16 @@
 package tilde.util
 
 import org.lwjgl.util.vector.Matrix4f
+import tilde.log.Log
 
 
 object MatrixUtil {
 
   def createPerspectiveProjection(zFar: Float, zNear: Float, aspect: Float, fov: Float) = {
     val matrix = new Matrix4f()
-    val scaleY = 1f / Math.tan(Math.toRadians(fov / 2f).toFloat)
-    val scaleX = scaleY / aspect
-    val frusLength = zFar - zNear
+    val scaleY:Float = 1f / Math.tan(Math.toRadians(fov / 2f).toFloat).toFloat
+    val scaleX:Float = scaleY.toFloat / aspect.toFloat
+    val frusLength:Float = (zFar - zNear)
 
     matrix.m00 = scaleX.toFloat
     matrix.m11 = scaleY.toFloat

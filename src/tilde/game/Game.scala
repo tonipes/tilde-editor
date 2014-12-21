@@ -8,10 +8,11 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
+import org.lwjgl.util.vector.Vector3f
 import tilde.Entity.Component.SpatialComponent
 import tilde.graphics.{Camera, ShaderProgram, Texture}
 import tilde.log.Log
-import tilde.util.Transform
+import tilde.util.{Direction, Transform}
 
 /**
  * Created by Toni on 13.12.2014.
@@ -26,8 +27,17 @@ class Game {
   var texture: Texture = null
   //var transform: Transform = new Transform()
   var testSpatial = new SpatialComponent()
+  var camera: Camera = null
+
 
   def create(): Unit = {
+    testSpatial.rotate(45,45,0)
+    Log.debug("Height" , "" + Display.getHeight)
+    Log.debug("Width" , "" + Display.getWidth)
+    val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
+    Log.debug("Aspect ratio" , "" + aspect)
+    camera = new Camera(100f,0.1f, aspect,70)
+    camera.setPosition(new Vector3f(0,0,2))
 
     // Shader setup
     shader.attachVertexShader("data/shaders/default.vert")
@@ -42,8 +52,8 @@ class Game {
       0, 1,    // Top Right
       1, 0,    // Bottom Left
       1, 1,    // Bottom Right
-      0, 0,    // Top Left
-      -1, 0,    // Top Right
+      1, 0,    // Top Left
+      -1, -1,    // Top Right
       0, 1,    // Bottom Left
       -1, -1    // Bottom Right
 
@@ -124,9 +134,17 @@ class Game {
   def render(): Unit = {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
+    camera.update()
+
     shader.bind()
-    //Log.debug("transform", transform.toString )
-    shader.setUniform("model_m",testSpatial.getFloatBuffer())
+    //Log.debug("transform", testSpatial.toString )
+    //Log.debug("view", camera.viewMatrix.toString)
+    //Log.debug("proj", camera.projectionMatrix.toString)
+
+    shader.setUniform("m_model", testSpatial.getFloatBuffer())
+    shader.setUniform("m_view", camera.getViewBuffer)
+    shader.setUniform("m_proj", camera.getProjectionBuffer)
+
     glBindVertexArray(vaoID)
     glEnableVertexAttribArray(0)
     glEnableVertexAttribArray(1)
@@ -146,7 +164,9 @@ class Game {
 
   def update(delta: Float): Unit = {
     val d = delta*100
-    testSpatial.rotate(d,d/2,d/3)
+    //testSpatial.rotate(d,d/2,d/3)
+    camera.move(new Vector3f(1,0,0),0.009f)
+    camera.rotateX(1)
   }
 
   def dispose() = {

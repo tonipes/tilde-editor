@@ -3,8 +3,8 @@ package tilde.graphics
 import org.lwjgl.BufferUtils
 import org.lwjgl.util.vector.{Matrix4f, Quaternion, Vector3f}
 import tilde.Entity.Entity
-import tilde.util.Direction.Direction
-import tilde.util.{QuaternionUtil, MatrixUtil}
+import tilde.util.Direction._
+import tilde.util.{Direction, QuaternionUtil, MatrixUtil}
 
 object Camera{
 
@@ -25,57 +25,62 @@ class Camera(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Entit
   projectionMatrix.store(projectionBuffer)
   projectionBuffer.rewind()
 
-  //def up: Vector3f = QuaternionUtil.getUpFromQuat(orientation)//new Vector3f(0, 1, 0)
-  //def right: Vector3f = QuaternionUtil.getRightFromQuat(orientation)//new Vector3f(1, 0, 0)
-  //def forward: Vector3f = QuaternionUtil.getForwardFromQuat(orientation)// new Vector3f(new Vector3f(0, 0, 1).negate(null))
+  def up: Vector3f = QuaternionUtil.getUp(orientation)
+  def right: Vector3f = QuaternionUtil.getRight(orientation)
+  def forward: Vector3f = QuaternionUtil.getForward(orientation)
 
-  var up: Vector3f = new Vector3f(0, 1, 0)
-  var right: Vector3f = new Vector3f(1, 0, 0)
-  var forward: Vector3f = new Vector3f(new Vector3f(0, 0, 1).negate(null))
+  //var up: Vector3f = new Vector3f(0, 1, 0)
+  //var right: Vector3f = new Vector3f(1, 0, 0)
+  //var forward: Vector3f = new Vector3f(new Vector3f(0, 0, 1).negate(null))
 
-  def rotateX(angle: Float) = {   //rotate(angle,new Vector3f(1,0,0))
-    val xRot = QuaternionUtil.quatFromAxis(new Vector3f(1,0,0), angle);
-    Quaternion.mul(xRot, orientation, orientation);
+  def rotateX(angle: Float) = rotate(angle,AXIS_X)
+    //val xRot = QuaternionUtil.quatFromAxis(new Vector3f(1,0,0), angle)
+    //Quaternion.mul(xRot, orientation, orientation)
 
-    up = QuaternionUtil.rotateByQuat(up, xRot)
-    forward = QuaternionUtil.rotateByQuat(forward, xRot)
+    //QuaternionUtil.rotate(up, xRot,up)
+    //QuaternionUtil.rotate(forward, xRot,forward)
 
-    up.normalise()
-    forward.normalise()
-  }
+    //up.normalise()
+    //forward.normalise()
+  //}
 
-  def rotateY(angle: Float) = {   //rotate(angle,new Vector3f(0,1,0))
-    val yRot = QuaternionUtil.quatFromAxis(new Vector3f(0,1,0), angle);
-    Quaternion.mul(yRot, orientation, orientation);
+  def rotateY(angle: Float) = rotate(angle,AXIS_Y)
+    //val yRot = QuaternionUtil.quatFromAxis(new Vector3f(0,1,0), angle)
+    //Quaternion.mul(yRot, orientation, orientation)
 
-    right = QuaternionUtil.rotateByQuat(up, yRot)
-    forward = QuaternionUtil.rotateByQuat(forward, yRot)
+    //right = QuaternionUtil.rotate(up, yRot)
+    //forward = QuaternionUtil.rotate(forward, yRot)
 
-    right.normalise()
-    forward.normalise()
-  }
+    //right.normalise()
+    //forward.normalise()
+  //}
 
-  def rotateZ(angle: Float) = {   //rotate(angle,new Vector3f(0,0,1))
-    val zRot = QuaternionUtil.quatFromAxis(new Vector3f(0,0,1), angle);
-    Quaternion.mul(zRot, orientation, orientation);
+  def rotateZ(angle: Float) = rotate(angle,AXIS_Z)
+    //val zRot = QuaternionUtil.quatFromAxis(new Vector3f(0,0,1), angle)
+    //Quaternion.mul(zRot, orientation, orientation)
 
-    up = QuaternionUtil.rotateByQuat(up, zRot)
-    right = QuaternionUtil.rotateByQuat(forward, zRot)
+    //up = QuaternionUtil.rotate(up, zRot)
+    //right = QuaternionUtil.rotate(forward, zRot)
 
-    up.normalise()
-    right.normalise()
-  }
+    //up.normalise()
+    //right.normalise()
+  //}
 
   def rotate(angle: Float, axis: Vector3f) = {
     val xRot = QuaternionUtil.quatFromAxis(axis, angle)
     Quaternion.mul(xRot, orientation,orientation)
   }
 
-  def move(dir: Direction,amount: Float) = {
-    ???
+  def move(dir: Direction,amount: Float): Unit = dir match {
+    case Direction.FORWARD => move(forward,amount)
+    case Direction.BACKWARD => move(forward,-amount)
+    case Direction.RIGHT => move(right,amount)
+    case Direction.LEFT => move(right,-amount)
+    case Direction.UP => move(up,amount)
+    case Direction.DOWN => move(up,-amount)
   }
 
-  def move(vec: Vector3f, amount: Float) = {
+  def move(vec: Vector3f, amount: Float): Unit = {
     val v = new Vector3f(vec)
     v.normalise()
     v.scale(amount)
@@ -83,7 +88,7 @@ class Camera(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Entit
   }
 
   def update() = {
-    viewMatrix = QuaternionUtil.quatToRotationMatrix(orientation)
+    viewMatrix = QuaternionUtil.rotationMatrix(orientation)
     Matrix4f.translate(position.negate(null), viewMatrix, viewMatrix)
 
     // Store the view matrix in the buffer
@@ -92,7 +97,7 @@ class Camera(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Entit
   }
 
   def getViewBuffer = {
-    val view = QuaternionUtil.quatToRotationMatrix(orientation)
+    val view = QuaternionUtil.rotationMatrix(orientation)
     Matrix4f.translate(position.negate(null), view, view)
     viewBuffer
   }

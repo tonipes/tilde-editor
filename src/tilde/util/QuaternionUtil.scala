@@ -9,12 +9,12 @@ https://github.com/sriharshachilakapati/LWJGL-Tutorial-Series/blob/ffef3d66a212d
 
 object QuaternionUtil {
 
-  def quatToRotationMatrix(q: Quaternion) = {
-    val dest = new Matrix4f()
+  def rotationMatrix(q: Quaternion, dest: Matrix4f = new Matrix4f) = {
+    //val dest = new Matrix4f()
     dest.setIdentity()
 
     q.normalise()
-    val s = 2f / q.length()
+    val s: Float = 2f / q.length()
 
     dest.m00 = 1 - s * (q.y * q.y + q.z * q.z)
     dest.m10 = s * (q.x * q.y + q.w * q.z)
@@ -31,8 +31,8 @@ object QuaternionUtil {
     dest
   }
 
-  def quatToConjugate(q: Quaternion) = {
-    val dest = new Quaternion
+  def conjugate(q: Quaternion, dest: Quaternion = new Quaternion()) = {
+    //val dest = new Quaternion
     dest.x = -q.x
     dest.y = -q.y
     dest.z = -q.z
@@ -41,10 +41,9 @@ object QuaternionUtil {
     dest
   }
 
-  def rotateByQuat(vec: Vector3f, q:Quaternion) = {
-    val dest = new Vector3f()
+  def rotate(vec: Vector3f, q:Quaternion, dest: Vector3f = new Vector3f()) = {
 
-    val qC = quatToConjugate(q)
+    val qC = conjugate(q)
     val qVec = new Quaternion(vec.x,vec.y,vec.z,1)
 
     Quaternion.mul(q, qVec, qVec)
@@ -57,37 +56,36 @@ object QuaternionUtil {
     dest
   }
 
-  def quatFromAxis(axis: Vector3f, angle: Float) = {
+  def quatFromAxis(axis: Vector3f, angle: Float, dest: Quaternion = new Quaternion()) = {
     // TODO: Does destination matter???
-    val dest = new Quaternion()
 
     axis.normalise()
 
-    val angleHalf = Math.toRadians(angle/2).toFloat
+    val angleHalf = Math.toRadians((angle/2f)).toFloat
 
     dest.x = axis.x * Math.sin(angleHalf).toFloat
     dest.y = axis.y * Math.sin(angleHalf).toFloat
     dest.z = axis.z * Math.sin(angleHalf).toFloat
 
-    dest.w = Math.sin(angleHalf).toFloat
+    dest.w = Math.cos(angleHalf).toFloat
     dest.normalise()
 
     dest
   }
 
-  def getForwardFromQuat(q: Quaternion) = {
+  def getForward(q: Quaternion) = {
     new Vector3f( 2f * (q.x * q.z + q.w * q.y),
                   2f * (q.y * q.z - q.w * q.x),
               1f - 2f * (q.x * q.x + q.y * q.y))
   }
 
-  def getUpFromQuat(q: Quaternion) = {
+  def getUp(q: Quaternion) = {
     new Vector3f( 2f * (q.x * q.y - q.w * q.z),
               1f - 2f * (q.x * q.x + q.z * q.z),
                   2f * (q.y * q.z + q.w * q.x))
   }
 
-  def getRightFromQuat(q: Quaternion) = {
+  def getRight(q: Quaternion) = {
     new Vector3f( 1f - 2f * (q.y * q.y + q.z * q.z),
                       2f * (q.x * q.y + q.w * q.z),
                       2f * (q.x * q.z - q.w * q.y))

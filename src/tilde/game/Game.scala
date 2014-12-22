@@ -31,13 +31,14 @@ class Game {
 
 
   def create(): Unit = {
-    testSpatial.rotate(45,45,0)
+    testSpatial.rotate(0,45,0)
     Log.debug("Height" , "" + Display.getHeight)
     Log.debug("Width" , "" + Display.getWidth)
     val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
     Log.debug("Aspect ratio" , "" + aspect)
-    camera = new Camera(100f,0.1f, aspect,70)
-    camera.setPosition(new Vector3f(0,0,2))
+    camera = new Camera(100f,0.1f, aspect,60)
+    camera.setPosition(new Vector3f(0,2,2))
+    camera.rotateX(-45f)
 
     // Shader setup
     shader.attachVertexShader("data/shaders/default.vert")
@@ -135,7 +136,6 @@ class Game {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     camera.update()
-
     shader.bind()
     //Log.debug("transform", testSpatial.toString )
     //Log.debug("view", camera.viewMatrix.toString)
@@ -165,8 +165,8 @@ class Game {
   def update(delta: Float): Unit = {
     val d = delta*100
     //testSpatial.rotate(d,d/2,d/3)
-    camera.move(new Vector3f(1,0,0),0.009f)
-    camera.rotateX(1)
+    //camera.move(Direction.FORWARD, 0.001f)
+    camera.rotate(0.5f, camera.right)
   }
 
   def dispose() = {

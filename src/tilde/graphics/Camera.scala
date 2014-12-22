@@ -1,19 +1,25 @@
 package tilde.graphics
 
+import java.util.spi.TimeZoneNameProvider
+
 import org.lwjgl.BufferUtils
 import org.lwjgl.util.vector.{Matrix4f, Quaternion, Vector3f}
-import tilde.Entity.Entity
+import tilde.entity.Entity
 import tilde.util.Direction._
 import tilde.util.{Direction, QuaternionUtil, MatrixUtil}
 
 object Camera{
-
+  object Projection extends Enumeration{
+    type Projection = Value
+    val PERSPECTIVE, ORTHOGRAPHIC = Value
+  }
 }
 
 class Camera(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Entity {
 
-  var projectionMatrix = MatrixUtil.createPerspectiveProjection(zFar, zNear, aspect, fov)
-  //var projectionMatrix = MatrixUtil.createOrthographicProjection(zFar,zNear,1,-1,1,-1)
+  //var projectionMatrix = MatrixUtil.createPerspectiveProjection(zFar, zNear, aspect, fov)
+  private val half = 1f
+  var projectionMatrix = MatrixUtil.createOrthographicProjection(zFar,zNear,-half*aspect,half*aspect,half,-half)
   var viewMatrix = new Matrix4f()
 
   private var position: Vector3f = new Vector3f()
@@ -29,42 +35,9 @@ class Camera(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Entit
   def right: Vector3f = QuaternionUtil.getRight(orientation)
   def forward: Vector3f = QuaternionUtil.getForward(orientation)
 
-  //var up: Vector3f = new Vector3f(0, 1, 0)
-  //var right: Vector3f = new Vector3f(1, 0, 0)
-  //var forward: Vector3f = new Vector3f(new Vector3f(0, 0, 1).negate(null))
-
   def rotateX(angle: Float) = rotate(angle,AXIS_X)
-    //val xRot = QuaternionUtil.quatFromAxis(new Vector3f(1,0,0), angle)
-    //Quaternion.mul(xRot, orientation, orientation)
-
-    //QuaternionUtil.rotate(up, xRot,up)
-    //QuaternionUtil.rotate(forward, xRot,forward)
-
-    //up.normalise()
-    //forward.normalise()
-  //}
-
   def rotateY(angle: Float) = rotate(angle,AXIS_Y)
-    //val yRot = QuaternionUtil.quatFromAxis(new Vector3f(0,1,0), angle)
-    //Quaternion.mul(yRot, orientation, orientation)
-
-    //right = QuaternionUtil.rotate(up, yRot)
-    //forward = QuaternionUtil.rotate(forward, yRot)
-
-    //right.normalise()
-    //forward.normalise()
-  //}
-
   def rotateZ(angle: Float) = rotate(angle,AXIS_Z)
-    //val zRot = QuaternionUtil.quatFromAxis(new Vector3f(0,0,1), angle)
-    //Quaternion.mul(zRot, orientation, orientation)
-
-    //up = QuaternionUtil.rotate(up, zRot)
-    //right = QuaternionUtil.rotate(forward, zRot)
-
-    //up.normalise()
-    //right.normalise()
-  //}
 
   def rotate(angle: Float, axis: Vector3f) = {
     val xRot = QuaternionUtil.quatFromAxis(axis, angle)

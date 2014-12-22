@@ -30,6 +30,7 @@ class Transform {
     buffer.rewind()
     buffer
   }
+
   override def toString() = {
     mat.toString
   }

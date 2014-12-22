@@ -57,7 +57,6 @@ object QuaternionUtil {
   }
 
   def quatFromAxis(axis: Vector3f, angle: Float, dest: Quaternion = new Quaternion()) = {
-    // TODO: Does destination matter???
 
     axis.normalise()
 

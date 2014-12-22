@@ -8,8 +8,8 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector.Vector3f
-import tilde.Entity.Component.SpatialComponent
+import org.lwjgl.util.vector.{Matrix4f, Vector3f}
+import tilde.entity.component.SpatialComponent
 import tilde.graphics.{Camera, ShaderProgram, Texture}
 import tilde.log.Log
 import tilde.util.{Direction, Transform}
@@ -25,7 +25,7 @@ class Game {
   var vaoID = 0
   var elemID = 0
   var texture: Texture = null
-  //var transform: Transform = new Transform()
+
   var testSpatial = new SpatialComponent()
   var camera: Camera = null
 
@@ -36,6 +36,7 @@ class Game {
     Log.debug("Width" , "" + Display.getWidth)
     val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
     Log.debug("Aspect ratio" , "" + aspect)
+
     camera = new Camera(100f,0.1f, aspect,60)
     camera.setPosition(new Vector3f(0,2,2))
     camera.rotateX(-45f)
@@ -85,10 +86,10 @@ class Game {
     // Elements
     val e = Array[Short](
       0,2,1,1,2,3,   // Front
-      5,7,4,4,7,6,    // Back
-      2,6,3,3,6,7,    // Bottom
-      1,3,5,5,3,7,     // Right
-      4,6,0,0,6,2,    //Left
+      5,7,4,4,7,6,   // Back
+      2,6,3,3,6,7,   // Bottom
+      1,3,5,5,3,7,   // Right
+      4,6,0,0,6,2,   //Left
       4,0,5,5,0,1
     )
 
@@ -129,6 +130,7 @@ class Game {
     glEnable(GL_DEPTH_TEST)
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE )
     glEnable(GL_CULL_FACE)
+    glClearColor(0.031f, 0.663f, 1.0f, 0.0f)
 
   }
 
@@ -137,11 +139,12 @@ class Game {
 
     camera.update()
     shader.bind()
+
     //Log.debug("transform", testSpatial.toString )
     //Log.debug("view", camera.viewMatrix.toString)
     //Log.debug("proj", camera.projectionMatrix.toString)
 
-    shader.setUniform("m_model", testSpatial.getFloatBuffer())
+    shader.setUniform("m_model", testSpatial.getFloatBuffer)
     shader.setUniform("m_view", camera.getViewBuffer)
     shader.setUniform("m_proj", camera.getProjectionBuffer)
 
@@ -165,8 +168,11 @@ class Game {
   def update(delta: Float): Unit = {
     val d = delta*100
     //testSpatial.rotate(d,d/2,d/3)
+    testSpatial.rotate(1, new Vector3f(0,1,0))
+    //testSpatial.move(Direction.AXIS_Z,0.002f)
+    //testSpatial.scale(new Vector3f(0.999f,0.999f,0.999f))
     //camera.move(Direction.FORWARD, 0.001f)
-    camera.rotate(0.5f, camera.right)
+    //camera.rotate(0.5f, camera.forward)
   }
 
   def dispose() = {

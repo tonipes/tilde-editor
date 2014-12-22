@@ -1,6 +1,6 @@
-package tilde.Entity
+package tilde.entity
 
-import tilde.Entity.Component._
+import tilde.entity.component._
 import scala.collection.mutable.Map
 /**
  * Created by Toni on 21.12.14.

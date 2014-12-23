@@ -59,7 +59,7 @@ class Core {
 
     Display.update()
 
-    //Display.sync(60)
+    Display.sync(60)
 
   }
 

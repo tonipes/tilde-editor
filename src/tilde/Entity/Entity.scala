@@ -16,7 +16,7 @@ class Entity {
     components.remove(component)
   }
 
-  def getComponent[T <: Component](componentClass: Class[T]) = {
+  def getComponent[T <: Component](componentClass: Class[T]): Option[T] = {
     if (components.contains(componentClass))
       Some(components(componentClass).asInstanceOf[T])
     else

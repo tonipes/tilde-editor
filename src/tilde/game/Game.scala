@@ -29,7 +29,6 @@ class Game {
   var testSpatial = new SpatialComponent()
   var camera: Camera = null
 
-
   def create(): Unit = {
     testSpatial.rotate(0,45,0)
     Log.debug("Height" , "" + Display.getHeight)
@@ -38,8 +37,9 @@ class Game {
     Log.debug("Aspect ratio" , "" + aspect)
 
     camera = new Camera(100f,0.1f, aspect,60)
-    camera.setPosition(new Vector3f(0,2,2))
-    camera.rotateX(-45f)
+    val cameraSpatial = camera.getComponent(SpatialComponent.id).get
+    cameraSpatial.setPosition(new Vector3f(0,2,2))
+    cameraSpatial.rotateX(-45f)
 
     // Shader setup
     shader.attachVertexShader("data/shaders/default.vert")

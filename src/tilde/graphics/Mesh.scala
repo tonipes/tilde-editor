@@ -59,7 +59,7 @@ object Mesh{
 }
 
 class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
-           normals:Vector[Vector3f],    vertexData: Vector[VertexData], val elements: Vector[Int]) {
+           normals:Vector[Vector3f],    vertexData: Vector[VertexData], private val elements: Vector[Int]) {
 
   private val rawDataLenght = Mesh.VERTEX_DATA_LENGTH * vertexData.length +
                               Mesh.NORMAL_DATA_LENGTH * vertexData.length +
@@ -68,7 +68,7 @@ class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
   private val rawData: Array[Float] = createRawData
 
   def getRawData = rawData
-
+  def getElements = elements
   //Log.debug("rawDataSize Check", "Should be " + rawDataLenght + ", is " + rawData.length)
   //Log.debug("VertexData size", "" + vertexData.length)
 

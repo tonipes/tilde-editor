@@ -36,7 +36,7 @@ class Game {
     Log.debug("TestMesh raw data", data)
 
     testSpatial.rotate(0,45,0)
-    
+
     Log.debug("Height" , "" + Display.getHeight)
     Log.debug("Width" , "" + Display.getWidth)
     val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat

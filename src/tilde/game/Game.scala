@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
 import org.lwjgl.util.vector.{Matrix4f, Vector3f}
 import tilde.entity.component.SpatialComponent
-import tilde.graphics.{Camera, ShaderProgram, Texture}
+import tilde.graphics.{Mesh, Camera, ShaderProgram, Texture}
 import tilde.log.Log
 import tilde.util.{Direction, Transform}
 
@@ -30,6 +30,7 @@ class Game {
   var camera: Camera = null
 
   def create(): Unit = {
+    val testMesh = Mesh.load("data/meshes/cube.obj")
     testSpatial.rotate(0,45,0)
     Log.debug("Height" , "" + Display.getHeight)
     Log.debug("Width" , "" + Display.getWidth)
@@ -153,6 +154,7 @@ class Game {
     glEnableVertexAttribArray(1)
 
     glDrawElements(GL_TRIANGLES,36,GL_UNSIGNED_SHORT,0)
+    //GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST)
 
     glDisableVertexAttribArray(0)
     glDisableVertexAttribArray(1)

@@ -32,37 +32,21 @@ object Mesh{
         case "vt" => texCoords += parseTextureCoordinate(data(1),data(2))
         case "vn" => normals += parseVertexNormal(data(1),data(2),data(3))
         case "f" => {
-          val verts = Vector.tabulate(3)[Array[String]](n => data(n+1).split("/"))
-          val vert1_data = data(1).split("/")
-          val vert2_data = data(2).split("/")
-          val vert3_data = data(3).split("/")
 
-          val vert1 = new VertexData(vert1_data(0).toInt - 1,vert1_data(1).toInt - 1,vert1_data(2).toInt - 1)
-          val vert2 = new VertexData(vert2_data(0).toInt - 1,vert2_data(1).toInt - 1,vert2_data(2).toInt - 1)
-          val vert3 = new VertexData(vert3_data(0).toInt - 1,vert3_data(1).toInt - 1,vert3_data(2).toInt - 1)
+          val verts = Vector.tabulate(3)(n => data(n+1).split("/"))
+          for(v <- verts){
+            val vertData =  new VertexData(v(0).toInt-1,v(1).toInt-1,v(2).toInt-1)
 
-          var indexOfvert1 = vertedDataList.indexOf(vert1)
-          if(indexOfvert1 < 0){
-            vertedDataList += vert1
-            indexOfvert1 = vertedDataList.length - 1
+            var indexOfvertData = vertedDataList.indexWhere(v => v == vertData)
+            if(indexOfvertData < 0){
+              vertedDataList += vertData
+              indexOfvertData = vertedDataList.length - 1
+            }
+
+            elements += indexOfvertData
           }
-
-          var indexOfvert2 = vertedDataList.indexOf(vert2)
-          if(indexOfvert2 < 0){
-            vertedDataList += vert2
-            indexOfvert2 = vertedDataList.length - 1
-          }
-
-          var indexOfvert3 = vertedDataList.indexOf(vert3)
-          if(indexOfvert3 < 0){
-            vertedDataList += vert3
-            indexOfvert3 = vertedDataList.length - 1
-          }
-
-          elements += indexOfvert1
-          elements += indexOfvert2
-          elements += indexOfvert3
         }
+
         case _ => {}
       }
     }
@@ -75,20 +59,24 @@ object Mesh{
 }
 
 class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
-           normals:Vector[Vector3f],    vertexData: Vector[VertexData], elements: Vector[Int]) {
+           normals:Vector[Vector3f],    vertexData: Vector[VertexData], val elements: Vector[Int]) {
 
   private val rawDataLenght = Mesh.VERTEX_DATA_LENGTH * vertexData.length +
                               Mesh.NORMAL_DATA_LENGTH * vertexData.length +
                               Mesh.TEX_DATA_LENGTH * vertexData.length
 
-  private val rawData: Array[Float] = getRawData
-  Log.debug("rawDataSize Check", "Should be " + rawDataLenght + ", is " + rawData.length)
-  Log.debug("VertexData size", "" + vertexData.length)
-  var s = ""
-  vertexData.foreach(v => s += v.toString() + "\n")
-  Log.debug("VData", s)
+  private val rawData: Array[Float] = createRawData
 
-  private def getRawData(): Array[Float] = {
+  def getRawData = rawData
+
+  //Log.debug("rawDataSize Check", "Should be " + rawDataLenght + ", is " + rawData.length)
+  //Log.debug("VertexData size", "" + vertexData.length)
+
+  //var s = ""
+  //vertexData.foreach(v => s += v.toString() + "\n")
+  //Log.debug("VData", s)
+
+  private def createRawData(): Array[Float] = {
     val data = Buffer[Float]()
     for(i <- vertexData.indices){ data ++= getRawDataFromData(i) }
     data.toArray
@@ -100,18 +88,17 @@ class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
     val normIndex = vertexData(i).normalID
 
     Vector[Float](
-    vertices(vertIndex).x,vertices(vertIndex).y,vertices(vertIndex).z,
-    texCoords(uvIndex).x,texCoords(uvIndex).y,
-    normals(normIndex).x,normals(normIndex).y,normals(normIndex).z)
+    vertices(vertIndex).x, vertices(vertIndex).y, vertices(vertIndex).z,
+    texCoords(uvIndex).x, texCoords(uvIndex).y,
+    normals(normIndex).x, normals(normIndex).y, normals(normIndex).z)
   }
-
 
 }
 
 class VertexData(val positionID: Int, val uvID: Int, val normalID:Int) {
+
   def ==(other: VertexData): Boolean = this.positionID == other.positionID &&
     this.uvID == other.uvID && this.normalID == other.normalID
-
   def != (other: VertexData): Boolean = !(this == other)
 
   override def toString() = {
@@ -126,4 +113,3 @@ class Vertex(position: Vector3f, uv: Vector2f,normal: Vector3f){
       uv.x + ", " + uv.y + " : " + normal.x + ", " + normal.y + ", " + normal.z
   }
 }
-class Face(val vertices: Vector[Vertex])

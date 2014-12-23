@@ -31,7 +31,12 @@ class Game {
 
   def create(): Unit = {
     val testMesh = Mesh.load("data/meshes/cube.obj")
+    var data = ""
+    testMesh.getRawData.foreach(f => data += f.toString + ", ")
+    Log.debug("TestMesh raw data", data)
+
     testSpatial.rotate(0,45,0)
+    
     Log.debug("Height" , "" + Display.getHeight)
     Log.debug("Width" , "" + Display.getWidth)
     val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat

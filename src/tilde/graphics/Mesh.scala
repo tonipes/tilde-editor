@@ -23,32 +23,32 @@ object Mesh{
     val normals = Buffer[Vector3f]()
 
     val vertedDataList = Buffer[VertexData]()
-    val elements = Buffer[Int]()
+    val elements = Buffer[Short]()
 
     for(line <- lines){
       val data = line.split(" ")
-      data(0) match{
-        case "v" => vertices += parseVertexPosition(data(1),data(2),data(3))
-        case "vt" => texCoords += parseTextureCoordinate(data(1),data(2))
-        case "vn" => normals += parseVertexNormal(data(1),data(2),data(3))
-        case "f" => {
+        data(0) match {
+          case "v" => vertices += parseVertexPosition(data(1), data(2), data(3))
+          case "vt" => texCoords += parseTextureCoordinate(data(1), data(2))
+          case "vn" => normals += parseVertexNormal(data(1), data(2), data(3))
+          case "f" => {
+            val verts = Vector.tabulate(3)(n => data(n + 1).split("/"))
+            for (v <- verts) {
+              val vertData = new VertexData(v(0).toInt - 1, v(1).toInt - 1, v(2).toInt - 1)
 
-          val verts = Vector.tabulate(3)(n => data(n+1).split("/"))
-          for(v <- verts){
-            val vertData =  new VertexData(v(0).toInt-1,v(1).toInt-1,v(2).toInt-1)
+              //var indexOfvertData = vertedDataList.indexWhere(v => v == vertData)
+              var indexOfvertData = 0
+              //if (indexOfvertData < 0) {
+                vertedDataList += vertData
+                indexOfvertData = vertedDataList.length - 1
+              //}
 
-            var indexOfvertData = vertedDataList.indexWhere(v => v == vertData)
-            if(indexOfvertData < 0){
-              vertedDataList += vertData
-              indexOfvertData = vertedDataList.length - 1
+              elements += indexOfvertData.toShort
             }
-
-            elements += indexOfvertData
           }
-        }
 
-        case _ => {}
-      }
+          case _ => {}
+        }
     }
     new Mesh(vertices.toVector,texCoords.toVector,normals.toVector,vertedDataList.toVector,elements.toVector)
   }
@@ -59,14 +59,15 @@ object Mesh{
 }
 
 class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
-           normals:Vector[Vector3f],    vertexData: Vector[VertexData], private val elements: Vector[Int]) {
+           normals:Vector[Vector3f],    vertexData: Vector[VertexData], private val elements: Vector[Short]) {
 
   private val rawDataLenght = Mesh.VERTEX_DATA_LENGTH * vertexData.length +
                               Mesh.NORMAL_DATA_LENGTH * vertexData.length +
                               Mesh.TEX_DATA_LENGTH * vertexData.length
 
   private val rawData: Array[Float] = createRawData
-
+  def getTriangleCount = elements.length / 3
+  def getElemCount = elements.length
   def getRawData = rawData
   def getElements = elements
   //Log.debug("rawDataSize Check", "Should be " + rawDataLenght + ", is " + rawData.length)

@@ -54,13 +54,9 @@ class Core {
     }
 
     update(getDelta)
-
     render()
-
     Display.update()
-
     Display.sync(60)
-
   }
 
   private def update(delta: Float) = {

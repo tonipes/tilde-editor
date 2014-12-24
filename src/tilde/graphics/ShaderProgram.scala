@@ -10,6 +10,13 @@ import tilde.log.Log
  * Created by Toni on 17.12.14.
  */
 object ShaderProgram{
+  def load(vertexShader: String, fragmentShader: String) = {
+    val shaderP = new ShaderProgram()
+    shaderP.attachVertexShader(vertexShader)
+    shaderP.attachFragShader(fragmentShader)
+    shaderP.link()
+    shaderP
+  }
   def unbind() = glUseProgram(0)
 }
 

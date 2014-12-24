@@ -12,7 +12,6 @@ object SpatialComponent{
   val id = classOf[SpatialComponent]
 }
 class SpatialComponent extends Component {
-  val a: Option[Int] = None
   private val position: Vector3f = new Vector3f(0,0,0)
   private val orientation: Quaternion = new Quaternion().setIdentity()
   private val scale: Vector3f = new Vector3f(1,1,1)

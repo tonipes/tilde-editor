@@ -3,6 +3,8 @@ package tilde
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
+import scala.collection.mutable.Map
+import tilde.graphics.{ShaderProgram, Model, Mesh, Texture}
 
 import scala.io.Source
 
@@ -24,6 +26,21 @@ import scala.io.Source
  */
 object ResourceManager {
 
+  val textures = Map[String, Texture]()
+  val meshes = Map[String,Mesh]()
+  val models = Map[String, Model]()
+  val shaderPrograms = Map[String, ShaderProgram]()
+
   def readFromFile(path:String): String = Source.fromFile(path).mkString
   def readImegeFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
+
+  // debugging resources
+  textures("measure") = Texture.load("data/textures/measure_128.png")
+  //meshes("dragon") = Mesh.load("data/meshes/dragon.obj")
+  meshes("cube") = Mesh.load("data/meshes/cube.obj")
+  meshes("teapot") = Mesh.load("data/meshes/teapot_test.obj")
+  shaderPrograms("default") = ShaderProgram.load("data/shaders/default.vert","data/shaders/default.frag")
+
+
+
 }

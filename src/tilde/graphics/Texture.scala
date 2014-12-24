@@ -19,7 +19,6 @@ object Texture {
 
     val bufImage: BufferedImage = ResourceManager.readImegeFromFile(name)
 
-
     val pixels = Array.ofDim[Int](bufImage.getWidth() * bufImage.getHeight())
 
     bufImage.getRGB(0, 0, bufImage.getWidth(), bufImage.getHeight(), pixels, 0, bufImage.getWidth())

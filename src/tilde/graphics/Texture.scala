@@ -52,17 +52,15 @@ object Texture {
 
 }
 
-class Texture(val width: Int, val height: Int, val texID: Int) {
+class Texture(val width: Int, val height: Int, val id: Int) {
 
-  def bind() = {
-    glBindTexture(GL_TEXTURE_2D, texID)
-  }
+  def bind(): Unit = glBindTexture(GL_TEXTURE_2D, id)
 
-  def unbind() = {
-    glBindTexture(GL_TEXTURE_2D, 0)
-  }
+  def unbind(): Unit = glBindTexture(GL_TEXTURE_2D, 0)
 
-  def setActiveAsUnit(unit: Int) = {
-    glActiveTexture(GL_TEXTURE0)
+  def setActiveAsUnit(unit: Int): Unit = glActiveTexture(GL_TEXTURE0 + unit)
+
+  def dispose(): Unit = {
+
   }
 }

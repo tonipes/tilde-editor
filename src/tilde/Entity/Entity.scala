@@ -22,4 +22,8 @@ class Entity {
     else
       None
   }
+
+  def dispose() {
+
+  }
 }

@@ -9,7 +9,9 @@ import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
 import org.lwjgl.util.vector.{Matrix4f, Vector3f}
-import tilde.entity.component.SpatialComponent
+import tilde.ResourceManager
+import tilde.entity.Entity
+import tilde.entity.component.{ModelComponent, SpatialComponent}
 import tilde.graphics.{Mesh, Camera, ShaderProgram, Texture}
 import tilde.log.Log
 import tilde.util.{Direction, Transform}
@@ -18,42 +20,49 @@ import tilde.util.{Direction, Transform}
  * Created by Toni on 13.12.2014.
  */
 class Game {
-  lazy val shader: ShaderProgram = new ShaderProgram
+  var shader: ShaderProgram = null
+  var camera: Camera = null
+
+  val entity = new Entity()
+      entity.addComponent(new SpatialComponent())
+      entity.addComponent(new ModelComponent("cube","measure"))
 
   var vaoID = 0
 
-  var texture: Texture = null
 
-  var testSpatial = new SpatialComponent()
-  var camera: Camera = null
-  val testMesh = Mesh.load("data/meshes/teapot_test.obj")
 
   def create(): Unit = {
-    //testSpatial.rotate(0,45,0)
-    testSpatial.scale(new Vector3f(0.25f,0.25f,0.25f))
-    //testSpatial.move(Direction.UP,1)
     val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
     camera = new Camera(100f,0.1f, aspect,60)
 
+    shader = ResourceManager.shaderPrograms("default")
+
     val cameraSpatial = camera.getComponent(SpatialComponent.id).get
-    cameraSpatial.setPosition(new Vector3f(0,2,2))
-    cameraSpatial.rotateX(-45f)
+    cameraSpatial.setPosition(new Vector3f(0,0,2))
+    //cameraSpatial.rotateX(-45f)
 
-    // Shader setup
-    shader.attachVertexShader("data/shaders/default.vert")
-    shader.attachFragShader("data/shaders/default.frag")
-    shader.link()
+    val entitySpatial = entity.getComponent(SpatialComponent.id).get
 
-    shader.setUniform("tex",0)
+    //Log.debug("EntitySpatial up before", "" + entitySpatial.up.toString)
+    //Log.debug("EntitySpatial forward before", "" + entitySpatial.forward.toString)
+    //Log.debug("EntitySpatial right before", "" + entitySpatial.right.toString)
+
+    entitySpatial.scale(new Vector3f(0.5f,0.5f,0.5f))
+    entitySpatial.rotate(-45,entitySpatial.up)
+    //entitySpatial.rotate(180,entitySpatial.up)
+
+    //Log.debug("EntitySpatial up after", "" + entitySpatial.up.toString)
+    //Log.debug("EntitySpatial forward after", "" + entitySpatial.forward.toString)
+    //Log.debug("EntitySpatial right after", "" + entitySpatial.right.toString)
 
     // Vert Data
-    val d = testMesh.getRawData
+    val d = entity.getComponent(ModelComponent.id).get.getMesh.getRawData
     val verts = BufferUtils.createFloatBuffer(d.length)
     verts.put(d)
     verts.rewind()
 
     // Elements
-    val e = testMesh.getElements.toArray
+    val e = entity.getComponent(ModelComponent.id).get.getMesh.getElements.toArray
     val elem = BufferUtils.createShortBuffer(e.length)
     elem.put(e)
     elem.rewind()
@@ -79,9 +88,8 @@ class Game {
 
     glBindVertexArray(0)
 
-    texture = Texture.load("data/textures/measure_128.png")
-    texture.setActiveAsUnit(0)
-    texture.bind()
+    entity.getComponent(ModelComponent.id).get.getTexture.setActiveAsUnit(0)
+    entity.getComponent(ModelComponent.id).get.getTexture.bind()
 
     glEnable(GL_DEPTH_TEST)
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE )
@@ -91,16 +99,14 @@ class Game {
   }
 
   def render(): Unit = {
+    val entSpatial = entity.getComponent(SpatialComponent.id).get
+    val entModel = entity.getComponent(ModelComponent.id).get
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     camera.update()
     shader.bind()
 
-    //Log.debug("transform", testSpatial.toString )
-    //Log.debug("view", camera.viewMatrix.toString)
-    //Log.debug("proj", camera.projectionMatrix.toString)
-
-    shader.setUniform("m_model", testSpatial.getFloatBuffer)
+    shader.setUniform("m_model", entSpatial.getFloatBuffer)
     shader.setUniform("m_view", camera.getViewBuffer)
     shader.setUniform("m_proj", camera.getProjectionBuffer)
 
@@ -108,7 +114,7 @@ class Game {
     glEnableVertexAttribArray(0)
     glEnableVertexAttribArray(1)
     glEnableVertexAttribArray(2)
-    glDrawElements(GL_TRIANGLES,testMesh.getElemCount,GL_UNSIGNED_SHORT,0)
+    glDrawElements(GL_TRIANGLES,entModel.getMesh.getElemCount,GL_UNSIGNED_SHORT,0)
     //GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST)
 
     glDisableVertexAttribArray(0)
@@ -124,13 +130,9 @@ class Game {
   }
 
   def update(delta: Float): Unit = {
-    val d = delta*100
-    //testSpatial.rotate(d,d/2,d/3)
-    testSpatial.rotate(1, new Vector3f(0,1,0))
-    //testSpatial.move(Direction.AXIS_Z,0.002f)
-    //testSpatial.scale(new Vector3f(0.999f,0.999f,0.999f))
-    //camera.move(Direction.FORWARD, 0.001f)
-    //camera.getComponent(SpatialComponent.id).get.rotate(0.5f, camera.getComponent(SpatialComponent.id).get.forward)
+    val entitySpatial = entity.getComponent(SpatialComponent.id).get
+    //entitySpatial.rotate(1,entitySpatial.forward)
+    entitySpatial.move(entitySpatial.right, 0.01f)
   }
 
   def dispose() = {
@@ -142,5 +144,7 @@ class Game {
 
     // Dispose the VBO
     glBindBuffer(GL_ARRAY_BUFFER, 0)
+    shader.dispose()
+    entity.dispose()
   }
 }

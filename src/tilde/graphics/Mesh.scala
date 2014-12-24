@@ -1,6 +1,7 @@
 package tilde.graphics
 
 import java.io.File
+import org.lwjgl.opengl.GL15._
 import org.lwjgl.util.vector.{Vector2f, Vector3f}
 import tilde.log.Log
 
@@ -22,7 +23,7 @@ object Mesh{
     val texCoords = Buffer[Vector2f]()
     val normals = Buffer[Vector3f]()
 
-    val vertedDataList = Buffer[VertexData]()
+    val vertexData = Buffer[VertexData]()
     val elements = Buffer[Short]()
 
     for(line <- lines){
@@ -35,12 +36,12 @@ object Mesh{
             val verts = Vector.tabulate(3)(n => data(n + 1).split("/"))
             for (v <- verts) {
               val vertData = new VertexData(v(0).toInt - 1, v(1).toInt - 1, v(2).toInt - 1)
-
+              // Comment out if you want to minimize duplicate vertices and memory usage
               //var indexOfvertData = vertedDataList.indexWhere(v => v == vertData)
               var indexOfvertData = 0
               //if (indexOfvertData < 0) {
-                vertedDataList += vertData
-                indexOfvertData = vertedDataList.length - 1
+                vertexData += vertData
+                indexOfvertData = vertexData.length - 1
               //}
 
               elements += indexOfvertData.toShort
@@ -50,7 +51,19 @@ object Mesh{
           case _ => {}
         }
     }
-    new Mesh(vertices.toVector,texCoords.toVector,normals.toVector,vertedDataList.toVector,elements.toVector)
+    // Loading mesh to memory
+    /*val data = Buffer[Float]()
+    for(i <- vertexData.indices){
+      val vertIndex = vertexData(i).positionID
+      val uvIndex = vertexData(i).uvID
+      val normIndex = vertexData(i).normalID
+      data ++= Vector[Float](
+        vertices(vertIndex).x, vertices(vertIndex).y, vertices(vertIndex).z,
+        texCoords(uvIndex).x, texCoords(uvIndex).y,
+        normals(normIndex).x, normals(normIndex).y, normals(normIndex).z)
+    }
+    */
+    new Mesh(vertices.toVector,texCoords.toVector,normals.toVector,vertexData.toVector,elements.toVector)
   }
 
   private def parseVertexPosition(str: String*): Vector3f = new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)
@@ -61,21 +74,12 @@ object Mesh{
 class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
            normals:Vector[Vector3f],    vertexData: Vector[VertexData], private val elements: Vector[Short]) {
 
-  private val rawDataLenght = Mesh.VERTEX_DATA_LENGTH * vertexData.length +
-                              Mesh.NORMAL_DATA_LENGTH * vertexData.length +
-                              Mesh.TEX_DATA_LENGTH * vertexData.length
-
   private val rawData: Array[Float] = createRawData
+
   def getTriangleCount = elements.length / 3
   def getElemCount = elements.length
   def getRawData = rawData
   def getElements = elements
-  //Log.debug("rawDataSize Check", "Should be " + rawDataLenght + ", is " + rawData.length)
-  //Log.debug("VertexData size", "" + vertexData.length)
-
-  //var s = ""
-  //vertexData.foreach(v => s += v.toString() + "\n")
-  //Log.debug("VData", s)
 
   private def createRawData(): Array[Float] = {
     val data = Buffer[Float]()
@@ -96,6 +100,19 @@ class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
 
 }
 
+class Me(val dataId: Int,val elemId: Int){
+  def bindData(): Unit = glBindBuffer(GL_ARRAY_BUFFER,dataId)
+
+  def bindElem(): Unit = glBindBuffer(GL_ARRAY_BUFFER,elemId)
+
+  def bufferData(): Unit = glBufferData(GL_ELEMENT_ARRAY_BUFFER,dataId,GL_STATIC_DRAW)
+
+  def bufferElem(): Unit = glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemId,GL_STATIC_DRAW)
+
+  def unbind(): Unit = glBindBuffer(GL_ARRAY_BUFFER,0)
+
+}
+
 class VertexData(val positionID: Int, val uvID: Int, val normalID:Int) {
 
   def ==(other: VertexData): Boolean = this.positionID == other.positionID &&
@@ -104,13 +121,5 @@ class VertexData(val positionID: Int, val uvID: Int, val normalID:Int) {
 
   override def toString() = {
     (positionID+1) + "/" + (uvID+1) + "/" + (normalID+1)
-  }
-}
-
-// Holds all of vertex data
-class Vertex(position: Vector3f, uv: Vector2f,normal: Vector3f){
-  override def toString() = {
-    "" + position.x + ", " + position.y + ", " + position.z + " : " +
-      uv.x + ", " + uv.y + " : " + normal.x + ", " + normal.y + ", " + normal.z
   }
 }

@@ -20,8 +20,8 @@ import tilde.util.{Direction, Transform}
  * Created by Toni on 13.12.2014.
  */
 class Game {
-  var shader: ShaderProgram = null
-  var camera: Camera = null
+  lazy val shader: ShaderProgram = ResourceManager.shaderPrograms("default")
+  lazy val camera: Camera = new Camera(100f,0.1f, Display.getWidth.toFloat / Display.getHeight.toFloat,60)
 
   val entity = new Entity()
       entity.addComponent(new SpatialComponent())
@@ -29,62 +29,35 @@ class Game {
 
   var vaoID = 0
 
-
-
   def create(): Unit = {
-    val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
-    camera = new Camera(100f,0.1f, aspect,60)
+    //val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
 
-    shader = ResourceManager.shaderPrograms("default")
+   //camera = new Camera(100f,0.1f, aspect,60)
+    //shader = ResourceManager.shaderPrograms("default")
 
     val cameraSpatial = camera.getComponent(SpatialComponent.id).get
-    cameraSpatial.setPosition(new Vector3f(0,0,2))
-    //cameraSpatial.rotateX(-45f)
-
     val entitySpatial = entity.getComponent(SpatialComponent.id).get
+    val entityModel = entity.getComponent(ModelComponent.id).get
 
-    //Log.debug("EntitySpatial up before", "" + entitySpatial.up.toString)
-    //Log.debug("EntitySpatial forward before", "" + entitySpatial.forward.toString)
-    //Log.debug("EntitySpatial right before", "" + entitySpatial.right.toString)
+    cameraSpatial.setPosition(new Vector3f(0,0,2))
 
     entitySpatial.scale(new Vector3f(0.5f,0.5f,0.5f))
-    entitySpatial.rotate(-45,entitySpatial.up)
-    //entitySpatial.rotate(180,entitySpatial.up)
-
-    //Log.debug("EntitySpatial up after", "" + entitySpatial.up.toString)
-    //Log.debug("EntitySpatial forward after", "" + entitySpatial.forward.toString)
-    //Log.debug("EntitySpatial right after", "" + entitySpatial.right.toString)
-
-    // Vert Data
-    val d = entity.getComponent(ModelComponent.id).get.getMesh.getRawData
-    val verts = BufferUtils.createFloatBuffer(d.length)
-    verts.put(d)
-    verts.rewind()
-
-    // Elements
-    val e = entity.getComponent(ModelComponent.id).get.getMesh.getElements.toArray
-    val elem = BufferUtils.createShortBuffer(e.length)
-    elem.put(e)
-    elem.rewind()
+    //entitySpatial.rotate(-45,entitySpatial.up())
 
     // vao
     vaoID = glGenVertexArrays()
     glBindVertexArray(vaoID)
 
-    //data
-    val vertsID = glGenBuffers()
-    glBindBuffer(GL_ARRAY_BUFFER,vertsID)
-    glBufferData(GL_ARRAY_BUFFER,verts,GL_STATIC_DRAW)
+    entityModel.getMesh.bindData()
+    entityModel.getMesh.bufferData()
     glVertexAttribPointer(0, 3, GL_FLOAT, false, 8*4, 0*4) // verts
     glVertexAttribPointer(1, 2, GL_FLOAT, false, 8*4, 3*4) // uv
     glVertexAttribPointer(2, 3, GL_FLOAT, false, 8*4, 5*4) // normal
-    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    entityModel.getMesh.unbind()
 
-    //elem
-    val elemID = glGenBuffers()
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemID)
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,elem,GL_STATIC_DRAW)
-    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    entityModel.getMesh.bindElem()
+    entityModel.getMesh.bufferElem()
+    entityModel.getMesh.unbind()
 
     glBindVertexArray(0)
 
@@ -114,7 +87,7 @@ class Game {
     glEnableVertexAttribArray(0)
     glEnableVertexAttribArray(1)
     glEnableVertexAttribArray(2)
-    glDrawElements(GL_TRIANGLES,entModel.getMesh.getElemCount,GL_UNSIGNED_SHORT,0)
+    glDrawElements(GL_TRIANGLES,entModel.getMesh.elemCount,GL_UNSIGNED_SHORT,0)
     //GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST)
 
     glDisableVertexAttribArray(0)
@@ -131,8 +104,8 @@ class Game {
 
   def update(delta: Float): Unit = {
     val entitySpatial = entity.getComponent(SpatialComponent.id).get
-    //entitySpatial.rotate(1,entitySpatial.forward)
-    entitySpatial.move(entitySpatial.right, 0.01f)
+    entitySpatial.rotate(1,new Vector3f(4.534534f,2.0f,0.234f))
+    //entitySpatial.move(entitySpatial.right, 0.01f)
   }
 
   def dispose() = {

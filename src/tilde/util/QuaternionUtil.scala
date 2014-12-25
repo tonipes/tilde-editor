@@ -1,6 +1,7 @@
 package tilde.util
 
 import org.lwjgl.util.vector.{Vector3f, Matrix4f, Quaternion}
+import tilde.log.Log
 
 /*
 Functions from
@@ -72,19 +73,22 @@ object QuaternionUtil {
     dest
   }
 
-  def getForward(q: Quaternion) = {
+  def getForward(q: Quaternion):Vector3f = {
     new Vector3f( 2f * (q.x * q.z + q.w * q.y),
                   2f * (q.y * q.z - q.w * q.x),
               1f - 2f * (q.x * q.x + q.y * q.y))
   }
 
-  def getUp(q: Quaternion) = {
-    new Vector3f( 2f * (q.x * q.y - q.w * q.z),
+  def getUp(q: Quaternion):Vector3f = {
+    Log.debug("Getting up vector","Quaternion: " + q.toString)
+    val a = new Vector3f( 2f * (q.x * q.y - q.w * q.z),
               1f - 2f * (q.x * q.x + q.z * q.z),
                   2f * (q.y * q.z + q.w * q.x))
+    Log.debug("Up vector", a.toString)
+    a
   }
 
-  def getRight(q: Quaternion) = {
+  def getRight(q: Quaternion):Vector3f = {
     new Vector3f( 1f - 2f * (q.y * q.y + q.z * q.z),
                       2f * (q.x * q.y + q.w * q.z),
                       2f * (q.x * q.z - q.w * q.y))

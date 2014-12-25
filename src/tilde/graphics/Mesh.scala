@@ -1,6 +1,7 @@
 package tilde.graphics
 
 import java.io.File
+import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.util.vector.{Vector2f, Vector3f}
 import tilde.log.Log
@@ -51,8 +52,9 @@ object Mesh{
           case _ => {}
         }
     }
+
     // Loading mesh to memory
-    /*val data = Buffer[Float]()
+    val data = Buffer[Float]()
     for(i <- vertexData.indices){
       val vertIndex = vertexData(i).positionID
       val uvIndex = vertexData(i).uvID
@@ -62,8 +64,26 @@ object Mesh{
         texCoords(uvIndex).x, texCoords(uvIndex).y,
         normals(normIndex).x, normals(normIndex).y, normals(normIndex).z)
     }
-    */
-    new Mesh(vertices.toVector,texCoords.toVector,normals.toVector,vertexData.toVector,elements.toVector)
+
+    val dataBuffer = BufferUtils.createFloatBuffer(data.length)
+    dataBuffer.put(data.toArray)
+    dataBuffer.rewind()
+
+    val dataID = glGenBuffers()
+    glBindBuffer(GL_ARRAY_BUFFER,dataID)
+    glBufferData(GL_ARRAY_BUFFER,dataBuffer,GL_STATIC_DRAW)
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
+
+    val elemBuffer = BufferUtils.createShortBuffer(elements.length)
+    elemBuffer.put(elements.toArray)
+    elemBuffer.rewind()
+
+    val elemID = glGenBuffers()
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemID)
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemBuffer,GL_STATIC_DRAW)
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
+
+    new Mesh(dataID,elemID, data.length, elements.length)
   }
 
   private def parseVertexPosition(str: String*): Vector3f = new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)
@@ -71,41 +91,12 @@ object Mesh{
   private def parseVertexNormal(str: String*): Vector3f = {new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)}
 }
 
-class Mesh(vertices: Vector[Vector3f],  texCoords: Vector[Vector2f],
-           normals:Vector[Vector3f],    vertexData: Vector[VertexData], private val elements: Vector[Short]) {
-
-  private val rawData: Array[Float] = createRawData
-
-  def getTriangleCount = elements.length / 3
-  def getElemCount = elements.length
-  def getRawData = rawData
-  def getElements = elements
-
-  private def createRawData(): Array[Float] = {
-    val data = Buffer[Float]()
-    for(i <- vertexData.indices){ data ++= getRawDataFromData(i) }
-    data.toArray
-  }
-
-  private def getRawDataFromData(i: Int): Vector[Float] = {
-    val vertIndex = vertexData(i).positionID
-    val uvIndex = vertexData(i).uvID
-    val normIndex = vertexData(i).normalID
-
-    Vector[Float](
-    vertices(vertIndex).x, vertices(vertIndex).y, vertices(vertIndex).z,
-    texCoords(uvIndex).x, texCoords(uvIndex).y,
-    normals(normIndex).x, normals(normIndex).y, normals(normIndex).z)
-  }
-
-}
-
-class Me(val dataId: Int,val elemId: Int){
+class Mesh(val dataId: Int, val elemId: Int , val elemCount: Int, val dataCount: Int){
   def bindData(): Unit = glBindBuffer(GL_ARRAY_BUFFER,dataId)
 
-  def bindElem(): Unit = glBindBuffer(GL_ARRAY_BUFFER,elemId)
+  def bindElem(): Unit = glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemId)
 
-  def bufferData(): Unit = glBufferData(GL_ELEMENT_ARRAY_BUFFER,dataId,GL_STATIC_DRAW)
+  def bufferData(): Unit = glBufferData(GL_ARRAY_BUFFER,dataId,GL_STATIC_DRAW)
 
   def bufferElem(): Unit = glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemId,GL_STATIC_DRAW)
 

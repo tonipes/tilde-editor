@@ -20,9 +20,9 @@ class SpatialComponent extends Component {
 
   private val transFloatBuffer = BufferUtils.createFloatBuffer(16)
 
-  def up: Vector3f = QuaternionUtil.getUp(orientation)
-  def right: Vector3f = QuaternionUtil.getRight(orientation)
-  def forward: Vector3f = QuaternionUtil.getForward(orientation)
+  def up(): Vector3f = QuaternionUtil.getUp(orientation)
+  def right(): Vector3f = QuaternionUtil.getRight(orientation)
+  def forward(): Vector3f = QuaternionUtil.getForward(orientation)
 
   def rotate(x:Float,y:Float,z:Float): Unit  = {
     rotateX(x)
@@ -34,13 +34,14 @@ class SpatialComponent extends Component {
   def rotateY(angle: Float) = rotate(angle,AXIS_Y)
   def rotateZ(angle: Float) = rotate(angle,AXIS_Z)
 
-  def move(dir: Direction,amount: Float): Unit = dir match {
-    case Direction.FORWARD => move(forward,amount)
-    case Direction.BACKWARD => move(forward,-amount)
-    case Direction.RIGHT => move(right,amount)
-    case Direction.LEFT => move(right,-amount)
-    case Direction.UP => move(up,amount)
-    case Direction.DOWN => move(up,-amount)
+  def move(dir: Direction,amount: Float): Unit =
+    dir match {
+    case Direction.FORWARD => move(forward(),amount)
+    case Direction.BACKWARD => move(forward(),-amount)
+    case Direction.RIGHT => move(right(),amount)
+    case Direction.LEFT => move(right(),-amount)
+    case Direction.UP => move(QuaternionUtil.getUp(orientation),amount)
+    case Direction.DOWN => move(QuaternionUtil.getUp(orientation),-amount)
   }
 
   def rotate(angle: Float, axis: Vector3f): Unit = {

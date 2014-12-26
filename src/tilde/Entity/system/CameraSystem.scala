@@ -3,7 +3,7 @@ package tilde.entity.system
 import org.lwjgl.input.Keyboard
 import org.lwjgl.util.vector.Matrix4f
 import tilde.Input
-import tilde.entity.Entity
+import tilde.entity.{World, Entity}
 import tilde.entity.component.{CameraComponent, SpatialComponent}
 import tilde.log.Log
 import tilde.util.{QuaternionUtil, SystemUtil}
@@ -12,14 +12,16 @@ import tilde.util.{QuaternionUtil, SystemUtil}
  * Created by Toni on 26.12.14.
  */
 
-class CameraSystem extends EntitySystem(SystemUtil.createAspect(SpatialComponent,CameraComponent)){
+class CameraSystem() extends EntitySystem(SystemUtil.createAspect(SpatialComponent,CameraComponent)){
   val movementSpeed = 0.01f
   val rotateSpeed = 1f
 
   override def process(e: Entity): Unit = {
+   // Log.debug("CameraSystem processing entity", "" + e)
     // update camera viewMatrix
     val spatial = e.getComponent(SpatialComponent.id).get
     val camera = e.getComponent(CameraComponent.id).get
+
     val viewMatrix = QuaternionUtil.rotationMatrix(spatial.getOrientation)
     Matrix4f.translate(spatial.getPosition.negate(null), viewMatrix, viewMatrix)
     viewMatrix.store(camera.viewBuffer)
@@ -45,7 +47,17 @@ class CameraSystem extends EntitySystem(SystemUtil.createAspect(SpatialComponent
 
   }
 
-  override def begin(): Unit = Log.debug("System stared", "CameraSystem")
+  override def begin(): Unit = {
+    super.begin()
+    //Log.debug("System stared", "CameraSystem")
+  }
 
-  override def end(): Unit = Log.debug("System ended", "CameraSystem")
+  override def end(): Unit = {
+    super.end()
+    //Log.debug("System ended", "CameraSystem")
+  }
+
+  override def toString() ={
+    "CameraSystem"
+  }
 }

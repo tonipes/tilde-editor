@@ -34,4 +34,9 @@ class Entity(val world: World) {
   def dispose() {
     world.destroyEntity(this)
   }
+
+  override def toString() = {
+    "Entity" + this.hashCode() + " with " + components.keys.toString
+  }
+
 }

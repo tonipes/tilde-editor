@@ -8,7 +8,7 @@ import tilde.entity.Entity
 import tilde.entity.component.SpatialComponent
 import tilde.util.Direction._
 import tilde.util.{Direction, QuaternionUtil, MatrixUtil}
-
+/*
 object Camera{
   object Projection extends Enumeration{
     type Projection = Value
@@ -52,3 +52,4 @@ class Camera(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Entit
   def getProjectionBuffer = projectionBuffer
 
 }
+*/

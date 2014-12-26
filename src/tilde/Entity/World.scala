@@ -1,8 +1,7 @@
 package tilde.entity
 
-import tilde.entity.aspect.Aspect
-import tilde.entity.component.Component
 import tilde.entity.system.EntitySystem
+import tilde.log.Log
 
 import scala.collection.mutable._
 /**
@@ -15,10 +14,14 @@ import scala.collection.mutable._
   - Systems ! ! !
   - Signals !?
  */
-class World {
+class World(entitySystems: EntitySystem*) {
+  for(sys <- entitySystems){
+    sys.world = this
+  }
+  val tags = Map[String, Entity]()  // Tag is used to identify unique entities like "camera" and "player"
 
-  val tags = HashMap[String, Entity]()  // Tag is used to identify unique entities like "camera" and "player"
-  val systems = HashMap[Class[_ <: EntitySystem], EntitySystem]()  // Systems alter world's state.
+  //val systems = HashMap[Class[_ <: EntitySystem], EntitySystem]()  // Systems alter world's state.
+
   val entities = Buffer[Entity]()
 
   val created = Buffer[Entity]()
@@ -27,22 +30,26 @@ class World {
 
   // Iterates all systems and runs system with all entities that have the systems required aspect
   def update(delta: Float): Unit = {
+    //Log.debug("Starting world update", "systems: " + entitySystems.toString)
     handleChanges()
+    for(sys <- entitySystems){
+      //Log.debug("Starting system", sys.toString)
+      sys.begin()
+      sys.processEntities()
+      sys.end()
+    }
   }
 
   def handleChanges() = {
-    for(system <- systems){
-      val sys = system._2
-      val aspect = sys.aspect
-
+    for(system <- entitySystems){
       for(e <- created){ // Created
-        sys.checkIntrest(e)
+        system.checkIntrest(e)
       }
-      for(e <- changed){
-        sys.checkIntrest(e)
+      for(e <- changed){  // Changed
+        system.checkIntrest(e)
       }
-      for(e <- destroyed){
-        sys.removeEntity(e)
+      for(e <- destroyed){ // Destryed
+        system.removeEntity(e)
       }
     }
     created.clear()
@@ -51,7 +58,7 @@ class World {
   }
 
   def changed(e: Entity): Unit = {
-    if(!changed.contains(e))
+    if(!changed.contains(e) && !created.contains(e))
       changed += e
   }
 
@@ -62,9 +69,12 @@ class World {
   }
 
   def addTag(tag: String, e: Entity): Unit ={
+    //Log.debug("Tagging entity",tag + ", " + e.toString)
     tags(tag) = e
+    //Log.debug("Tagged now", tags.toString)
   }
 
+  def getTagged(tag: String): Entity = tags(tag)
 
   def destroyEntity(e: Entity) = {
     val i = entities.indexOf(e)

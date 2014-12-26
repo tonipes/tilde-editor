@@ -17,6 +17,7 @@ trait ComponentObject{
   def getID(id: Class[_ <: Component]): Int = id match{
     case SpatialComponent.id => 1
     case ModelComponent.id => 2
+    case CameraComponent.id => 3
   }
 }
 

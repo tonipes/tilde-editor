@@ -2,16 +2,20 @@ package tilde.entity.component
 
 import org.lwjgl.BufferUtils
 import org.lwjgl.util.vector.{Matrix4f, Quaternion, Vector3f}
+import tilde.entity.ComponentIDs
 import tilde.util.Direction._
 import tilde.util.{Direction, QuaternionUtil}
 
 /**
  * Created by Toni on 23.12.14.
  */
-object SpatialComponent{
+object SpatialComponent extends ComponentObject{
   val id = classOf[SpatialComponent]
 }
+
 class SpatialComponent extends Component {
+  val bitId = SpatialComponent.bitID
+
   private val position: Vector3f = new Vector3f(0,0,0)
   private val orientation: Quaternion = new Quaternion().setIdentity()
   private val scale: Vector3f = new Vector3f(1,1,1)

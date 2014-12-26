@@ -127,6 +127,7 @@ class Game {
     if(Input.isPressed(Keyboard.KEY_R)) cameraSpatial.move(cameraSpatial.up(),movementSpeed)
 
   }
+
   def dispose() = {
     // Dispose the VAO
     shader.dispose()

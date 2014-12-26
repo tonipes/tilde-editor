@@ -17,7 +17,7 @@ import scala.collection.mutable._
  */
 class World {
 
-  val tag = HashMap[String, Entity]()  // Tag is used to identify unique entities like "camera" and "player"
+  val tags = HashMap[String, Entity]()  // Tag is used to identify unique entities like "camera" and "player"
   val systems = HashMap[Class[_ <: EntitySystem], EntitySystem]()  // Systems alter world's state.
   val entities = Buffer[Entity]()
 
@@ -26,25 +26,47 @@ class World {
   val destroyed = Buffer[Entity]()
 
   // Iterates all systems and runs system with all entities that have the systems required aspect
-  // TODO: Way too slow way to update. Plz fix!
   def update(delta: Float): Unit = {
+    handleChanges()
+  }
+
+  def handleChanges() = {
     for(system <- systems){
       val sys = system._2
       val aspect = sys.aspect
-      val entitiesWithAspect = Buffer[Entity]()
-      for(e <- entities){
-        if(e.checkAspect(aspect))
-          entitiesWithAspect += e
+
+      for(e <- created){ // Created
+        sys.checkIntrest(e)
       }
-      sys.processEntities(entitiesWithAspect.toVector)
+      for(e <- changed){
+        sys.checkIntrest(e)
+      }
+      for(e <- destroyed){
+        sys.removeEntity(e)
+      }
     }
+    created.clear()
+    changed.clear()
+    destroyed.clear()
   }
 
-  def addEntity(e: Entity) = {
-    entities += e
+  def changed(e: Entity): Unit = {
+    if(!changed.contains(e))
+      changed += e
   }
 
-  def removeEntity(e: Entity) = {
+  def createEntity() = {
+    val e = new Entity(this)
+    created += e
+    e
+  }
+
+  def addTag(tag: String, e: Entity): Unit ={
+    tags(tag) = e
+  }
+
+
+  def destroyEntity(e: Entity) = {
     val i = entities.indexOf(e)
     if (i >= 0) entities.remove(i)
     e.dispose()

@@ -80,11 +80,11 @@ object QuaternionUtil {
   }
 
   def getUp(q: Quaternion):Vector3f = {
-    Log.debug("Getting up vector","Quaternion: " + q.toString)
+    //Log.debug("Getting up vector","Quaternion: " + q.toString)
     val a = new Vector3f( 2f * (q.x * q.y - q.w * q.z),
               1f - 2f * (q.x * q.x + q.z * q.z),
                   2f * (q.y * q.z + q.w * q.x))
-    Log.debug("Up vector", a.toString)
+    //Log.debug("Up vector", a.toString)
     a
   }
 

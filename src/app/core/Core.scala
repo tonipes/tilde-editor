@@ -2,9 +2,10 @@ package app.core
 
 import org.lwjgl.LWJGLException
 import org.lwjgl.opengl._
+import tilde.Input
 import tilde.game.Game
 import tilde.log.Log
-
+import org.lwjgl.input.Keyboard
 /**
  * Created by Toni on 13.12.2014.
  */
@@ -27,6 +28,8 @@ class Core {
       //Display.create()
       Display.setTitle("Tilde engine")
       GL11.glViewport(0,0,width,height)
+      Keyboard.create()
+
 
     } catch {
       case e: LWJGLException =>
@@ -52,7 +55,7 @@ class Core {
     if(Display.wasResized()){
       game.resize(Display.getWidth,Display.getHeight)
     }
-
+    Input.update()
     update(getDelta)
     render()
     Display.update()

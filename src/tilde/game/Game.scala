@@ -1,20 +1,17 @@
 package tilde.game
 
-import java.nio.FloatBuffer
-
-import org.lwjgl.BufferUtils
+import org.lwjgl.input.Keyboard
 import org.lwjgl.opengl.{GL11, Display}
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector.{Matrix4f, Vector3f}
-import tilde.ResourceManager
+import org.lwjgl.util.vector.{Vector3f}
+import tilde.{Input, ResourceManager}
 import tilde.entity.Entity
 import tilde.entity.component.{ModelComponent, SpatialComponent}
-import tilde.graphics.{Mesh, Camera, ShaderProgram, Texture}
+import tilde.graphics.{Camera, ShaderProgram}
 import tilde.log.Log
-import tilde.util.{Direction, Transform}
 
 /**
  * Created by Toni on 13.12.2014.
@@ -28,21 +25,22 @@ class Game {
       entity.addComponent(new ModelComponent("cube","measure"))
 
   var vaoID = 0
-
+  val movementSpeed = 0.01f
+  val rotateSpeed = 1f
   def create(): Unit = {
     //val aspect = Display.getWidth.toFloat / Display.getHeight.toFloat
 
-   //camera = new Camera(100f,0.1f, aspect,60)
+    //camera = new Camera(100f,0.1f, aspect,60)
     //shader = ResourceManager.shaderPrograms("default")
-
     val cameraSpatial = camera.getComponent(SpatialComponent.id).get
     val entitySpatial = entity.getComponent(SpatialComponent.id).get
     val entityModel = entity.getComponent(ModelComponent.id).get
 
-    cameraSpatial.setPosition(new Vector3f(0,0,2))
+    cameraSpatial.setPosition(new Vector3f(2,2,2))
 
     entitySpatial.scale(new Vector3f(0.5f,0.5f,0.5f))
-    //entitySpatial.rotate(-45,entitySpatial.up())
+    cameraSpatial.rotate(45,cameraSpatial.up())
+    cameraSpatial.rotate(-45,cameraSpatial.right())
 
     // vao
     vaoID = glGenVertexArrays()
@@ -103,11 +101,32 @@ class Game {
   }
 
   def update(delta: Float): Unit = {
-    val entitySpatial = entity.getComponent(SpatialComponent.id).get
-    entitySpatial.rotate(1,new Vector3f(4.534534f,2.0f,0.234f))
+    handleInput()
+    //val entitySpatial = entity.getComponent(SpatialComponent.id).get
+    //entitySpatial.rotate(1,new Vector3f(4.534534f,2.0f,0.234f))
     //entitySpatial.move(entitySpatial.right, 0.01f)
   }
 
+  def handleInput() = {
+    val cameraSpatial = camera.getComponent(SpatialComponent.id).get
+
+    if(Input.isPressed(Keyboard.KEY_W)) cameraSpatial.move(cameraSpatial.forward(),-movementSpeed)
+    if(Input.isPressed(Keyboard.KEY_S)) cameraSpatial.move(cameraSpatial.forward(),movementSpeed)
+    if(Input.isPressed(Keyboard.KEY_A)) cameraSpatial.move(cameraSpatial.right(),-movementSpeed)
+    if(Input.isPressed(Keyboard.KEY_D)) cameraSpatial.move(cameraSpatial.right(),movementSpeed)
+
+    if(Input.isPressed(Keyboard.KEY_DOWN)) cameraSpatial.rotate(-rotateSpeed,cameraSpatial.right())
+    if(Input.isPressed(Keyboard.KEY_UP)) cameraSpatial.rotate(rotateSpeed,cameraSpatial.right())
+    if(Input.isPressed(Keyboard.KEY_LEFT)) cameraSpatial.rotate(rotateSpeed,cameraSpatial.up())
+    if(Input.isPressed(Keyboard.KEY_RIGHT)) cameraSpatial.rotate(-rotateSpeed,cameraSpatial.up())
+
+    if(Input.isPressed(Keyboard.KEY_E)) cameraSpatial.rotate(-rotateSpeed,cameraSpatial.forward())
+    if(Input.isPressed(Keyboard.KEY_Q)) cameraSpatial.rotate(rotateSpeed,cameraSpatial.forward())
+
+    if(Input.isPressed(Keyboard.KEY_F)) cameraSpatial.move(cameraSpatial.up(),-movementSpeed)
+    if(Input.isPressed(Keyboard.KEY_R)) cameraSpatial.move(cameraSpatial.up(),movementSpeed)
+
+  }
   def dispose() = {
     // Dispose the VAO
     shader.dispose()

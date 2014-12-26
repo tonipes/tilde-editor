@@ -1,5 +1,6 @@
 package tilde.entity
 
+import tilde.entity.aspect.Aspect
 import tilde.entity.component._
 import scala.collection.mutable.Map
 /**
@@ -21,6 +22,10 @@ class Entity {
       Some(components(componentClass).asInstanceOf[T])
     else
       None
+  }
+
+  def checkAspect(a: Aspect): Boolean = {
+    a.components.forall(p => components.contains(p))
   }
 
   def dispose() {

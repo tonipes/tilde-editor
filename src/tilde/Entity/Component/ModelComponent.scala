@@ -1,7 +1,7 @@
 package tilde.entity.component
 
 import tilde.ResourceManager
-import tilde.entity.ComponentIDs
+
 
 /**
  * Created by Toni on 24.12.14.

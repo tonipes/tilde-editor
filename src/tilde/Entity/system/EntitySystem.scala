@@ -13,47 +13,86 @@ abstract class EntitySystem(val aspect: BitSet) {
   var entities = Buffer[Entity]()
   var started = false
 
-  def processEntities(): Unit ={
-
-    for(e <- entities){
-      process(e)
+  /**
+   * Processes all entities in systems entity list
+   */
+  final def processEntities(): Unit = {
+    if(!started) {
+      Log.error("Illegal system call", "System must be started before processing entities")
+      throw new IllegalStateException("System must be started before processing entities")
+    }
+    else{
+      for(e <- entities){
+        process(e)
+      }
     }
   }
 
-  def checkIntrest(e: Entity) = {
-    //Log.debug("Checking system's intrest","System: " + this.toString + ", Entity: " + e.toString)
+  /**
+   * Checks if system is interested in entity by comparing aspect bitsets
+   * If system is interested, entity will be added to systems entity list
+   * @param e Entity to check
+   */
+  def checkIntrest(e: Entity): Unit = {
     val contains = entities.contains(e)
     val intrest = this.isIntrestedIn(e)
     if(contains && !intrest) removeEntity(e)
     if(!contains && intrest) addEntity(e)
   }
 
-  def removeEntity(e: Entity) = {
+  /**
+   * Removes entity from systems entity list if found
+   * @param e Entity to remove
+   */
+  def removeEntity(e: Entity): Unit  = {
     val index = entities.indexOf(e)
     if(index >= 0){
       entities.remove(index)
     }
   }
 
-  def addEntity(e: Entity) = {
+
+  private def addEntity(e: Entity) = {
     entities += e
   }
 
-  def isIntrestedIn (e: Entity) = (this.aspect & e.aspect) == this.aspect
+  private def isIntrestedIn (e: Entity) = (this.aspect & e.aspect) == this.aspect
 
+  /**
+   * Processes single entity
+   * @param e Entity to process
+   */
   def process(e: Entity): Unit
 
-  def begin(): Unit = {
-    if(started)
-      Log.error("Illegal system start", "System must be ended before starting it again")
-    started = true
+  final def begin(): Unit = {
+    if (started) {
+      Log.error("Illegal system call", "System must be ended before starting it again")
+      throw new IllegalStateException("System must be ended before starting it again")
+    } else {
+      started = true
+      systemBegin()
+    }
   }
 
-  def end(): Unit = {
-    if(!started)
-      Log.error("Illegal system end", "System must be started before end")
-    started = false
+  final def end(): Unit = {
+    if(!started){
+      Log.error("Illegal system call", "System must be started before end")
+      throw new IllegalStateException("System must be started before end")
+    } else {
+      started = false
+      systemEnd()
+    }
   }
+
+  /**
+   * Call this before processing entities
+   */
+  def systemBegin(): Unit = {}
+
+  /**
+   * Call this after processing entities
+   */
+  def systemEnd(): Unit = {}
 
   override def toString() ={
     "EntitySystem"

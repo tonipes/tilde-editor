@@ -18,6 +18,7 @@ trait ComponentObject{
     case SpatialComponent.id => 1
     case ModelComponent.id => 2
     case CameraComponent.id => 3
+    case PhysicsComponent.id => 4
   }
 }
 

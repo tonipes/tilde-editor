@@ -44,16 +44,13 @@ class CameraSystem() extends EntitySystem(SystemUtil.createAspect(SpatialCompone
 
       if(Input.isPressed(Keyboard.KEY_F)) spatial.move(spatial.up(),-movementSpeed)
       if(Input.isPressed(Keyboard.KEY_R)) spatial.move(spatial.up(),movementSpeed)
-
   }
 
-  override def begin(): Unit = {
-    super.begin()
+  override def systemBegin(): Unit = {
     //Log.debug("System stared", "CameraSystem")
   }
 
-  override def end(): Unit = {
-    super.end()
+  override def systemEnd(): Unit = {
     //Log.debug("System ended", "CameraSystem")
   }
 

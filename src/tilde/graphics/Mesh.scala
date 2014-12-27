@@ -3,6 +3,9 @@ package tilde.graphics
 import java.io.File
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL15._
+import org.lwjgl.opengl.GL11._
+import org.lwjgl.opengl.GL20._
+import org.lwjgl.opengl.GL30._
 import org.lwjgl.util.vector.{Vector2f, Vector3f}
 import tilde.log.Log
 
@@ -78,12 +81,27 @@ object Mesh{
     elemBuffer.put(elements.toArray)
     elemBuffer.rewind()
 
+    val vaoID = glGenVertexArrays()
+    glBindVertexArray(vaoID)
+
+    //data
+    val vertsID = glGenBuffers()
+    glBindBuffer(GL_ARRAY_BUFFER,vertsID)
+    glBufferData(GL_ARRAY_BUFFER,dataBuffer,GL_STATIC_DRAW)
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 8*4, 0*4) // verts
+    glVertexAttribPointer(1, 2, GL_FLOAT, false, 8*4, 3*4) // uv
+    glVertexAttribPointer(2, 3, GL_FLOAT, false, 8*4, 5*4) // normal
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
+
+    //elem
     val elemID = glGenBuffers()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemID)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemBuffer,GL_STATIC_DRAW)
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
 
-    new Mesh(dataID,elemID, data.length, elements.length)
+    glBindVertexArray(0)
+
+    new Mesh(vaoID,dataID,elemID, data.length, elements.length)
   }
 
   private def parseVertexPosition(str: String*): Vector3f = new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)
@@ -91,7 +109,12 @@ object Mesh{
   private def parseVertexNormal(str: String*): Vector3f = {new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)}
 }
 
-class Mesh(val dataId: Int, val elemId: Int , val elemCount: Int, val dataCount: Int){
+class Mesh(val vaoID:Int, val dataId: Int, val elemId: Int , val elemCount: Int, val dataCount: Int){
+
+  def bindVAO(): Unit = glBindVertexArray(vaoID)
+
+  def unbindVAO(): Unit = glBindVertexArray(0)
+
   def bindData(): Unit = glBindBuffer(GL_ARRAY_BUFFER,dataId)
 
   def bindElem(): Unit = glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemId)

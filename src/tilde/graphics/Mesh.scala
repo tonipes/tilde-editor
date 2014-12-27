@@ -34,7 +34,7 @@ object Mesh{
       val data = line.split(" ")
         data(0) match {
           case "v" => vertices += parseVertexPosition(data(1), data(2), data(3))
-          case "vt" => texCoords += parseTextureCoordinate(data(1), data(2))
+          case "vt" => texCoords += parseTextureCoordinate(data(2), data(1))
           case "vn" => normals += parseVertexNormal(data(1), data(2), data(3))
           case "f" => {
             val verts = Vector.tabulate(3)(n => data(n + 1).split("/"))

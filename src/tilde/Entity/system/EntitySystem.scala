@@ -8,7 +8,8 @@ import scala.collection.mutable._
 /**
  * Created by Toni on 23.12.14.
  */
-abstract class EntitySystem(val aspect: BitSet) {
+abstract class EntitySystem() {
+  var aspect: BitSet = null // If null, system is not interested in any entities, see logicSystem
   var world: World = null
   var entities = Buffer[Entity]()
   var started = false
@@ -16,7 +17,7 @@ abstract class EntitySystem(val aspect: BitSet) {
   /**
    * Processes all entities in systems entity list
    */
-  final def processEntities(): Unit = {
+  def processEntities(): Unit = {
     if(!started) {
       Log.error("Illegal system call", "System must be started before processing entities")
       throw new IllegalStateException("System must be started before processing entities")
@@ -34,10 +35,12 @@ abstract class EntitySystem(val aspect: BitSet) {
    * @param e Entity to check
    */
   def checkIntrest(e: Entity): Unit = {
-    val contains = entities.contains(e)
-    val intrest = this.isIntrestedIn(e)
-    if(contains && !intrest) removeEntity(e)
-    if(!contains && intrest) addEntity(e)
+    if(aspect != null) { // if aspect is null, system is not interested in any entities
+      val contains = entities.contains(e)
+      val intrest = this.isIntrestedIn(e)
+      if (contains && !intrest) removeEntity(e)
+      if (!contains && intrest) addEntity(e)
+    }
   }
 
   /**

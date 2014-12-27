@@ -16,7 +16,9 @@ import scala.collection.mutable._
 /**
  * Created by Toni on 25.12.14.
  */
-class RenderSystem() extends EntitySystem(SystemUtil.createAspect(ModelComponent,SpatialComponent)) {
+class RenderSystem() extends EntitySystem() {
+  this.aspect = SystemUtil.createAspect(ModelComponent,SpatialComponent)
+
   lazy val shader: ShaderProgram = ResourceManager.shaderPrograms("default")
 
   var camera: Entity = null
@@ -38,6 +40,7 @@ class RenderSystem() extends EntitySystem(SystemUtil.createAspect(ModelComponent
   // TODO: Fix super bad implementation plz!
   override def systemEnd(): Unit = {
     // Render all batches
+    //Log.debug("Rendering","" + ents.length + " entities")
     val cameraComp = camera.getComponent(CameraComponent.id).get
     for(ent <- ents){
       val model = ent.getComponent(ModelComponent.id).get
@@ -49,6 +52,7 @@ class RenderSystem() extends EntitySystem(SystemUtil.createAspect(ModelComponent
       shader.setUniform("m_model", transformation)
       shader.setUniform("m_view", cameraComp.viewBuffer)
       shader.setUniform("m_proj", cameraComp.projectionBuffer)
+
 
       model.getMesh.bindVAO()
       glEnableVertexAttribArray(0)

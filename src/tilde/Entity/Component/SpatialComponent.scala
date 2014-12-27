@@ -19,9 +19,9 @@ class SpatialComponent extends Component {
   private val orientation: Quaternion = new Quaternion().setIdentity()
   private val scale: Vector3f = new Vector3f(1,1,1)
 
-  private val matrix: Matrix4f = new Matrix4f()
+  val matrix: Matrix4f = new Matrix4f()
 
-  private val transFloatBuffer = BufferUtils.createFloatBuffer(16)
+  val transFloatBuffer = BufferUtils.createFloatBuffer(16)
 
   def up(): Vector3f = QuaternionUtil.getUp(orientation)
   def right(): Vector3f = QuaternionUtil.getRight(orientation)
@@ -71,11 +71,17 @@ class SpatialComponent extends Component {
   def getOrientation = orientation
   def getScale = scale
 
-  def setPosition(vec: Vector3f) = position.set(vec)
-  def setPosition(x:Float,y:Float,z:Float) = position.set(x,y,z)
+  def setPosition(vec: Vector3f): Unit = setPosition(vec.x,vec.y,vec.z)
+  def setPosition(x:Float,y:Float,z:Float): Unit  = {
+    position.set(x,y,z)
+    updateMatrix()
+  }
 
-  def setScale(vec: Vector3f) = scale.set(vec)
-  def setScale(x:Float,y:Float,z:Float) = scale.set(x,y,z)
+  def setScale(vec: Vector3f): Unit  = setScale(vec.x,vec.y,vec.z)
+  def setScale(x:Float,y:Float,z:Float): Unit  = {
+    scale.set(x,y,z)
+    updateMatrix()
+  }
 
   private def updateMatrix(): Matrix4f = {
     matrix.setIdentity()

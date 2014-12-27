@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
 import org.lwjgl.util.vector.{Vector3f}
-import tilde.entity.system.{PhysicsSystem, RenderSystem, CameraSystem}
+import tilde.entity.system.{InputSystem, PhysicsSystem, RenderSystem, CameraSystem}
 import tilde.{Input, ResourceManager}
 import tilde.entity.{World, Entity}
 import tilde.entity.component.{PhysicsComponent, CameraComponent, ModelComponent, SpatialComponent}
@@ -25,30 +25,40 @@ class Game {
     val cameraSystem = new CameraSystem()
     val renderSystem = new RenderSystem()
     val physicsSystem = new PhysicsSystem()
+    val inputSystem = new InputSystem()
 
-    world = new World(physicsSystem,cameraSystem,renderSystem)
+    world = new World(inputSystem, physicsSystem, cameraSystem, renderSystem)
 
     // Test entities
-    val cube = world.createEntity()
-    cube.addComponent(new SpatialComponent())
-    cube.addComponent(new ModelComponent("cube","measure"))
+   /* val cube = world.createEntity()
+    val cubeSpatial = new SpatialComponent()
+    cubeSpatial.setPosition(-2,-2,-2)
+    cube.addComponent(cubeSpatial)
+    cube.addComponent(new ModelComponent("fence","wood"))
 
     val cube2 = world.createEntity()
     val cube2Spatial = new SpatialComponent()
-    cube2Spatial.move(Direction.UP,3)
-    //cube2Spatial.rotate(45,cube2Spatial.forward())
-    val phys = new PhysicsComponent()
-    phys.angularSpeed.x = 1
-    //phys.angularSpeed.y = 1
-    phys.speed.x = 0.001f
-    cube2.addComponent(phys)
+    cube2Spatial.setPosition(0,0,0)
     cube2.addComponent(cube2Spatial)
-    cube2.addComponent(new ModelComponent("insetcube","measure"))
+    cube2.addComponent(new ModelComponent("cube","grass"))*/
+
+    for(tup <- ResourceManager.testMap){
+      val ent = world.createEntity()
+      ent.addComponent(tup._2)
+      ent.addComponent(tup._1)
+      val phys = new PhysicsComponent()
+      //phys.angularSpeed.x = ResourceManager.testMap.indexOf(tup).toFloat / 100f
+      //phys.angularSpeed.y = ResourceManager.testMap.indexOf(tup).toFloat / 100f
+      //phys.angularSpeed.z = ResourceManager.testMap.indexOf(tup).toFloat / 100f
+      //ent.addComponent(phys)
+    }
 
     val camera = world.createEntity()
     camera.addComponent(new CameraComponent(100f,0.1f, Display.getWidth.toFloat / Display.getHeight.toFloat,60))
     val cameraSpatial = new SpatialComponent()
-    cameraSpatial.setPosition(0,0,2)
+    cameraSpatial.setPosition(15,7,15)
+    cameraSpatial.rotate(-30,Direction.AXIS_X)
+    cameraSpatial.rotate(45,Direction.AXIS_Y)
     camera.addComponent(cameraSpatial)
 
     world.addTag("camera",camera)

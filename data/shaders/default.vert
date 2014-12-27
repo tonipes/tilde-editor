@@ -16,7 +16,7 @@ void main()
 
     gl_Position = m_proj * m_view * m_model * vec4(pos, 1.0);
 
-    vec3 cameraPosition = -m_view[3].xyz * mat3(m_view);
+    /*vec3 cameraPosition = -m_view[3].xyz * mat3(m_view);
     vec3 lightPosition = vec3(m_model * vec4(cameraPosition, 1));
     float distance = length(lightPosition-gl_Position.xyz);
     mat3 normalMatrix = transpose(inverse(mat3(m_model)));
@@ -24,8 +24,8 @@ void main()
 
     vec3 surfaceToLight = cameraPosition - gl_Position.xyz;
     float brightness = dot(normal, surfaceToLight) / (length(surfaceToLight) * length(normal));
-    brightness = clamp(brightness, 0, 1);
+    brightness = clamp(brightness, 0, 1);*/
 
-    fragBrightness = brightness;
+    fragBrightness = 1.0;
     fragTexCoord = tex;
 }

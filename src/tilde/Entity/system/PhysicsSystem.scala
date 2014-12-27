@@ -9,7 +9,9 @@ import tilde.util.{Direction, SystemUtil}
  * Created by Toni on 26.12.14.
  */
 
-class PhysicsSystem extends EntitySystem(SystemUtil.createAspect(SpatialComponent,PhysicsComponent)) {
+class PhysicsSystem extends EntitySystem() {
+  this.aspect = SystemUtil.createAspect(SpatialComponent,PhysicsComponent)
+
   override def process(e: Entity): Unit = {
     //Log.debug("Physics process", "" + e)
     val spatial = e.getComponent(SpatialComponent.id).get

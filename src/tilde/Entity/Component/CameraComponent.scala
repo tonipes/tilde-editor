@@ -1,6 +1,9 @@
 package tilde.entity.component
 
+import java.nio.FloatBuffer
+
 import org.lwjgl.BufferUtils
+import org.lwjgl.util.vector.Matrix4f
 import tilde.util.MatrixUtil
 
 /**
@@ -12,10 +15,10 @@ object CameraComponent extends ComponentObject{
 class CameraComponent(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Component {
   val bitId: Int = CameraComponent.bitID
 
-  var projectionMatrix = MatrixUtil.createPerspectiveProjection(zFar, zNear, aspect, fov)
+  var projectionMatrix: Matrix4f = MatrixUtil.createPerspectiveProjection(zFar, zNear, aspect, fov)
 
-  val viewBuffer = BufferUtils.createFloatBuffer(16)
-  val projectionBuffer = BufferUtils.createFloatBuffer(16)
+  val viewBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
+  val projectionBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
 
   projectionMatrix.store(projectionBuffer)
   projectionBuffer.rewind()

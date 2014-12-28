@@ -2,6 +2,7 @@
 
 # Directories #
 out/
+work/
 bin/
 lib/res
 lib/native/freebsd
@@ -21,7 +22,8 @@ tmp/
 *~.nib
 *.zip
 *.iml
-
+*.psd
+*.blend
 
 # OS generated files #
 .DS_Store

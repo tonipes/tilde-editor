@@ -47,10 +47,10 @@ class Game {
       ent.addComponent(tup._2)
       ent.addComponent(tup._1)
       val phys = new PhysicsComponent()
-      //phys.angularSpeed.x = ResourceManager.testMap.indexOf(tup).toFloat / 100f
-      //phys.angularSpeed.y = ResourceManager.testMap.indexOf(tup).toFloat / 100f
-      //phys.angularSpeed.z = ResourceManager.testMap.indexOf(tup).toFloat / 100f
-      //ent.addComponent(phys)
+      phys.angularSpeed.x = ResourceManager.testMap.indexOf(tup).toFloat / 100f
+      phys.angularSpeed.y = ResourceManager.testMap.indexOf(tup).toFloat / 100f
+      phys.angularSpeed.z = ResourceManager.testMap.indexOf(tup).toFloat / 100f
+      ent.addComponent(phys)
     }
 
     val camera = world.createEntity()
@@ -60,8 +60,19 @@ class Game {
     cameraSpatial.rotate(-30,Direction.AXIS_X)
     cameraSpatial.rotate(45,Direction.AXIS_Y)
     camera.addComponent(cameraSpatial)
-
     world.addTag("camera",camera)
+
+    val cursor = world.createEntity()
+    cursor.addComponent(new SpatialComponent())
+    cursor.addComponent(new ModelComponent("cube","wood"))
+    world.addTag("cursor",cursor)
+
+    val dragon = world.createEntity()
+    val drgnSpat = new SpatialComponent()
+    drgnSpat.setPosition(5,5,5)
+    dragon.addComponent(drgnSpat)
+    dragon.addComponent(new ModelComponent("bunny","wood"))
+
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_CULL_FACE)
     glClearColor(0.031f, 0.663f, 1.0f, 0.0f)

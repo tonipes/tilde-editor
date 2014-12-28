@@ -5,7 +5,7 @@ import org.lwjgl.opengl._
 import tilde.Input
 import tilde.game.Game
 import tilde.log.Log
-import org.lwjgl.input.Keyboard
+import org.lwjgl.input.{Mouse, Keyboard}
 /**
  * Created by Toni on 13.12.2014.
  */
@@ -28,6 +28,7 @@ class Core {
       Display.setTitle("Tilde engine")
       GL11.glViewport(0,0,width,height)
       Keyboard.create()
+      Mouse.create()
 
 
     } catch {
@@ -50,12 +51,21 @@ class Core {
 
   }
 
+  var timeSinceLastFPS = 0f
   private def gameLoop() = {
     if(Display.wasResized()){
       game.resize(Display.getWidth,Display.getHeight)
     }
     Input.update()
-    update(getDelta)
+    val delta = getDelta
+    if(timeSinceLastFPS >= 1f){
+      Display.setTitle("Tilde engine. FPS: " + (1 /delta).toInt)
+      timeSinceLastFPS = 0f
+    }else {
+      timeSinceLastFPS += delta
+    }
+
+    update(delta)
     render()
     Display.update()
     Display.sync(60)

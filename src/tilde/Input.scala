@@ -1,6 +1,6 @@
 package tilde
 
-import org.lwjgl.input.Keyboard
+import org.lwjgl.input.{Mouse, Keyboard}
 import scala.collection.mutable
 import scala.collection.mutable.Map
 

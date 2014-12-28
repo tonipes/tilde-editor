@@ -1,7 +1,7 @@
 package tilde.entity.component
 
 import org.lwjgl.BufferUtils
-import org.lwjgl.util.vector.{Matrix4f, Quaternion, Vector3f}
+import org.lwjgl.util.vector.{Vector4f, Matrix4f, Quaternion, Vector3f}
 import tilde.util.Direction._
 import tilde.util.{Direction, QuaternionUtil}
 
@@ -80,6 +80,13 @@ class SpatialComponent extends Component {
   def setScale(vec: Vector3f): Unit  = setScale(vec.x,vec.y,vec.z)
   def setScale(x:Float,y:Float,z:Float): Unit  = {
     scale.set(x,y,z)
+    updateMatrix()
+  }
+
+  def setOrientation(vec: Vector4f): Unit  = setOrientation(vec.x,vec.y,vec.z,vec.w)
+  def setOrientation(x:Float,y:Float,z:Float,w:Float): Unit  = {
+    orientation.set(x,y,z,w)
+    orientation.normalise()
     updateMatrix()
   }
 

@@ -46,6 +46,7 @@ object ResourceManager {
   meshes("insetcube") = Mesh.load("data/meshes/insetcube.obj")
   meshes("cube") = Mesh.load("data/meshes/1x1_cube.obj")
   meshes("bunny") = Mesh.load("data/meshes/bunny.obj")
+  //meshes("dragon") = Mesh.load("data/meshes/dragon.obj")
   meshes("teapot") = Mesh.load("data/meshes/teapot_test.obj")
   meshes("fence") = Mesh.load("data/meshes/fence.obj")
   meshes("treetop") = Mesh.load("data/meshes/treetop.obj")

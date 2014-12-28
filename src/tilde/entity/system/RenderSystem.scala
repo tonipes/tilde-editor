@@ -2,6 +2,7 @@ package tilde.entity.system
 
 import java.nio.FloatBuffer
 
+import org.lwjgl.BufferUtils
 import tilde.ResourceManager
 import tilde.log._
 import tilde.entity.{World, Entity}
@@ -41,18 +42,24 @@ class RenderSystem() extends EntitySystem() {
   override def systemEnd(): Unit = {
     // Render all batches
     //Log.debug("Rendering","" + ents.length + " entities")
+
     val cameraComp = camera.getComponent(CameraComponent.id).get
+    val cameraPos = camera.getComponent(SpatialComponent.id).get.getPosition
+    val camPosBuf = BufferUtils.createFloatBuffer(3)
+    cameraPos.store(camPosBuf)
+    camPosBuf.rewind()
+
+    shader.setUniform("m_view", cameraComp.viewBuffer)
+    shader.setUniform("m_proj", cameraComp.projectionBuffer)
+    shader.setUniform("p_camera", camPosBuf)
+
     for(ent <- ents){
       val model = ent.getComponent(ModelComponent.id).get
       val transformation = ent.getComponent(SpatialComponent.id).get.getFloatBuffer
+      shader.setUniform("m_model", transformation)
 
       model.getTexture.setActiveAsUnit(0)
       model.getTexture.bind()
-
-      shader.setUniform("m_model", transformation)
-      shader.setUniform("m_view", cameraComp.viewBuffer)
-      shader.setUniform("m_proj", cameraComp.projectionBuffer)
-
 
       model.getMesh.bindVAO()
       glEnableVertexAttribArray(0)
@@ -60,10 +67,10 @@ class RenderSystem() extends EntitySystem() {
       glEnableVertexAttribArray(2)
       glDrawElements(GL_TRIANGLES,model.getMesh.elemCount,GL_UNSIGNED_SHORT,0)
 
-      glDisableVertexAttribArray(0)
-      glDisableVertexAttribArray(1)
-      glDisableVertexAttribArray(2)
-      model.getMesh.unbindVAO()
+      //glDisableVertexAttribArray(0)
+      //glDisableVertexAttribArray(1)
+      //glDisableVertexAttribArray(2)
+      //model.getMesh.unbindVAO()
     }
     shader.unbind()
     ents.clear()

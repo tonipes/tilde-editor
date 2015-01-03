@@ -17,7 +17,7 @@ class Core {
   def start() = {
     val width = 800
     val height = 600
-    val pixFormat = new PixelFormat()
+    val pixFormat = new PixelFormat(8,8,8,8)
     val context = new ContextAttribs(3,2).withForwardCompatible(true).withProfileCore(true)
     try {
       Display.setDisplayMode(new DisplayMode(width, height))

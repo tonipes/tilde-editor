@@ -3,14 +3,14 @@ package tilde.entity.system
 import tilde.entity.Entity
 import tilde.entity.component.{PhysicsComponent, SpatialComponent}
 import tilde.log.Log
-import tilde.util.{Direction, SystemUtil}
+import tilde.util.{Aspect, Direction, SystemUtil}
 
 /**
  * Created by Toni on 26.12.14.
  */
 
 class PhysicsSystem extends EntitySystem() {
-  this.aspect = SystemUtil.createAspect(SpatialComponent,PhysicsComponent)
+  this.aspect =  new Aspect(Array(SpatialComponent,PhysicsComponent))
 
   override def process(e: Entity): Unit = {
     //Log.debug("Physics process", "" + e)

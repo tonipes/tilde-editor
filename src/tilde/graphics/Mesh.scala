@@ -42,20 +42,22 @@ object Mesh{
               val vertData = new VertexData(v(0).toInt - 1, v(1).toInt - 1, v(2).toInt - 1)
               // Comment out if you want to minimize duplicate vertices and memory usage
               //var indexOfvertData = vertedDataList.indexWhere(v => v == vertData)
-              var indexOfvertData = 0
+              var indexOfvertData:Int = 0
               //if (indexOfvertData < 0) {
                 vertexData += vertData
-                indexOfvertData = vertexData.length - 1
+                //indexOfvertData = vertexData.length - 1
               //}
 
-              elements += indexOfvertData.toShort
+              elements += (vertexData.length - 1).toShort
             }
           }
 
           case _ => {}
         }
     }
-
+    Log.debug("Model had","" + vertices.length + " unique verts")
+    Log.debug("Model had","" + elements.length + " elements")
+    Log.debug("Model had","" + vertexData.length + " vertexData")
     // Loading mesh to memory
     val data = Buffer[Float]()
     for(i <- vertexData.indices){
@@ -91,13 +93,13 @@ object Mesh{
     glVertexAttribPointer(0, 3, GL_FLOAT, false, 8*4, 0*4) // verts
     glVertexAttribPointer(1, 2, GL_FLOAT, false, 8*4, 3*4) // uv
     glVertexAttribPointer(2, 3, GL_FLOAT, false, 8*4, 5*4) // normal
-    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    //glBindBuffer(GL_ARRAY_BUFFER, 0)
 
     //elem
     val elemID = glGenBuffers()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemID)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemBuffer,GL_STATIC_DRAW)
-    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
 
     glBindVertexArray(0)
 
@@ -105,7 +107,7 @@ object Mesh{
   }
 
   private def parseVertexPosition(str: String*): Vector3f = new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)
-  private def parseTextureCoordinate(str: String*): Vector2f = {new Vector2f(str(0).toFloat,str(1).toFloat)}
+  private def parseTextureCoordinate(str: String*): Vector2f = {new Vector2f(str(0).toFloat,1 - str(1).toFloat)} // Why 1 - str(1)?
   private def parseVertexNormal(str: String*): Vector3f = {new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)}
 }
 

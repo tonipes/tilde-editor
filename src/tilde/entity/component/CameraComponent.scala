@@ -12,10 +12,10 @@ import tilde.util.MatrixUtil
 object CameraComponent extends ComponentObject{
   val id = classOf[CameraComponent]
 }
-class CameraComponent(zFar: Float, zNear: Float, aspect: Float, fov: Float) extends Component {
+class CameraComponent(projection: Matrix4f) extends Component {
   val bitId: Int = CameraComponent.bitID
 
-  var projectionMatrix: Matrix4f = MatrixUtil.createPerspectiveProjection(zFar, zNear, aspect, fov)
+  var projectionMatrix: Matrix4f = projection
 
   val viewBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
   val projectionBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)

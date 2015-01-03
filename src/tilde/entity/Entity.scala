@@ -9,17 +9,17 @@ import scala.collection.mutable.Map
 class Entity(val world: World) {
   val active: Boolean = true
   val components = Map[Class[_ <: Component], Component]()
-  val aspect = new mutable.BitSet()
+  val componentStructure = new mutable.BitSet()
 
   def addComponent[T <: Component](component: T): Unit = {
     components(component.getClass()) = component
-    aspect += component.bitId
+    componentStructure += component.bitId
     world.changed(this)
   }
 
   def removeComponent[T <: Component](component: Class[T]): Unit = {
     components.remove(component)
-    aspect -= component.asInstanceOf[Component].bitId
+    componentStructure -= component.asInstanceOf[Component].bitId
     world.changed(this)
   }
 

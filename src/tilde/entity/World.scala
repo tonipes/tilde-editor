@@ -2,7 +2,6 @@ package tilde.entity
 
 import tilde.entity.system.EntitySystem
 import tilde.log.Log
-
 import scala.collection.mutable._
 /**
  * Created by Toni on 23.12.14.
@@ -10,9 +9,8 @@ import scala.collection.mutable._
 /*
   - Groups?
   - Tags ( to indentify eg. player or camera)
-  - Managers? is needed
-  - Systems ! ! !
-  - Signals !?
+  - Managers? is needed !!
+  - Signals !? Events?
  */
 class World(entitySystems: EntitySystem*) {
   for(sys <- entitySystems){
@@ -74,7 +72,7 @@ class World(entitySystems: EntitySystem*) {
     //Log.debug("Tagged now", tags.toString)
   }
 
-  def getTagged(tag: String): Entity = tags(tag)
+  def getTagged(tag: String): Option[Entity] = Some(tags(tag))
 
   def destroyEntity(e: Entity) = {
     val i = entities.indexOf(e)

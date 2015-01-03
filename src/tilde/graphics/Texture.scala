@@ -16,9 +16,15 @@ import org.lwjgl.opengl.GL30._
 object Texture {
 
   def load(name: String): Texture = {
-
-    val bufImage: BufferedImage = ResourceManager.readImegeFromFile(name)
-
+    var bufImage: BufferedImage = null
+    try {
+    bufImage = ResourceManager.readImageFromFile(name)
+  } catch{
+    case e: Exception => {
+      bufImage = new BufferedImage(1,1,BufferedImage.TYPE_INT_ARGB)
+      bufImage.setRGB(0,0,0xFFFFFF)
+    }
+  }
     val pixels = Array.ofDim[Int](bufImage.getWidth() * bufImage.getHeight())
 
     bufImage.getRGB(0, 0, bufImage.getWidth(), bufImage.getHeight(), pixels, 0, bufImage.getWidth())

@@ -6,11 +6,11 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector.{Vector3f}
+import org.lwjgl.util.vector.{Vector4f, Vector3f}
 import tilde.entity.system.{InputSystem, PhysicsSystem, RenderSystem, CameraSystem}
 import tilde.{Input, ResourceManager}
 import tilde.entity.{World, Entity}
-import tilde.entity.component.{PhysicsComponent, CameraComponent, ModelComponent, SpatialComponent}
+import tilde.entity.component._
 import tilde.log.Log
 import tilde.util.Direction
 
@@ -29,49 +29,8 @@ class Game {
 
     world = new World(inputSystem, physicsSystem, cameraSystem, renderSystem)
 
-    // Test entities
-   /* val cube = world.createEntity()
-    val cubeSpatial = new SpatialComponent()
-    cubeSpatial.setPosition(-2,-2,-2)
-    cube.addComponent(cubeSpatial)
-    cube.addComponent(new ModelComponent("fence","wood"))
-
-    val cube2 = world.createEntity()
-    val cube2Spatial = new SpatialComponent()
-    cube2Spatial.setPosition(0,0,0)
-    cube2.addComponent(cube2Spatial)
-    cube2.addComponent(new ModelComponent("cube","grass"))*/
-
-    for(tup <- ResourceManager.testMap){
-      val ent = world.createEntity()
-      ent.addComponent(tup._2)
-      ent.addComponent(tup._1)
-      val phys = new PhysicsComponent()
-      phys.angularSpeed.x = ResourceManager.testMap.indexOf(tup).toFloat / 100f
-      phys.angularSpeed.y = ResourceManager.testMap.indexOf(tup).toFloat / 100f
-      phys.angularSpeed.z = ResourceManager.testMap.indexOf(tup).toFloat / 100f
-      ent.addComponent(phys)
-    }
-
-    val camera = world.createEntity()
-    camera.addComponent(new CameraComponent(100f,0.1f, Display.getWidth.toFloat / Display.getHeight.toFloat,60))
-    val cameraSpatial = new SpatialComponent()
-    cameraSpatial.setPosition(15,7,15)
-    cameraSpatial.rotate(-30,Direction.AXIS_X)
-    cameraSpatial.rotate(45,Direction.AXIS_Y)
-    camera.addComponent(cameraSpatial)
-    world.addTag("camera",camera)
-
-    val cursor = world.createEntity()
-    cursor.addComponent(new SpatialComponent())
-    cursor.addComponent(new ModelComponent("cube","wood"))
-    world.addTag("cursor",cursor)
-
-    val dragon = world.createEntity()
-    val drgnSpat = new SpatialComponent()
-    drgnSpat.setPosition(5,5,5)
-    dragon.addComponent(drgnSpat)
-    dragon.addComponent(new ModelComponent("bunny","wood"))
+    //ResourceManager.createNightScene(world)
+    ResourceManager.createNightScene(world)
 
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_CULL_FACE)

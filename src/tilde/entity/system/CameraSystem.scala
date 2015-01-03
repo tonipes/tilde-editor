@@ -6,14 +6,14 @@ import tilde.Input
 import tilde.entity.{World, Entity}
 import tilde.entity.component.{CameraComponent, SpatialComponent}
 import tilde.log.Log
-import tilde.util.{QuaternionUtil, SystemUtil}
+import tilde.util.{Aspect, QuaternionUtil, SystemUtil}
 
 /**
  * Created by Toni on 26.12.14.
  */
 
 class CameraSystem() extends EntitySystem(){
-  this.aspect = SystemUtil.createAspect(SpatialComponent,CameraComponent)
+  this.aspect = new Aspect(Array(SpatialComponent,CameraComponent))//SystemUtil.createAspect(SpatialComponent,CameraComponent)
 
   override def process(e: Entity): Unit = {
     // update camera viewMatrix and projection matrix

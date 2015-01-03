@@ -6,19 +6,21 @@ import org.lwjgl.BufferUtils
 import tilde.ResourceManager
 import tilde.log._
 import tilde.entity.{World, Entity}
-import tilde.entity.component.{CameraComponent, ModelComponent, SpatialComponent}
+import tilde.entity.component.{LightSourceComponent, CameraComponent, ModelComponent, SpatialComponent}
 import tilde.graphics.ShaderProgram
-import tilde.util.SystemUtil
+import tilde.util.{BufferUtil, Aspect, SystemUtil}
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
-import org.lwjgl.opengl.GL30._
 import scala.collection.mutable._
 
 /**
  * Created by Toni on 25.12.14.
  */
 class RenderSystem() extends EntitySystem() {
-  this.aspect = SystemUtil.createAspect(ModelComponent,SpatialComponent)
+  this.aspect = new Aspect(
+    Array(ModelComponent,SpatialComponent),       // Renderable Entities
+    Array(LightSourceComponent,SpatialComponent)  // Lights
+  )
 
   lazy val shader: ShaderProgram = ResourceManager.shaderPrograms("default")
 
@@ -27,32 +29,52 @@ class RenderSystem() extends EntitySystem() {
   // Multimap for all different instances to render
   //val batches = new HashMap[ModelComponent, Set[FloatBuffer]] with MultiMap[ModelComponent, FloatBuffer]
   val ents = Buffer[Entity]()
+  val lights = Buffer[Entity]()
 
   override def process(e: Entity): Unit = {
-    ents += e
+    if(e.getComponent(LightSourceComponent.id).isDefined){
+      lights += e
+    }
+    if(e.getComponent(ModelComponent.id).isDefined){
+      ents += e
+    }
+
   }
 
   override def systemBegin(): Unit = {
     shader.bind()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-    camera = world.getTagged("camera")
+    val cam = world.getTagged("camera")
+
+    if(cam.isDefined){
+      camera = cam.get
+    } else {
+      Log.error("Rendering error", "No camera found in world!")
+    }
   }
 
-  // TODO: Fix super bad implementation plz!
+  // TODO: Fix super bad code plz! Use proper batching and instansing
   override def systemEnd(): Unit = {
     // Render all batches
     //Log.debug("Rendering","" + ents.length + " entities")
 
     val cameraComp = camera.getComponent(CameraComponent.id).get
     val cameraPos = camera.getComponent(SpatialComponent.id).get.getPosition
-    val camPosBuf = BufferUtils.createFloatBuffer(3)
-    cameraPos.store(camPosBuf)
-    camPosBuf.rewind()
 
+    val light = lights(0)
+    val lightSpat = light.getComponent(SpatialComponent.id).get
+    val lightLight = light.getComponent(LightSourceComponent.id).get
+
+    //val lightBuf = BufferUtil.createFloatBuffer(lightSpat.getPosition)
+    //Log.debug("lightBuff","" + lightBuf.get(0) + ", " + lightBuf.get(1) + ", " + lightBuf.get(2) + ", ")
+
+    shader.setUniform("c_position",cameraPos.x,cameraPos.y,cameraPos.z)
+    shader.setUniform("l_position",lightSpat.getPosition.x,lightSpat.getPosition.y,lightSpat.getPosition.z)
+    shader.setUniform("l_color",lightLight.color.x,lightLight.color.y,lightLight.color.z,lightLight.color.w)
     shader.setUniform("m_view", cameraComp.viewBuffer)
     shader.setUniform("m_proj", cameraComp.projectionBuffer)
-    shader.setUniform("p_camera", camPosBuf)
 
+    //Log.debug("LightCount","" + lights.length)
     for(ent <- ents){
       val model = ent.getComponent(ModelComponent.id).get
       val transformation = ent.getComponent(SpatialComponent.id).get.getFloatBuffer
@@ -67,13 +89,14 @@ class RenderSystem() extends EntitySystem() {
       glEnableVertexAttribArray(2)
       glDrawElements(GL_TRIANGLES,model.getMesh.elemCount,GL_UNSIGNED_SHORT,0)
 
-      //glDisableVertexAttribArray(0)
-      //glDisableVertexAttribArray(1)
-      //glDisableVertexAttribArray(2)
-      //model.getMesh.unbindVAO()
+      glDisableVertexAttribArray(0)
+      glDisableVertexAttribArray(1)
+      glDisableVertexAttribArray(2)
+      model.getMesh.unbindVAO()
     }
     shader.unbind()
     ents.clear()
+    lights.clear()
   }
 
   override def toString() ={

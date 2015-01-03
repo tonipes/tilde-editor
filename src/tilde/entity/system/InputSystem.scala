@@ -22,14 +22,14 @@ class InputSystem extends LogicSystem {
   var globalAxis = false
 
   override def processSystem(): Unit = {
-    val camEntity = world.getTagged("camera")
+    val camEntity = world.getTagged("camera").get
     val camSpatial = camEntity.getComponent(SpatialComponent.id).get
     val camCamera = camEntity.getComponent(CameraComponent.id).get
     handleMovement(camSpatial)
 
     if(Input.isJustPressed(Keyboard.KEY_O)){
-      val height = Display.getHeight/200f
-      val width = Display.getWidth/200f
+      val height = Display.getHeight/60f
+      val width = Display.getWidth/60f
       camCamera.projectionMatrix = MatrixUtil.createOrthographicProjection(100,0.1f,-width,width,height,-height)
       camCamera.projectionMatrix.store(camCamera.projectionBuffer)
       camCamera.projectionBuffer.rewind()
@@ -41,16 +41,24 @@ class InputSystem extends LogicSystem {
       camCamera.projectionMatrix.store(camCamera.projectionBuffer)
       camCamera.projectionBuffer.rewind()
     }
-    val cursorLocation = getWorldCoordinates(camCamera.viewBuffer,camCamera.projectionBuffer)
+    if(Input.isJustPressed(Keyboard.KEY_B)) {
+      val cam = world.getTagged("camera")
+      val light = world.getTagged("fireLight")
+      Log.debug("Moved light to","" + cam.get.getComponent(SpatialComponent.id).get.getPosition)
+      Log.debug("Camera Rot","" + cam.get.getComponent(SpatialComponent.id).get.getOrientation)
+      //light.get.addComponent(cam.get.getComponent(SpatialComponent.id).get)
+      light.get.getComponent(SpatialComponent.id).get.setPosition(cam.get.getComponent(SpatialComponent.id).get.getPosition)
+    }
+    //val cursorLocation = getWorldCoordinates(camCamera.viewBuffer,camCamera.projectionBuffer)
 
-    val cursor = world.getTagged("cursor")
-    val cursorSpatial = cursor.getComponent(SpatialComponent.id).get
+    //val cursor = world.getTagged("cursor").get
+    //val cursorSpatial = cursor.getComponent(SpatialComponent.id).get
     //cursorSpatial.setPosition((cursorLocation.get(0) + 0.5).toInt,(cursorLocation.get(1) + 0.5).toInt,(cursorLocation.get(2) + 0.5).toInt)
-    cursorSpatial.setPosition(cursorLocation.get(0),cursorLocation.get(1),cursorLocation.get(2))
+    //cursorSpatial.setPosition(cursorLocation.get(0),cursorLocation.get(1),cursorLocation.get(2))
   }
 
   private def getWorldCoordinates(view: FloatBuffer,proj: FloatBuffer):FloatBuffer = {
-    // TODO: Make nicer. MAKE=
+    // TODO: Make nicer. MAKE
     val viewportBuf = BufferUtils.createIntBuffer(16)
     glGetInteger(GL_VIEWPORT,viewportBuf)
 

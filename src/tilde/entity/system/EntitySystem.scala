@@ -2,6 +2,7 @@ package tilde.entity.system
 
 import tilde.entity.{World, Entity}
 import tilde.log.Log
+import tilde.util.Aspect
 
 import scala.collection.mutable._
 
@@ -9,7 +10,7 @@ import scala.collection.mutable._
  * Created by Toni on 23.12.14.
  */
 abstract class EntitySystem() {
-  var aspect: BitSet = null // If null, system is not interested in any entities, see logicSystem
+  var aspect: Aspect = null // If null, system is not interested in any entities, see logicSystem
   var world: World = null
   var entities = Buffer[Entity]()
   var started = false
@@ -59,7 +60,7 @@ abstract class EntitySystem() {
     entities += e
   }
 
-  private def isIntrestedIn (e: Entity) = (this.aspect & e.aspect) == this.aspect
+  private def isIntrestedIn (e: Entity) = this.aspect.machesWith(e.componentStructure)
 
   /**
    * Processes single entity

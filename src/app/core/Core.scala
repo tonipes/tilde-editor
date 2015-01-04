@@ -19,6 +19,10 @@ class Core {
     val height = 600
     val pixFormat = new PixelFormat(8,8,8,8)
     val context = new ContextAttribs(3,2).withForwardCompatible(true).withProfileCore(true)
+
+    // Comment out for non high dpi node
+    System.setProperty("org.lwjgl.opengl.Display.enableHighDPI", "true")
+
     try {
       Display.setDisplayMode(new DisplayMode(width, height))
       Display.setResizable(true)
@@ -31,6 +35,7 @@ class Core {
       Mouse.create()
 
 
+
     } catch {
       case e: LWJGLException =>
         Log.error(e.toString)
@@ -40,7 +45,8 @@ class Core {
     Log.info("Platform: " + System.getProperty("os.name"))
     Log.info("GPU vendor: " + GL11.glGetString(GL11.GL_VENDOR))
     Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
-
+    Log.info("Pixel scale factor", "" + Display.getPixelScaleFactor())
+    
     game.create()
 
     while (!Display.isCloseRequested) {

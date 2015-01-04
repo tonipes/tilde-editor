@@ -99,6 +99,26 @@ class RenderSystem() extends EntitySystem() {
     lights.clear()
   }
 
+  private def loadLights(): Unit =  {
+    def ambientString(i : Int) = "lights["+i+"].ambient"
+    def diffuseString(i : Int) = "lights["+i+"].diffuse"
+    def specularString(i : Int) = "lights["+i+"].specular"
+    def constantAttenuationString(i : Int) = "lights["+i+"].constantAttenuation"
+    def linearAttenuationString(i : Int) = "lights["+i+"].linearAttenuation"
+    def quadraticAttenuationString(i : Int) = "lights["+i+"].quadraticAttenuation"
+
+    var count = 0;
+    for(l <- lights){
+      // TODO: Make working. Needed to do some work on light component
+      shader.setUniform(ambientString(count),0)
+      shader.setUniform(diffuseString(count),0)
+      shader.setUniform(specularString(count),0)
+      shader.setUniform(constantAttenuationString(count),0)
+      shader.setUniform(linearAttenuationString(count),0)
+      shader.setUniform(quadraticAttenuationString(count),0)
+    }
+  }
+
   override def toString() ={
     "RenderSystem"
   }

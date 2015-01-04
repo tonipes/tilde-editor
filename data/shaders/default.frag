@@ -1,5 +1,7 @@
 #version 330 core
 
+#define MAX_LIGHTS 8
+
 struct lightSource{
     vec4 ambient;
 	vec4 diffuse;
@@ -17,6 +19,8 @@ struct material{
 	vec4 specular;
 	float shininess;
 };
+
+uniform lightSource lights[MAX_LIGHTS];
 
 uniform sampler2D t_diffuse;
 uniform mat4 m_model;
@@ -39,8 +43,7 @@ vec3 specularComponent(in vec3 N, in vec3 L, in vec3 V)
 {
    float specularTerm = 0;
 
-   // calculate specular reflection only if
-   // the surface is oriented to the light source
+   // calculate specular reflection if needed
    if(dot(N, L) > 0)
    {
       // half vector
@@ -58,11 +61,6 @@ vec3 diffuseComponent(in vec3 N, in vec3 L)
 
 void main()
 {
-    // Old calculations
-    //float dot_product = max(dot(toLight, normal), 0.0);
-    //outColor = texture(tex, texcoords) * dot_product;
-
-   // normalizevectors after interpolation
    vec3 L = normalize(toLight);
    vec3 V = normalize(toCamera);
    vec3 N = normalize(normal);
@@ -71,9 +69,7 @@ void main()
    vec3 dif = diffuseComponent(N, L);
    vec3 spe = specularComponent(N, L, V);
 
-   //vec3 diffuseColor = (texture(t_diffuse, texcoords).rgb + 0.7*length(dif)*l_color.rbg + length(amb) * amb) / 2;
    vec3 diffuseColor = texture(t_diffuse, texcoords).rgb;
    outColor = vec4(diffuseColor * (dif + spe + amb), 1);
-   //vec3 diffuseColor = texture(t_diffuse, texcoords).rgb;
-   //outColor = vec4(max(diffuseColor * (dif + spe),amb * diffuseColor),1);
+
 }

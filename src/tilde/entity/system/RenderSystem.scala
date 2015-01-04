@@ -109,6 +109,7 @@ class RenderSystem() extends EntitySystem() {
 
     var count = 0;
     for(l <- lights){
+      /*
       // TODO: Make working. Needed to do some work on light component
       shader.setUniform(ambientString(count),0)
       shader.setUniform(diffuseString(count),0)
@@ -116,6 +117,7 @@ class RenderSystem() extends EntitySystem() {
       shader.setUniform(constantAttenuationString(count),0)
       shader.setUniform(linearAttenuationString(count),0)
       shader.setUniform(quadraticAttenuationString(count),0)
+      */
     }
   }
 

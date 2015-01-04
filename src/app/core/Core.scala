@@ -28,14 +28,12 @@ class Core {
       Display.setResizable(true)
       Display.setVSyncEnabled(true)
       Display.create(pixFormat,context)
-      //Display.create()
+
       Display.setTitle("Tilde engine")
+      //Display.setDisplayConfiguration(2.2f,0f,0.6f)
       GL11.glViewport(0,0,width,height)
       Keyboard.create()
       Mouse.create()
-
-
-
     } catch {
       case e: LWJGLException =>
         Log.error(e.toString)
@@ -46,7 +44,7 @@ class Core {
     Log.info("GPU vendor: " + GL11.glGetString(GL11.GL_VENDOR))
     Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION))
     Log.info("Pixel scale factor", "" + Display.getPixelScaleFactor())
-    
+
     game.create()
 
     while (!Display.isCloseRequested) {

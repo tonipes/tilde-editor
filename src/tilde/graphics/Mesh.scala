@@ -55,9 +55,10 @@ object Mesh{
           case _ => {}
         }
     }
-    Log.debug("Model had","" + vertices.length + " unique verts")
-    Log.debug("Model had","" + elements.length + " elements")
-    Log.debug("Model had","" + vertexData.length + " vertexData")
+    //Log.debug("Model had","" + vertices.length + " unique verts")
+    //Log.debug("Model had","" + elements.length + " elements")
+    //Log.debug("Model had","" + vertexData.length + " vertexData")
+
     // Loading mesh to memory
     val data = Buffer[Float]()
     for(i <- vertexData.indices){

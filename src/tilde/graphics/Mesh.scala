@@ -28,7 +28,7 @@ object Mesh{
     val normals = Buffer[Vector3f]()
 
     val vertexData = Buffer[VertexData]()
-    val elements = Buffer[Short]()
+    val elements = Buffer[Int]()
 
     for(line <- lines){
       val data = line.split(" ")
@@ -48,7 +48,7 @@ object Mesh{
                 //indexOfvertData = vertexData.length - 1
               //}
 
-              elements += (vertexData.length - 1).toShort
+              elements += (vertexData.length - 1)
             }
           }
 
@@ -80,7 +80,7 @@ object Mesh{
     glBufferData(GL_ARRAY_BUFFER,dataBuffer,GL_STATIC_DRAW)
     glBindBuffer(GL_ARRAY_BUFFER, 0)
 
-    val elemBuffer = BufferUtils.createShortBuffer(elements.length)
+    val elemBuffer = BufferUtils.createIntBuffer(elements.length)
     elemBuffer.put(elements.toArray)
     elemBuffer.rewind()
 

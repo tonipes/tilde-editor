@@ -22,13 +22,13 @@ void main()
     vec3 position = (m_model * vec4(pos.xyz, 1.0)).xyz;
 
     // Normal in world space
-    normal = normalize((m_model * vec4(norm, 0)).xyz);
+    normal = (m_model * vec4(norm, 0)).xyz;
 
     // Vector to light in world space
-    toLight = normalize(vec4(l_position, 1.0).xyz - position);
+    toLight = vec4(l_position, 1.0).xyz - position;
 
     // Vector to camera in world space
-    toCamera = normalize(vec4(c_position, 1.0).xyz - position);
+    toCamera = vec4(c_position, 1.0).xyz - position;
 
     // Texture coordinates
     texcoords = tex;

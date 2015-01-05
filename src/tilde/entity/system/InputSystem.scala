@@ -8,7 +8,6 @@ import org.lwjgl.opengl.Display
 import org.lwjgl.util.glu.GLU
 import tilde.Input
 import org.lwjgl.opengl.GL11._
-import tilde.entity.Entity
 import tilde.entity.component.{CameraComponent, SpatialComponent}
 import tilde.log.Log
 import tilde.util.{Direction, MatrixUtil}

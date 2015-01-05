@@ -38,7 +38,6 @@ class RenderSystem() extends EntitySystem() {
     if(e.getComponent(ModelComponent.id).isDefined){
       ents += e
     }
-
   }
 
   override def systemBegin(): Unit = {
@@ -61,7 +60,7 @@ class RenderSystem() extends EntitySystem() {
     val cameraComp = camera.getComponent(CameraComponent.id).get
     val cameraPos = camera.getComponent(SpatialComponent.id).get.getPosition
 
-    val light = lights(0)
+    val light = lights(1)
     val lightSpat = light.getComponent(SpatialComponent.id).get
     val lightLight = light.getComponent(LightSourceComponent.id).get
 
@@ -70,7 +69,7 @@ class RenderSystem() extends EntitySystem() {
 
     shader.setUniform("c_position",cameraPos.x,cameraPos.y,cameraPos.z)
     shader.setUniform("l_position",lightSpat.getPosition.x,lightSpat.getPosition.y,lightSpat.getPosition.z)
-    shader.setUniform("l_color",lightLight.color.x,lightLight.color.y,lightLight.color.z,lightLight.color.w)
+    shader.setUniform("l_color",lightLight.ambient.x,lightLight.ambient.y,lightLight.ambient.z,lightLight.ambient.w)
     shader.setUniform("m_view", cameraComp.viewBuffer)
     shader.setUniform("m_proj", cameraComp.projectionBuffer)
 
@@ -87,7 +86,7 @@ class RenderSystem() extends EntitySystem() {
       glEnableVertexAttribArray(0)
       glEnableVertexAttribArray(1)
       glEnableVertexAttribArray(2)
-      glDrawElements(GL_TRIANGLES,model.getMesh.elemCount,GL_UNSIGNED_SHORT,0)
+      glDrawElements(GL_TRIANGLES,model.getMesh.elemCount,GL_UNSIGNED_INT,0)
 
       glDisableVertexAttribArray(0)
       glDisableVertexAttribArray(1)
@@ -109,15 +108,20 @@ class RenderSystem() extends EntitySystem() {
 
     var count = 0;
     for(l <- lights){
-      /*
-      // TODO: Make working. Needed to do some work on light component
-      shader.setUniform(ambientString(count),0)
-      shader.setUniform(diffuseString(count),0)
-      shader.setUniform(specularString(count),0)
-      shader.setUniform(constantAttenuationString(count),0)
-      shader.setUniform(linearAttenuationString(count),0)
-      shader.setUniform(quadraticAttenuationString(count),0)
-      */
+      val lightComponent = l.getComponent(LightSourceComponent.id).get
+      val amb = lightComponent.ambient
+      val dif = lightComponent.diffuse
+      val spec = lightComponent.specular
+      val linAt = lightComponent.linearAttenuation
+      val quAt = lightComponent.quadraticAttenuation
+      val conAt = lightComponent.constantAttenuation
+
+      shader.setUniform(ambientString(count),amb.x,amb.y,amb.z,amb.w)
+      shader.setUniform(diffuseString(count),dif.x,dif.y,dif.z,dif.w)
+      shader.setUniform(specularString(count),spec.x,spec.y,spec.z,spec.w)
+      shader.setUniform(constantAttenuationString(count),conAt)
+      shader.setUniform(linearAttenuationString(count),linAt)
+      shader.setUniform(quadraticAttenuationString(count),quAt)
     }
   }
 

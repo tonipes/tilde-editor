@@ -29,12 +29,17 @@ class Game {
 
     world = new World(inputSystem, physicsSystem, cameraSystem, renderSystem)
 
-    //ResourceManager.createNightScene(world)
     ResourceManager.createNightScene(world)
+    //ResourceManager.createBallScene(world)
+    val cur = world.createEntity()
+    cur.addComponent(new ModelComponent("cube","grass"))
+    cur.addComponent(new SpatialComponent())
+    world.addTag("cursor",cur)
 
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_CULL_FACE)
-    glClearColor(0.031f, 0.663f, 1.0f, 0.0f)
+    //glClearColor(0.031f, 0.663f, 1.0f, 0.0f)
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f)
   }
 
   def render(): Unit = {

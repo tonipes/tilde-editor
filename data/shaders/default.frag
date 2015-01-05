@@ -56,7 +56,7 @@ vec3 specularComponent(in vec3 N, in vec3 L, in vec3 V)
 vec3 diffuseComponent(in vec3 N, in vec3 L)
 {
    float diffuseTerm = clamp(dot(N, L), 0, 1);
-   return (l_color.rgb * diffuseTerm) * l_color.a;
+   return ((l_color.rgb * diffuseTerm) * l_color.a);
 }
 
 void main()

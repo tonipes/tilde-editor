@@ -24,7 +24,6 @@ class CameraSystem() extends EntitySystem(){
     Matrix4f.translate(spatial.getPosition.negate(null), viewMatrix, viewMatrix)
     viewMatrix.store(camera.viewBuffer)
     camera.viewBuffer.rewind()
-
   }
 
   override def systemBegin(): Unit = {

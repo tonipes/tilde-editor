@@ -6,7 +6,7 @@ import javax.imageio.ImageIO
 import org.lwjgl.opengl.Display
 import org.lwjgl.util.vector.Vector4f
 import tilde.entity.{World, Entity}
-import tilde.entity.component.{CameraComponent, LightSourceComponent, ModelComponent, SpatialComponent}
+import tilde.entity.component._
 import tilde.log.Log
 import tilde.util.{MatrixUtil, Direction}
 
@@ -63,7 +63,7 @@ object ResourceManager {
   meshes("treetrunk") = Mesh.load("data/meshes/treetrunk.obj")*/
 
   // ###### Night scene resources #####
-
+  textures("measure") = Texture.load("data/textures/measure_128.png")
   textures("cliff") = Texture.load("data/textures/st_cliff.png")
   textures("fire") = Texture.load("data/textures/st_fire.png")
   textures("grass") = Texture.load("data/textures/st_grass.png")
@@ -72,6 +72,7 @@ object ResourceManager {
   textures("wood") = Texture.load("data/textures/st_wood.png")
   textures("rock") = Texture.load("data/textures/st_rock.png")
 
+  meshes("dragon") = Mesh.load("data/meshes/bud.obj")
   meshes("cliff") = Mesh.load("data/meshes/st_cliff.obj")
   meshes("rock") = Mesh.load("data/meshes/st_rock.obj")
   meshes("fence") = Mesh.load("data/meshes/st_fence.obj")
@@ -86,7 +87,7 @@ object ResourceManager {
   meshes("tree_trunk_2") = Mesh.load("data/meshes/st_tree_trunk_2.obj")
   meshes("tree_trunk_3") = Mesh.load("data/meshes/st_tree_trunk_3.obj")
   meshes("tree_trunk_small") = Mesh.load("data/meshes/st_tree_trunk_small.obj")
-
+  meshes("cube") = Mesh.load("data/meshes/cube.obj")
   // ###### Night scene resources end #####
   meshes("ball") = Mesh.load("data/meshes/bigball.obj")
   shaderPrograms("default") = ShaderProgram.load("data/shaders/default.vert","data/shaders/default.frag")
@@ -97,6 +98,8 @@ object ResourceManager {
     var entitiy = world.createEntity()
     var spatial = new SpatialComponent()
     var model = new ModelComponent("grass","grass")
+    val phys = new PhysicsComponent()
+    phys.angularSpeed.x = 1
 
     //Grass
     entitiy.addComponent(spatial)
@@ -120,15 +123,22 @@ object ResourceManager {
     spatial = new SpatialComponent()
     spatial.setPosition(-6.5f,0.9f,-6.5f)
 
+
     entitiy = world.createEntity() // trunk
     model = new ModelComponent("tree_trunk_2","wood")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
+    entitiy.addComponent(phys)
+
+    spatial = new SpatialComponent()
+    spatial.setPosition(-15f,0.9f,-15f)
+
 
     entitiy = world.createEntity() // top
     model = new ModelComponent("tree_top_2","tree")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
+    entitiy.addComponent(phys)
 
     // Left Tree
     spatial = new SpatialComponent()
@@ -138,11 +148,13 @@ object ResourceManager {
     model = new ModelComponent("tree_trunk_1","wood")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
+    entitiy.addComponent(phys)
 
     entitiy = world.createEntity() // top
     model = new ModelComponent("tree_top_1","tree")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
+    entitiy.addComponent(phys)
 
     // Right Tree
     spatial = new SpatialComponent()
@@ -152,11 +164,13 @@ object ResourceManager {
     model = new ModelComponent("tree_trunk_1","wood")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
+    entitiy.addComponent(phys)
 
     entitiy = world.createEntity() // top
-    model = new ModelComponent("tree_top_1","tree")
+    model = new ModelComponent("cube","measure")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
+    entitiy.addComponent(phys)
     entitiy = world.createEntity()
 
     // Small tree
@@ -189,7 +203,7 @@ object ResourceManager {
     spatial = new SpatialComponent()
     spatial.setPosition(-3.5f,1f,-3.5f)
 
-    entitiy = world.createEntity() // trunk
+    entitiy = world.createEntity()
     model = new ModelComponent("fire_flame","fire")
     entitiy.addComponent(spatial)
     entitiy.addComponent(model)
@@ -203,7 +217,7 @@ object ResourceManager {
     // Light
     val lightSpatial = new SpatialComponent()
     lightSpatial.setPosition(-3.5f,2f,-3.5f)
-    entitiy.addComponent(new LightSourceComponent(new Vector4f(1.0f,0.3f,0.7f,1f)))
+    entitiy.addComponent(new LightSourceComponent(new Vector4f(1.0f,0.3f,0.7f,1f),1))
     entitiy.addComponent(lightSpatial)
     world.addTag("fireLight",entitiy)
 
@@ -214,9 +228,11 @@ object ResourceManager {
     val width = Display.getWidth/a
     camera.addComponent(new CameraComponent(MatrixUtil.createOrthographicProjection(100,0.1f,-width,width,height,-height)))
     val cameraSpatial = new SpatialComponent()
+    val cameraLight = new LightSourceComponent(new Vector4f(1.0f,1.0f,1.0f,1.0f),1)
     cameraSpatial.setPosition(30f,20f,30f)
     cameraSpatial.rotate(-25,Direction.AXIS_X)
     cameraSpatial.rotate(45,Direction.AXIS_Y)
+    camera.addComponent(cameraLight)
     camera.addComponent(cameraSpatial)
     world.addTag("camera",camera)
 
@@ -234,7 +250,7 @@ object ResourceManager {
     entitiy = world.createEntity()
     val lightSpatial = new SpatialComponent()
     lightSpatial.setPosition(5f,2f,5f)
-    entitiy.addComponent(new LightSourceComponent(new Vector4f(1.0f,1f,1f,1f)))
+    entitiy.addComponent(new LightSourceComponent(new Vector4f(1.0f,1f,1f,1f),1))
     entitiy.addComponent(lightSpatial)
     world.addTag("fireLight",entitiy)
 

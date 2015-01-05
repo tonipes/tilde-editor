@@ -26,7 +26,7 @@ class Core {
     try {
       Display.setDisplayMode(new DisplayMode(width, height))
       Display.setResizable(true)
-      Display.setVSyncEnabled(true)
+      //Display.setVSyncEnabled(true)
       Display.create(pixFormat,context)
 
       Display.setTitle("Tilde engine")

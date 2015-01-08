@@ -12,7 +12,7 @@ import tilde.util.{Aspect, Direction, SystemUtil}
 class PhysicsSystem extends EntitySystem() {
   this.aspect =  new Aspect(Array(SpatialComponent,PhysicsComponent))
 
-  override def process(e: Entity): Unit = {
+  override def process(e: Entity, delta: Float): Unit = {
     //Log.debug("Physics process", "" + e)
     val spatial = e.getComponent(SpatialComponent.id).get
     val phys = e.getComponent(PhysicsComponent.id).get

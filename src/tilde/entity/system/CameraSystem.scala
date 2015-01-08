@@ -15,7 +15,7 @@ import tilde.util.{Aspect, QuaternionUtil, SystemUtil}
 class CameraSystem() extends EntitySystem(){
   this.aspect = new Aspect(Array(SpatialComponent,CameraComponent))//SystemUtil.createAspect(SpatialComponent,CameraComponent)
 
-  override def process(e: Entity): Unit = {
+  override def process(e: Entity, delta: Float): Unit = {
     // update camera viewMatrix and projection matrix
     val spatial = e.getComponent(SpatialComponent.id).get
     val camera = e.getComponent(CameraComponent.id).get

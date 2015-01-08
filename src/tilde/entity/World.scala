@@ -33,7 +33,7 @@ class World(entitySystems: EntitySystem*) {
     for(sys <- entitySystems){
       //Log.debug("Starting system", sys.toString)
       sys.begin()
-      sys.processEntities()
+      sys.processEntities(delta: Float)
       sys.end()
     }
   }
@@ -41,10 +41,10 @@ class World(entitySystems: EntitySystem*) {
   def handleChanges() = {
     for(system <- entitySystems){
       for(e <- created){ // Created
-        system.checkIntrest(e)
+        system.checkInterest(e)
       }
       for(e <- changed){  // Changed
-        system.checkIntrest(e)
+        system.checkInterest(e)
       }
       for(e <- destroyed){ // Destryed
         system.removeEntity(e)

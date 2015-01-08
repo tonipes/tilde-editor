@@ -8,7 +8,7 @@ import tilde.log._
 import tilde.entity.{World, Entity}
 import tilde.entity.component.{LightSourceComponent, CameraComponent, ModelComponent, SpatialComponent}
 import tilde.graphics.ShaderProgram
-import tilde.util.{BufferUtil, Aspect, SystemUtil}
+import tilde.util.{BufferCreatorUtil, Aspect, SystemUtil}
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
 import scala.collection.mutable._
@@ -31,7 +31,7 @@ class RenderSystem() extends EntitySystem() {
   val ents = Buffer[Entity]()
   val lights = Buffer[Entity]()
 
-  override def process(e: Entity): Unit = {
+  override def process(e: Entity, delta: Float): Unit = {
     if(e.getComponent(LightSourceComponent.id).isDefined){
       lights += e
     }

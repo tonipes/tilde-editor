@@ -30,6 +30,8 @@ class Entity(val world: World) {
       None
   }
 
+  def apply[T <: Component](component: Class[T]): Option[T] = getComponent(component)
+
   def dispose() {
     world.destroyEntity(this)
   }

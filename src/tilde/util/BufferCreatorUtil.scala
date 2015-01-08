@@ -8,7 +8,7 @@ import org.lwjgl.util.vector._
 /**
  * Created by Toni on 1.1.15.
  */
-object BufferUtil {
+object BufferCreatorUtil {
 
  def createFloatBuffer(m:Matrix4f):FloatBuffer = {
    val buff = BufferUtils.createFloatBuffer(16)

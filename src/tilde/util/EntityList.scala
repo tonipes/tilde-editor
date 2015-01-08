@@ -1,4 +1,6 @@
-package tilde.entity
+package tilde.util
+
+import tilde.entity.Entity
 
 /**
  * Created by Toni on 25.12.14.
@@ -21,5 +23,6 @@ class EntityList(var size: Int = 128) {
     }
     return false
   }
+  
 
 }

@@ -18,14 +18,14 @@ abstract class EntitySystem() {
   /**
    * Processes all entities in systems entity list
    */
-  def processEntities(): Unit = {
+  def processEntities(delta: Float): Unit = {
     if(!started) {
       Log.error("Illegal system call", "System must be started before processing entities")
       throw new IllegalStateException("System must be started before processing entities")
     }
     else{
       for(e <- entities){
-        process(e)
+        process(e, delta)
       }
     }
   }
@@ -35,7 +35,7 @@ abstract class EntitySystem() {
    * If system is interested, entity will be added to systems entity list
    * @param e Entity to check
    */
-  def checkIntrest(e: Entity): Unit = {
+  def checkInterest(e: Entity): Unit = {
     if(aspect != null) { // if aspect is null, system is not interested in any entities
       val contains = entities.contains(e)
       val intrest = this.isIntrestedIn(e)
@@ -66,7 +66,7 @@ abstract class EntitySystem() {
    * Processes single entity
    * @param e Entity to process
    */
-  def process(e: Entity): Unit
+  def process(e: Entity, delta: Float): Unit
 
   final def begin(): Unit = {
     if (started) {

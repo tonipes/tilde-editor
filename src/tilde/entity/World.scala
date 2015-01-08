@@ -1,6 +1,6 @@
 package tilde.entity
 
-import tilde.entity.system.EntitySystem
+import tilde.entity.EntitySystem
 import tilde.log.Log
 import scala.collection.mutable._
 /**

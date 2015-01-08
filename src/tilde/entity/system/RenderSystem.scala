@@ -5,7 +5,7 @@ import java.nio.FloatBuffer
 import org.lwjgl.BufferUtils
 import tilde.ResourceManager
 import tilde.log._
-import tilde.entity.{World, Entity}
+import tilde.entity.{EntitySystem, World, Entity}
 import tilde.entity.component.{LightSourceComponent, CameraComponent, ModelComponent, SpatialComponent}
 import tilde.graphics.ShaderProgram
 import tilde.util.{BufferCreatorUtil, Aspect, SystemUtil}

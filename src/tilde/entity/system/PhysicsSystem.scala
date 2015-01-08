@@ -1,6 +1,6 @@
 package tilde.entity.system
 
-import tilde.entity.Entity
+import tilde.entity.{EntitySystem, Entity}
 import tilde.entity.component.{PhysicsComponent, SpatialComponent}
 import tilde.log.Log
 import tilde.util.{Aspect, Direction, SystemUtil}

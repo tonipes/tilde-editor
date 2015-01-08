@@ -3,7 +3,7 @@ package tilde.entity.system
 import org.lwjgl.input.Keyboard
 import org.lwjgl.util.vector.Matrix4f
 import tilde.Input
-import tilde.entity.{World, Entity}
+import tilde.entity.{EntitySystem, World, Entity}
 import tilde.entity.component.{CameraComponent, SpatialComponent}
 import tilde.log.Log
 import tilde.util.{Aspect, QuaternionUtil, SystemUtil}

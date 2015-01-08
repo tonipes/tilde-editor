@@ -1,6 +1,5 @@
-package tilde.entity.system
+package tilde.entity
 
-import tilde.entity.{World, Entity}
 import tilde.log.Log
 import tilde.util.Aspect
 

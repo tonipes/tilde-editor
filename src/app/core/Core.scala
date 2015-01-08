@@ -10,7 +10,7 @@ import org.lwjgl.input.{Mouse, Keyboard}
  * Created by Toni on 13.12.2014.
  */
 class Core {
-
+  println("Testing")
   private var lastFrame: Long = 0
   private val game: Game = new Game()
 
@@ -26,7 +26,7 @@ class Core {
     try {
       Display.setDisplayMode(new DisplayMode(width, height))
       Display.setResizable(true)
-      //Display.setVSyncEnabled(true)
+      Display.setVSyncEnabled(true)
       Display.create(pixFormat,context)
 
       Display.setTitle("Tilde engine")

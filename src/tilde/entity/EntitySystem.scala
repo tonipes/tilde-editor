@@ -37,9 +37,9 @@ abstract class EntitySystem() {
   def checkInterest(e: Entity): Unit = {
     if(aspect != null) { // if aspect is null, system is not interested in any entities
       val contains = entities.contains(e)
-      val intrest = this.isIntrestedIn(e)
-      if (contains && !intrest) removeEntity(e)
-      if (!contains && intrest) addEntity(e)
+      val interest = this.isIntrestedIn(e)
+      if (contains && !interest) removeEntity(e)
+      if (!contains && interest) addEntity(e)
     }
   }
 
@@ -55,11 +55,11 @@ abstract class EntitySystem() {
   }
 
 
-  private def addEntity(e: Entity) = {
+  private def addEntity(e: Entity): Unit = {
     entities += e
   }
 
-  private def isIntrestedIn (e: Entity) = this.aspect.machesWith(e.componentStructure)
+  private def isIntrestedIn(e: Entity): Boolean = this.aspect.matchesWith(e.componentStructure)
 
   /**
    * Processes single entity

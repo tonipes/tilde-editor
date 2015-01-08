@@ -6,6 +6,7 @@ import tilde.Input
 import tilde.game.Game
 import tilde.log.Log
 import org.lwjgl.input.{Mouse, Keyboard}
+
 /**
  * Created by Toni on 13.12.2014.
  */

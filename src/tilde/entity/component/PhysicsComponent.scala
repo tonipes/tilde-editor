@@ -1,6 +1,7 @@
 package tilde.entity.component
 
 import org.lwjgl.util.vector.Vector3f
+import tilde.entity.{ComponentObject, Component}
 
 /**
  * Created by Toni on 26.12.14.

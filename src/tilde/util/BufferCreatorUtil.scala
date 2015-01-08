@@ -10,12 +10,12 @@ import org.lwjgl.util.vector._
  */
 object BufferCreatorUtil {
 
- def createFloatBuffer(m:Matrix4f):FloatBuffer = {
-   val buff = BufferUtils.createFloatBuffer(16)
-   m.store(buff)
-   buff.rewind()
-   buff
- }
+  def createFloatBuffer(m:Matrix4f):FloatBuffer = {
+    val buff = BufferUtils.createFloatBuffer(16)
+    m.store(buff)
+    buff.rewind()
+    buff
+  }
 
   def createFloatBuffer(m:Matrix3f):FloatBuffer = {
     val buff = BufferUtils.createFloatBuffer(9)
@@ -30,12 +30,14 @@ object BufferCreatorUtil {
     buff.rewind()
     buff
   }
+
   def createFloatBuffer(m:Vector3f):FloatBuffer = {
     val buff = BufferUtils.createFloatBuffer(3)
     m.store(buff)
     buff.rewind()
     buff
   }
+
   def createFloatBuffer(m:Vector4f):FloatBuffer = {
     val buff = BufferUtils.createFloatBuffer(4)
     m.store(buff)

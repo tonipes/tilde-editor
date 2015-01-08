@@ -4,6 +4,7 @@ import java.nio.FloatBuffer
 
 import org.lwjgl.BufferUtils
 import org.lwjgl.util.vector.Matrix4f
+import tilde.entity.{ComponentObject, Component}
 import tilde.util.MatrixUtil
 
 /**

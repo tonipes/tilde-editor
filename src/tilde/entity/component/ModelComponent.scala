@@ -1,6 +1,7 @@
 package tilde.entity.component
 
 import tilde.ResourceManager
+import tilde.entity.{ComponentObject, Component}
 
 
 /**

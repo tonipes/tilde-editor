@@ -1,6 +1,6 @@
 package tilde.util
 
-import tilde.entity.component.ComponentObject
+import tilde.entity.ComponentObject
 
 import scala.collection.mutable
 

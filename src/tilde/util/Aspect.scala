@@ -1,6 +1,6 @@
 package tilde.util
 
-import tilde.entity.component.ComponentObject
+import tilde.entity.ComponentObject
 
 import scala.collection.mutable
 
@@ -18,7 +18,7 @@ class Aspect(variants: Array[ComponentObject]*) {
     bitset
   })
 
-  def machesWith(b: mutable.BitSet): Boolean = {
+  def matchesWith(b: mutable.BitSet): Boolean = {
     variantBitsets.exists(a =>  (a & b) == a)
   }
 }

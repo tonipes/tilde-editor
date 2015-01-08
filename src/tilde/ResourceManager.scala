@@ -8,7 +8,7 @@ import org.lwjgl.util.vector.Vector4f
 import tilde.entity.{World, Entity}
 import tilde.entity.component._
 import tilde.log.Log
-import tilde.util.{MatrixUtil, Direction}
+import tilde.util.{ResourceUtil, MatrixUtil, Direction}
 
 import scala.collection.mutable
 import scala.collection.mutable.Map
@@ -41,26 +41,23 @@ object ResourceManager {
   def readFromFile(path:String): String = Source.fromFile(path).mkString
   def readImageFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
 
-
-  Log.debug("Size of short",Short.MinValue + " - " + Short.MaxValue)
-  Log.debug("Size of int",Int.MinValue + " - " + Int.MaxValue)
   // debugging resources
   /*textures("grass") = Texture.load("data/textures/grass.png")
   textures("tree") = Texture.load("data/textures/tree.png")
   textures("wood") = Texture.load("data/textures/wood.png")
   textures("measure") = Texture.load("data/textures/measure_128.png")
 
-  meshes("insetcube") = Mesh.load("data/meshes/insetcube.obj")
-  meshes("plane") = Mesh.load("data/meshes/bigPlane_smooth.obj")
-  meshes("cube") = Mesh.load("data/meshes/1x1_cube.obj")
-  meshes("bunny") = Mesh.load("data/meshes/bunny_smooth.obj")
-  meshes("dragon") = Mesh.load("data/meshes/dragon.obj")
-  meshes("bud") = Mesh.load("data/meshes/bud.obj")
-  meshes("teapot") = Mesh.load("data/meshes/teapot_test.obj")
-  meshes("fence") = Mesh.load("data/meshes/fence.obj")
-  meshes("treetop") = Mesh.load("data/meshes/treetop.obj")
-  meshes("treetop2") = Mesh.load("data/meshes/treetop2.obj")
-  meshes("treetrunk") = Mesh.load("data/meshes/treetrunk.obj")*/
+  meshes("insetcube") = ResourceUtil.loadMesh("data/meshes/insetcube.obj")
+  meshes("plane") = ResourceUtil.loadMesh("data/meshes/bigPlane_smooth.obj")
+  meshes("cube") = ResourceUtil.loadMesh("data/meshes/1x1_cube.obj")
+  meshes("bunny") = ResourceUtil.loadMesh("data/meshes/bunny_smooth.obj")
+  meshes("dragon") = ResourceUtil.loadMesh("data/meshes/dragon.obj")
+  meshes("bud") = ResourceUtil.loadMesh("data/meshes/bud.obj")
+  meshes("teapot") = ResourceUtil.loadMesh("data/meshes/teapot_test.obj")
+  meshes("fence") = ResourceUtil.loadMesh("data/meshes/fence.obj")
+  meshes("treetop") = ResourceUtil.loadMesh("data/meshes/treetop.obj")
+  meshes("treetop2") = ResourceUtil.loadMesh("data/meshes/treetop2.obj")
+  meshes("treetrunk") = ResourceUtil.loadMesh("data/meshes/treetrunk.obj")*/
 
   // ###### Night scene resources #####
   textures("measure") = Texture.load("data/textures/measure_128.png")
@@ -72,24 +69,23 @@ object ResourceManager {
   textures("wood") = Texture.load("data/textures/st_wood.png")
   textures("rock") = Texture.load("data/textures/st_rock.png")
 
-  meshes("dragon") = Mesh.load("data/meshes/bud.obj")
-  meshes("cliff") = Mesh.load("data/meshes/st_cliff.obj")
-  meshes("rock") = Mesh.load("data/meshes/st_rock.obj")
-  meshes("fence") = Mesh.load("data/meshes/st_fence.obj")
-  meshes("fire_flame") = Mesh.load("data/meshes/st_fire_flame.obj")
-  meshes("fire_logs") = Mesh.load("data/meshes/st_fire_logs.obj")
-  meshes("grass") = Mesh.load("data/meshes/st_grass.obj")
-  meshes("tree_top_1") = Mesh.load("data/meshes/st_tree_top_1.obj")
-  meshes("tree_top_2") = Mesh.load("data/meshes/st_tree_top_2.obj")
-  meshes("tree_top_3") = Mesh.load("data/meshes/st_tree_top_3.obj")
-  meshes("tree_top_small") = Mesh.load("data/meshes/st_tree_top_small.obj")
-  meshes("tree_trunk_1") = Mesh.load("data/meshes/st_tree_trunk_1.obj")
-  meshes("tree_trunk_2") = Mesh.load("data/meshes/st_tree_trunk_2.obj")
-  meshes("tree_trunk_3") = Mesh.load("data/meshes/st_tree_trunk_3.obj")
-  meshes("tree_trunk_small") = Mesh.load("data/meshes/st_tree_trunk_small.obj")
-  meshes("cube") = Mesh.load("data/meshes/cube.obj")
-  // ###### Night scene resources end #####
-  meshes("ball") = Mesh.load("data/meshes/bigball.obj")
+  /*meshes("dragon") = ResourceUtil.loadMesh("data/meshes/bud.obj")
+  meshes("cliff") = ResourceUtil.loadMesh("data/meshes/st_cliff.obj")
+  meshes("rock") = ResourceUtil.loadMesh("data/meshes/st_rock.obj")
+  meshes("fence") = ResourceUtil.loadMesh("data/meshes/st_fence.obj")
+  meshes("fire_flame") = ResourceUtil.loadMesh("data/meshes/st_fire_flame.obj")
+  meshes("fire_logs") = ResourceUtil.loadMesh("data/meshes/st_fire_logs.obj")
+  meshes("grass") = ResourceUtil.loadMesh("data/meshes/st_grass.obj")
+  meshes("tree_top_1") = ResourceUtil.loadMesh("data/meshes/st_tree_top_1.obj")
+  meshes("tree_top_2") = ResourceUtil.loadMesh("data/meshes/st_tree_top_2.obj")
+  meshes("tree_top_3") = ResourceUtil.loadMesh("data/meshes/st_tree_top_3.obj")
+  meshes("tree_top_small") = ResourceUtil.loadMesh("data/meshes/st_tree_top_small.obj")
+  meshes("tree_trunk_1") = ResourceUtil.loadMesh("data/meshes/st_tree_trunk_1.obj")
+  meshes("tree_trunk_2") = ResourceUtil.loadMesh("data/meshes/st_tree_trunk_2.obj")
+  meshes("tree_trunk_3") = ResourceUtil.loadMesh("data/meshes/st_tree_trunk_3.obj")
+  meshes("tree_trunk_small") = ResourceUtil.loadMesh("data/meshes/st_tree_trunk_small.obj")*/
+  meshes("cube") = ResourceUtil.loadPly("data/meshes/plyTest.ply")
+
   shaderPrograms("default") = ShaderProgram.load("data/shaders/default.vert","data/shaders/default.frag")
 
   // Night Scene map constructor
@@ -233,20 +229,12 @@ object ResourceManager {
   }
 
   def createBallScene(world: World) = {
-    var entitiy = world.createEntity()
+    var entity = world.createEntity()
     var spatial = new SpatialComponent()
-    var model = new ModelComponent("ball",null)
+    var model = new ModelComponent("cube","measure")
 
-    //ball
-    entitiy.addComponent(spatial)
-    entitiy.addComponent(model)
-
-    entitiy = world.createEntity()
-    val lightSpatial = new SpatialComponent()
-    lightSpatial.setPosition(5f,2f,5f)
-    entitiy.addComponent(new LightSourceComponent(new Vector4f(1.0f,1f,1f,1f),1))
-    entitiy.addComponent(lightSpatial)
-    world.addTag("fireLight",entitiy)
+    entity.addComponent(spatial)
+    entity.addComponent(model)
 
     // Camera
     val camera = world.createEntity()
@@ -255,9 +243,11 @@ object ResourceManager {
     val width = Display.getWidth/a
     camera.addComponent(new CameraComponent(MatrixUtil.createOrthographicProjection(100,0.1f,-width,width,height,-height)))
     val cameraSpatial = new SpatialComponent()
-    cameraSpatial.setPosition(30f,20f,30f)
+    val cameraLight = new LightSourceComponent(new Vector4f(1.0f,1.0f,1.0f,1.0f),1)
+    cameraSpatial.setPosition(6f,4f,6f)
     cameraSpatial.rotate(-25,Direction.AXIS_X)
     cameraSpatial.rotate(45,Direction.AXIS_Y)
+    camera.addComponent(cameraLight)
     camera.addComponent(cameraSpatial)
     world.addTag("camera",camera)
   }

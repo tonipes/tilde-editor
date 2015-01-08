@@ -7,17 +7,26 @@ uniform vec3 c_position;
 uniform vec4 l_color;
 uniform vec3 l_position;
 
+//layout(location = 0) in vec3 pos;
+//layout(location = 1) in vec2 tex;
+//layout(location = 2) in vec3 norm;
+
 layout(location = 0) in vec3 pos;
-layout(location = 1) in vec2 tex;
-layout(location = 2) in vec3 norm;
+layout(location = 1) in vec3 norm;
+layout(location = 2) in vec2 tex;
+layout(location = 3) in vec3 color;
 
 out vec3 toLight;
 out vec3 toCamera;
 out vec3 normal;
 out vec2 texcoords;
+out vec3 vertColor;
 
 void main()
 {
+    // Color from vertex
+    vertColor = color;//vec3(0.5,0.5,0.5);
+
     // Position in world space
     vec3 position = (m_model * vec4(pos.xyz, 1.0)).xyz;
 

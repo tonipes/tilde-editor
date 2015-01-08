@@ -60,7 +60,7 @@ class RenderSystem() extends EntitySystem() {
     val cameraComp = camera.getComponent(CameraComponent.id).get
     val cameraPos = camera.getComponent(SpatialComponent.id).get.getPosition
 
-    val light = lights(1)
+    val light = lights(0)
     val lightSpat = light.getComponent(SpatialComponent.id).get
     val lightLight = light.getComponent(LightSourceComponent.id).get
 
@@ -86,11 +86,13 @@ class RenderSystem() extends EntitySystem() {
       glEnableVertexAttribArray(0)
       glEnableVertexAttribArray(1)
       glEnableVertexAttribArray(2)
+      glEnableVertexAttribArray(3)
       glDrawElements(GL_TRIANGLES,model.getMesh.elemCount,GL_UNSIGNED_INT,0)
 
       glDisableVertexAttribArray(0)
       glDisableVertexAttribArray(1)
       glDisableVertexAttribArray(2)
+      glDisableVertexAttribArray(3)
       model.getMesh.unbindVAO()
     }
     shader.unbind()

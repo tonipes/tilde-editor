@@ -29,7 +29,7 @@ class Game {
 
     world = new World(inputSystem, physicsSystem, cameraSystem, renderSystem)
 
-    ResourceManager.createNightScene(world)
+    ResourceManager.createBallScene(world)
     //ResourceManager.createBallScene(world)
     val cur = world.createEntity()
     cur.addComponent(new ModelComponent("cube","grass"))

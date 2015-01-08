@@ -35,7 +35,7 @@ in vec3 toLight;
 in vec3 toCamera;
 in vec3 normal;
 in vec2 texcoords;
-
+in vec3 vertColor;
 out vec4 outColor;
 
 
@@ -69,7 +69,7 @@ void main()
    vec3 dif = diffuseComponent(N, L);
    vec3 spe = specularComponent(N, L, V);
 
-   vec3 diffuseColor = texture(t_diffuse, texcoords).rgb;
+   vec3 diffuseColor = vertColor;//vec3(0.5,0.5,0.5); // texture(t_diffuse, texcoords).rgb;
    outColor = vec4(diffuseColor * (dif + spe + amb), 1);
 
 }

@@ -2,6 +2,7 @@ package tilde.entity.component
 
 import org.lwjgl.BufferUtils
 import org.lwjgl.util.vector.{Vector4f, Matrix4f, Quaternion, Vector3f}
+import tilde.entity.{ComponentObject, Component}
 import tilde.util.Direction._
 import tilde.util.{Direction, QuaternionUtil}
 

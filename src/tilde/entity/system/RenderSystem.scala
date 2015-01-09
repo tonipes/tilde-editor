@@ -108,7 +108,7 @@ class RenderSystem() extends EntitySystem() {
     def linearAttenuationString(i : Int) = "lights["+i+"].linearAttenuation"
     def quadraticAttenuationString(i : Int) = "lights["+i+"].quadraticAttenuation"
 
-    var count = 0;
+    var count = 0
     for(l <- lights){
       val lightComponent = l.getComponent(LightSourceComponent.id).get
       val amb = lightComponent.ambient

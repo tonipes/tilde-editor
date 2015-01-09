@@ -3,6 +3,7 @@
 # Directories #
 out/
 work/
+target/
 bin/
 lib/res
 lib/native/freebsd

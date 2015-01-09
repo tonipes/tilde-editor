@@ -1,17 +1,18 @@
 package tilde.util
 
+import java.awt.image.BufferedImage
 import java.io.File
-import java.text.ParseException
+import javax.imageio.ImageIO
 
-import scala.collection.mutable.Buffer
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector.{Vector2f, Vector3f}
 import tilde.graphics.Mesh
 import tilde.log.Log
+import tilde.graphics.Texture
+import scala.io.Source
 
 /**
  * Created by Toni on 8.1.2015.
@@ -30,103 +31,11 @@ object ResourceUtil {
   val NORMAL_DATA_STRIDE = VERTEX_DATA_LENGTH
   val UV_DATA_STRIDE = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH
   val COLOR_DATA_STRIDE = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH + UV_DATA_LENGTH
-  
+
   def loadMesh(path: String): Mesh = {
-    def parseVertexPosition(str: String*): Vector3f = new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)
-    def parseTextureCoordinate(str: String*): Vector2f = {new Vector2f(str(0).toFloat,1 - str(1).toFloat)} // Why 1 - str(1)?
-    def parseVertexNormal(str: String*): Vector3f = {new Vector3f(str(0).toFloat,str(1).toFloat,str(2).toFloat)}
-
-    Log.debug("Loading mesh", path)
-    val lines = scala.io.Source.fromFile(new File(path)).getLines()
-
-    val vertices = Buffer[Vector3f]()
-    val texCoords = Buffer[Vector2f]()
-    val normals = Buffer[Vector3f]()
-
-    val vertexData = Buffer[VertexData]()
-    val elements = Buffer[Int]()
-
-    for(line <- lines){
-      val data = line.split(" ")
-      data(0) match {
-        case "v" => vertices += parseVertexPosition(data(1), data(2), data(3))
-        case "vt" => texCoords += parseTextureCoordinate(data(2), data(1))
-        case "vn" => normals += parseVertexNormal(data(1), data(2), data(3))
-        case "f" => {
-          val verts = Vector.tabulate(3)(n => data(n + 1).split("/"))
-          for (v <- verts) {
-            val vertData = new VertexData(v(0).toInt - 1, v(1).toInt - 1, v(2).toInt - 1)
-            // Comment out if you want to minimize duplicate vertices and memory usage
-            //var indexOfvertData = vertedDataList.indexWhere(v => v == vertData)
-            var indexOfvertData:Int = 0
-            //if (indexOfvertData < 0) {
-            vertexData += vertData
-            //indexOfvertData = vertexData.length - 1
-            //}
-
-            elements += (vertexData.length - 1)
-          }
-        }
-
-        case _ => {}
-      }
-    }
-    //Log.debug("Model had","" + vertices.length + " unique verts")
-    //Log.debug("Model had","" + elements.length + " elements")
-    //Log.debug("Model had","" + vertexData.length + " vertexData")
-
-    // Loading mesh to memory
-    val data = Buffer[Float]()
-    for(i <- vertexData.indices){
-      val vertIndex = vertexData(i).positionID
-      val uvIndex = vertexData(i).uvID
-      val normIndex = vertexData(i).normalID
-      data ++= Vector[Float](
-        vertices(vertIndex).x, vertices(vertIndex).y, vertices(vertIndex).z,
-        texCoords(uvIndex).x, texCoords(uvIndex).y,
-        normals(normIndex).x, normals(normIndex).y, normals(normIndex).z)
-    }
-
-    val dataBuffer = BufferUtils.createFloatBuffer(data.length)
-    dataBuffer.put(data.toArray)
-    dataBuffer.rewind()
-
-    val dataID = glGenBuffers()
-    glBindBuffer(GL_ARRAY_BUFFER,dataID)
-    glBufferData(GL_ARRAY_BUFFER,dataBuffer,GL_STATIC_DRAW)
-    glBindBuffer(GL_ARRAY_BUFFER, 0)
-
-    val elemBuffer = BufferUtils.createIntBuffer(elements.length)
-    elemBuffer.put(elements.toArray)
-    elemBuffer.rewind()
-
-    val vaoID = glGenVertexArrays()
-    glBindVertexArray(vaoID)
-
-    //data
-    val vertsID = glGenBuffers()
-    glBindBuffer(GL_ARRAY_BUFFER,vertsID)
-    glBufferData(GL_ARRAY_BUFFER,dataBuffer,GL_STATIC_DRAW)
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, 8*FLOAT_SIZE, 0*FLOAT_SIZE) // verts
-    glVertexAttribPointer(1, 2, GL_FLOAT, false, 8*FLOAT_SIZE, 3*FLOAT_SIZE) // uv
-    glVertexAttribPointer(2, 3, GL_FLOAT, false, 8*FLOAT_SIZE, 5*FLOAT_SIZE) // normal
-    //glBindBuffer(GL_ARRAY_BUFFER, 0)
-
-    //elem
-    val elemID = glGenBuffers()
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemID)
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemBuffer,GL_STATIC_DRAW)
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
-
-    glBindVertexArray(0)
-
-    new Mesh(vaoID,dataID,elemID, elements.length, data.length)
-  }
-
-  def loadPly(path: String): Mesh = {
     def intColorToFloat(i: Float): Float = (i / 255)
 
-    val lines = scala.io.Source.fromFile(new File(path)).getLines().toVector
+    val lines = readLinesFromFile(path)
 
     val vertCount = lines.find(a => { // Finds line "element count X", where X is vertex count
       val splits = a.split(" ")
@@ -199,15 +108,51 @@ object ResourceUtil {
 
     new Mesh(vaoID,vertexDataID,elementID,elementDataBufferLength,vertexDataBufferLength)
   }
-}
+  def loadTexture(path: String): Texture = {
+    var bufImage: BufferedImage = null
+    try {
+      bufImage = readImageFromFile(path)
+    } catch{
+      case e: Exception => {
+        bufImage = new BufferedImage(1,1,BufferedImage.TYPE_INT_ARGB)
+        bufImage.setRGB(0,0,0xFFFFFF)
+      }
+    }
+    val pixels = Array.ofDim[Int](bufImage.getWidth() * bufImage.getHeight())
 
-class VertexData(val positionID: Int, val uvID: Int, val normalID:Int) {
+    bufImage.getRGB(0, 0, bufImage.getWidth(), bufImage.getHeight(), pixels, 0, bufImage.getWidth())
 
-  def ==(other: VertexData): Boolean = this.positionID == other.positionID &&
-    this.uvID == other.uvID && this.normalID == other.normalID
-  def != (other: VertexData): Boolean = !(this == other)
+    val bytes = BufferUtils.createByteBuffer(pixels.length * 4)
 
-  override def toString() = {
-    (positionID+1) + "/" + (uvID+1) + "/" + (normalID+1)
+    for (x <- 0 until bufImage.getWidth; y <- 0 until bufImage.getHeight) {
+      //val pix = pixels(y * bufImage.getWidth() + x)
+      val pix = pixels(y * bufImage.getWidth() + x)
+
+      bytes.put(((pix >> 16) & 0xFF).toByte) // RED
+      bytes.put(((pix >> 8) & 0xFF).toByte) // GREEN
+      bytes.put((pix & 0xFF).toByte) // BLUE
+      bytes.put(((pix >> 24) & 0xFF).toByte) // ALPHA
+    }
+    bytes.rewind()
+
+    val texID: Int = glGenTextures()
+
+    glBindTexture(GL_TEXTURE_2D, texID)
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, bufImage.getWidth(), bufImage.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes)
+
+    glGenerateMipmap(GL_TEXTURE_2D)
+
+    new Texture(bufImage.getWidth, bufImage.getHeight, texID)
   }
+  def loadObject(path: String) = {
+
+  }
+
+  private def readFromFile(path:String): String = Source.fromFile(path).mkString
+  private def readImageFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
+  private def readLinesFromFile(path:String) = scala.io.Source.fromFile(new File(path)).getLines().toVector
 }

@@ -1,34 +1,19 @@
 package app.main
 
-import tilde.log.Log
-
-import scala.collection.mutable.BitSet
+import argonaut._, Argonaut._
 
 /**
  * Created by Toni on 26.12.14.
  */
 object TestMain {
-  def main(args:Array[String]): Unit = {
-    val bitset = new BitSet()
-    bitset.add(1)
-    bitset.add(2)
-    bitset.add(6)
-    bitset.add(8)
-    Log.debug("1",bitset.contains(1).toString)
-    Log.debug("2",bitset.contains(2).toString)
-    Log.debug("3",bitset.contains(3).toString)
-    Log.debug("4",bitset.contains(4).toString)
-    Log.debug("5",bitset.contains(5).toString)
-    Log.debug("6",bitset.contains(6).toString)
-    Log.debug("8",bitset.contains(8).toString)
-    Log.debug("12",bitset.contains(12).toString)
 
-    val bitset2 = new BitSet()
-    bitset2.add(1)
-    bitset2.add(2)
-    bitset2.add(6)
+  case class Person(name: String, age: Int)
 
-    Log.debug("==",((bitset & bitset2) == bitset2).toString)
+  // Provide a function to convert to a tuple and names for each field.
+  // This constructs the most obvious codec building an object with a
+  // field for each element. Note the arrity, <2>, can be anything up
+  // until <22>.
 
-  }
+  implicit def PersonEncodeJson: EncodeJson[Person] =
+    jencode2L((p: Person) => (p.name, p.age))("name", "age")
 }

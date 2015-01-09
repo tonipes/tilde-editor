@@ -152,7 +152,7 @@ object ResourceUtil {
 
   }
 
-  private def readFromFile(path:String): String = Source.fromFile(path).mkString
-  private def readImageFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
-  private def readLinesFromFile(path:String) = scala.io.Source.fromFile(new File(path)).getLines().toVector
+  def readFromFile(path:String): String = Source.fromFile(path).mkString
+  def readImageFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
+  def readLinesFromFile(path:String) = scala.io.Source.fromFile(new File(path)).getLines().toVector
 }

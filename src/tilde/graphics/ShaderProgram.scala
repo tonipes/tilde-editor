@@ -6,6 +6,8 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
 import tilde.ResourceManager
 import tilde.log.Log
+import tilde.util.ResourceUtil
+
 /**
  * Created by Toni on 17.12.14.
  */
@@ -27,7 +29,7 @@ class ShaderProgram() {
 
   def attachVertexShader(name: String) = {
     // load shader source
-    val shaderSource = ResourceManager.readFromFile(name)
+    val shaderSource = ResourceUtil.readFromFile(name)
 
     // create shader
     vertexShaderID = glCreateShader(GL_VERTEX_SHADER)
@@ -47,7 +49,7 @@ class ShaderProgram() {
 
   def attachFragShader(name: String) = {
     // load shader source
-    val shaderSource = ResourceManager.readFromFile(name)
+    val shaderSource = ResourceUtil.readFromFile(name)
 
     // create shader
     fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER)

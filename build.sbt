@@ -9,4 +9,11 @@ resolvers += "sonatype-releases" at "https://oss.sonatype.org/content/repositori
 resolvers += "Typesafe Public Repo" at "http://repo.typesafe.com/typesafe/releases"
 
 libraryDependencies += "io.argonaut" %% "argonaut" % "6.0.4"
-    
+
+libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl" % "2.9.1"
+
+libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl_util" % "2.9.1"
+
+libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl-platform" % "2.9.1"
+
+fork in (Test,run) := true

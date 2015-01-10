@@ -53,6 +53,7 @@ class World(entitySystems: EntitySystem*) {
   def changed(entity: Entity): Unit = {
     if(!changed.contains(entity) && !created.contains(entity))
       changed += entity
+      // This comment will be visible in test commit
   }
 
   def createEntity() = {

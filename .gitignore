@@ -17,6 +17,7 @@ lib/native/solaris
 .gradle
 local.properties
 tmp/
+*.jnilib
 *.tmp
 *.bak
 *.swp

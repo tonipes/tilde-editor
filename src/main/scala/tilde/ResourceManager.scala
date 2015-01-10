@@ -40,7 +40,7 @@ object ResourceManager {
   textures("grass") = ResourceUtil.loadTexture("src/main/resources/textures/measure_128.png")
 
   meshes("map") = ResourceUtil.loadMesh("src/main/resources/meshes/plyTest.ply")
-
+  
   shaderPrograms("default") = ShaderProgram.load("src/main/resources/shaders/default.vert","src/main/resources/shaders/default.frag")
 
   def createBallScene(world: World) = {

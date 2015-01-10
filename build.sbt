@@ -16,6 +16,7 @@ libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl_util" % "2.9.1"
 
 libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl-platform" % "2.9.1"
 
+javaOptions in (Test,run) += "-Djava.library.path=lib/native/macosx"
+
 fork in (Test,run) := true
 
-javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/"))

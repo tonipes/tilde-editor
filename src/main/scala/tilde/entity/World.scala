@@ -51,7 +51,7 @@ class World(entitySystems: EntitySystem*) {
   }
 
   def changed(entity: Entity): Unit = {
-    if(!changed.contains(e) && !created.contains(entity))
+    if(!changed.contains(entity) && !created.contains(entity))
       changed += entity
   }
 
@@ -66,8 +66,8 @@ class World(entitySystems: EntitySystem*) {
   def getTagged(tag: String): Option[Entity] = Some(tags(tag))
 
   def destroyEntity(entity: Entity) = {
-    val i = entities.indexOf(entity)
-    if (i >= 0) entities.remove(i)
+    val index = entities.indexOf(entity)
+    if (index >= 0) entities.remove(index)
     entity.dispose()
   }
 }

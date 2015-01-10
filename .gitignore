@@ -18,6 +18,7 @@ lib/native/solaris
 local.properties
 tmp/
 *.jnilib
+*.dylib
 *.tmp
 *.bak
 *.swp

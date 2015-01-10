@@ -15,39 +15,15 @@
 			"file": "src/main/scala/tilde/ResourceManager.scala",
 			"settings":
 			{
-				"buffer_size": 2208,
+				"buffer_size": 2212,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/main/scala/tilde/game/Game.scala",
+			"file": "/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 			"settings":
 			{
-				"buffer_size": 1217,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/resources/shaders/default.frag",
-			"settings":
-			{
-				"buffer_size": 1475,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/resources/objects/untitled.model",
-			"settings":
-			{
-				"buffer_size": 42,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/Toni/Library/Application Support/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
-			"settings":
-			{
-				"buffer_size": 414,
+				"buffer_size": 88,
 				"line_ending": "Unix"
 			}
 		},
@@ -69,15 +45,19 @@
 		"selected_items":
 		[
 			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
 				"keyma",
 				"Keymaps: Cheat Sheet"
 			],
 			[
 				"pack",
-				"Package Control: Install Package"
-			],
-			[
-				"packa",
 				"Package Control: Install Package"
 			],
 			[
@@ -117,7 +97,16 @@
 	},
 	"console":
 	{
-		"height": 118.0
+		"height": 118.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"package",
+			"sublime.packages_path()",
+			"package-control",
+			"package-controll",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
 	},
 	"distraction_free":
 	{
@@ -128,8 +117,18 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Development/Scala/Idea/TildeEngine/src/main/scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde"
+	],
 	"file_history":
 	[
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/game/Game.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders/default.frag",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/objects/untitled.model",
+		"/Users/Toni/Library/Application Support/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/textures/grass.png",
 		"/Users/Toni/Dropbox/work/texture/pattern_brickwall_nrm.png",
 		"/Development/Scala/Idea/TildeEngine/TildeEngineMac.sublime-project",
@@ -177,22 +176,24 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
 					"file": "src/main/scala/tilde/ResourceManager.scala",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2208,
+						"buffer_size": 2212,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								426,
-								426
+								539,
+								539
 							]
 						],
 						"settings":
@@ -202,81 +203,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 387.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/main/scala/tilde/game/Game.scala",
+					"file": "/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1217,
+						"buffer_size": 88,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								534,
-								534
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 175.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/main/resources/shaders/default.frag",
-					"settings":
-					{
-						"buffer_size": 1475,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								151,
-								151
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/main/resources/objects/untitled.model",
-					"settings":
-					{
-						"buffer_size": 42,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17,
-								17
+								84,
+								84
 							]
 						],
 						"settings":
@@ -287,33 +234,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/Toni/Library/Application Support/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
-					"settings":
-					{
-						"buffer_size": 414,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								280,
-								280
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -323,7 +244,8 @@
 			"sheets":
 			[
 				{
-					"buffer": 5,
+					"buffer": 2,
+					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 0,
@@ -348,6 +270,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -391,6 +314,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
 	"output.sbt":
 	{
 		"height": 0.0
@@ -399,6 +326,7 @@
 	{
 		"height": 0.0
 	},
+	"project": "TildeEngineMac.sublime-project",
 	"replace":
 	{
 		"height": 0.0
@@ -420,10 +348,25 @@
 		],
 		"width": 0.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 167.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

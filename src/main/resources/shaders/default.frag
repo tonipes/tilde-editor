@@ -3,7 +3,7 @@
 #define MAX_LIGHTS 8
 
 struct lightSource{
-    vec4 ambient;
+  vec4 ambient;
 	vec4 diffuse;
 	vec4 specular;
 	vec4 position;

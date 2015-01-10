@@ -5,20 +5,23 @@ import java.io.File
 import javax.imageio.ImageIO
 import org.lwjgl.opengl.Display
 import org.lwjgl.util.vector.Vector4f
-import tilde.entity.{World, Entity}
+
+import tilde.entity._
 import tilde.entity.component._
 import tilde.log.Log
-import tilde.util.{ResourceUtil, MatrixUtil, Direction}
+import tilde.util._
+import tilde.graphics._
 
 import scala.collection.mutable
 import scala.collection.mutable.Map
-import tilde.graphics.{ShaderProgram, Mesh, Texture}
+
 
 import scala.io.Source
 
 /**
  * Created by Toni on 17.12.14.
  */
+ 
 /*
   Needed file(data) formats:
   - Mesh
@@ -33,12 +36,14 @@ import scala.io.Source
   -
  */
 object ResourceManager {
+
   val textures = Map[String, Texture]()
   val meshes = Map[String,Mesh]()
   val shaderPrograms = Map[String, ShaderProgram]()
+
   textures("measure") = ResourceUtil.loadTexture("src/main/resources/textures/measure_128.png")
   textures("grass") = ResourceUtil.loadTexture("src/main/resources/textures/measure_128.png")
-
+  
   meshes("map") = ResourceUtil.loadMesh("src/main/resources/meshes/plyTest.ply")
   
   shaderPrograms("default") = ShaderProgram.load("src/main/resources/shaders/default.vert","src/main/resources/shaders/default.frag")

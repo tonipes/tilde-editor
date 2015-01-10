@@ -1,18 +1,19 @@
 package tilde.game
 
 import org.lwjgl.input.Keyboard
-import org.lwjgl.opengl.{GL11, Display}
+import org.lwjgl.opengl._
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector.{Vector4f, Vector3f}
-import tilde.entity.system.{InputSystem, PhysicsSystem, RenderSystem, CameraSystem}
-import tilde.{Input, ResourceManager}
-import tilde.entity.{World, Entity}
+import org.lwjgl.util.vector._
+
+import tilde.entity.system._
+import tilde._
+import tilde.entity._
 import tilde.entity.component._
 import tilde.log.Log
-import tilde.util.Direction
+import tilde.util._
 
 /**
  * Created by Toni on 13.12.2014.
@@ -20,7 +21,6 @@ import tilde.util.Direction
 class Game {
   var world: World = null
   
-
   def create(): Unit = {
     // Test systems
     val cameraSystem = new CameraSystem()

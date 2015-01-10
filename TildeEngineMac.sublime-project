@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{	
+			"path": "/",
+			"name": "TildeEngine"
+		},
+		{	
+			"path": "src/main/scala/",
+			"name": "Scala Source",
+			"folder_exclude_patterns": ["project","lib","target",".ensime_lucene"]
+		},
+		{	
+			"path": "src/main/resources/",
+			"name": "Resources"
+		},
+		{
+			"path": "/Users/Toni/Dropbox/work",
+			"name": "Work DB Mac",
+			"folder_exclude_patterns": ["*.blend1"]
+		}
+	]
+}

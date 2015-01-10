@@ -49,7 +49,6 @@ object ResourceManager {
     val model = new ModelComponent("map","measure")
     entity.addComponent(spatial)
     entity.addComponent(model)
-
     // Camera
     val camera = world.createEntity()
     val a = 60f

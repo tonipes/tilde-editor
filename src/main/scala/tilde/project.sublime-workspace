@@ -1,0 +1,483 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Input",
+				"inputSystem	"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "* d13bdf2 - (HEAD, origin/master, origin/HEAD, master) (10 minutes ago) (2015-01-10 19:03:04 +0200) <Toni Pesola> Testing committing from sublime\n* 5d3b5ac - (15 minutes ago) (2015-01-10 18:57:41 +0200) <Toni Pesola> Natives not working from lib/native folder. Put them in project root\n* acd8e4c - (67 minutes ago) (2015-01-10 18:05:35 +0200) <Toni Pesola> Ensime\n* 317058c - (20 hours ago) (2015-01-09 23:36:32 +0200) <Toni Pesola> First commit with sbt\n* c4c7d90 - (22 hours ago) (2015-01-09 21:15:46 +0200) <Toni Pesola> First commit with sbt\n* c296dc5 - (22 hours ago) (2015-01-09 21:14:00 +0200) <Toni Pesola> Making new project with sbt\n* 81525ed - (22 hours ago) (2015-01-09 21:12:40 +0200) <Toni Pesola> fix\n*   8f647a5 - (25 hours ago) (2015-01-09 18:31:19 +0200) <Toni Pesola> Merge branch 'master' of https://github.com/diTony/tilde\n|\\  \n| *   a8f874c - (25 hours ago) (2015-01-09 18:30:13 +0200) <Toni Pesola> Merge branch 'master' of https://github.com/diTony/tilde\n| |\\  \n| * | de2cc13 - (25 hours ago) (2015-01-09 18:30:06 +0200) <Toni Pesola> added argonaut jars\n* | | 4f8e6ef - (25 hours ago) (2015-01-09 18:31:05 +0200) <Toni Pesola> Cleaning resourceManager\n| |/  \n|/|   \n* | a5d588f - (27 hours ago) (2015-01-09 15:49:40 +0200) <Toni Pesola> Cleaned up data folder\n|/  \n* 330494c - (2 days ago) (2015-01-09 00:28:10 +0200) <Toni Pesola> Testing with models\n* 1456736 - (2 days ago) (2015-01-08 17:26:45 +0200) <Toni Pesola> Moved entitySystem. Some testing on windows\n* abc52e9 - (2 days ago) (2015-01-08 14:05:44 +0200) <Toni Pesola> Systems and stuff\n* 19460f8 - (5 days ago) (2015-01-05 21:17:50 +0200) <Toni Pesola> Working\n* c545e0f - (6 days ago) (2015-01-04 17:19:38 +0200) <Toni Pesola> Commented out some debug prints\n* 98c3aad - (6 days ago) (2015-01-04 15:37:19 +0200) <Toni Pesola> Changes in shaders and ennables high hpi mode\n* 50bf90a - (7 days ago) (2015-01-03 23:38:59 +0200) <Toni Pesola> Lots of new stuff. Support for one light\n*   97b2b5e - (13 days ago) (2014-12-29 01:23:09 +0200) <Toni Pesola> Merge branch 'master' of https://github.com/diTony/tilde\n|\\  \n| * fbac70c - (13 days ago) (2014-12-28 21:49:54 +0200) <diTony> Update README.md\n* | 2bb8ab3 - (13 days ago) (2014-12-29 01:22:37 +0200) <Toni Pesola> Cursor test\n|/  \n* 5383596 - (13 days ago) (2014-12-28 15:05:20 +0200) <Toni Pesola> .gitignore is now working again\n*   85a385f - (13 days ago) (2014-12-28 15:04:11 +0200) <Toni Pesola> Merge branch 'master' of https://github.com/diTony/tilde\n|\\  \n| * 9e58fdb - (13 days ago) (2014-12-28 15:02:03 +0200) <diTony> Create README.md\n* | d5052fb - (13 days ago) (2014-12-28 15:03:58 +0200) <Toni Pesola> gitignore work folder\n|/  \n* 28a2e37 - (2 weeks ago) (2014-12-28 01:40:00 +0200) <Toni Pesola> Added \"map\" for testing and some models.\n* c016788 - (2 weeks ago) (2014-12-27 17:48:57 +0200) <Toni Pesola> Added bad lightning and physics system for testing\n* 7e36d60 - (2 weeks ago) (2014-12-26 18:42:02 +0200) <Toni Pesola> World kinda works\n* 995fd70 - (2 weeks ago) (2014-12-26 16:50:36 +0200) <Toni Pesola> Started to implement world\n* dd34b15 - (2 weeks ago) (2014-12-26 14:04:22 +0200) <Toni Pesola> Making world class. Does not work yet\n* 338ee7e - (2 weeks ago) (2014-12-25 02:44:02 +0200) <Toni Pesola> Quaternion rotate doesn't seem to work. Cleaned up code\n* c75c83a - (2 weeks ago) (2014-12-24 19:15:55 +0200) <Toni Pesola> Some random rework on everything\n* 40dfec0 - (2 weeks ago) (2014-12-24 17:01:13 +0200) <Toni Pesola> New models.\n* f962825 - (3 weeks ago) (2014-12-24 00:26:30 +0200) <Toni Pesola> Cleaned mesh class\n* 6ab4ae3 - (3 weeks ago) (2014-12-24 00:19:52 +0200) <Toni Pesola> cleaned mesh class\n* fb6732d - (3 weeks ago) (2014-12-23 23:00:10 +0200) <Toni Pesola> Cleaning mesh loading\n* d066c79 - (3 weeks ago) (2014-12-23 20:59:15 +0200) <Toni Pesola> Some work done in the obj parsing\n* 2e70674 - (3 weeks ago) (2014-12-23 02:03:43 +0200) <Toni Pesola> Made camera use spatialcomponent for real. Planted some ideas\n* 4fa6323 - (3 weeks ago) (2014-12-23 00:35:03 +0200) <Toni Pesola> Forgot to stage....\n* c7f8171 - (3 weeks ago) (2014-12-23 00:34:51 +0200) <Toni Pesola> Camera seems to be now working with both projection types.\n* 04dbba5 - (3 weeks ago) (2014-12-22 19:37:40 +0200) <Toni Pesola> Cleaning camera class\n* 49f6bc6 - (3 weeks ago) (2014-12-22 01:58:37 +0200) <Toni Pesola> Lots of new camera stuff\n* a661de7 - (3 weeks ago) (2014-12-22 00:03:00 +0200) <Toni Pesola> Added some stuff\n*   afced6b - (3 weeks ago) (2014-12-17 20:28:37 +0200) <Toni Pesola> Merge branch 'master' of https://bitbucket.org/diTony/tilde\n|\\  \n| * 0c300a7 - (4 weeks ago) (2014-12-14 22:22:45 +0200) <Toni Pesola> Testing rendering\n| * 2a58757 - (4 weeks ago) (2014-12-14 19:20:24 +0200) <Toni Pesola> GL testing\n* | a99e21f - (3 weeks ago) (2014-12-17 19:48:37 +0200) <Toni Pesola> Added resize method\n|/  \n* 475040d - (4 weeks ago) (2014-12-14 15:16:17 +0200) <Toni Pesola> Added spriteBatch. Not implemented yet\n* 758ff86 - (4 weeks ago) (2014-12-14 14:43:06 +0200) <Toni Pesola> Changes to logging. It now supports color\n* fa3b72a - (4 weeks ago) (2014-12-14 13:40:22 +0200) <Toni Pesola> Deleted printlins\n* ae43964 - (4 weeks ago) (2014-12-14 02:31:06 +0200) <Toni Pesola> .gitignore should work?\n* 5de7ab0 - (4 weeks ago) (2014-12-14 02:27:18 +0200) <Toni Pesola> Trying...\n* 689ef3e - (4 weeks ago) (2014-12-14 02:25:28 +0200) <Toni Pesola> plz\n* 0be9c4c - (4 weeks ago) (2014-12-14 02:18:35 +0200) <Toni Pesola> Testing\n* 39c9adc - (4 weeks ago) (2014-12-14 02:13:22 +0200) <Toni Pesola> gitignore plz\n* 9c3d750 - (4 weeks ago) (2014-12-14 02:12:56 +0200) <Toni Pesola> Trying to get git-ignore to work\n* fdf1c92 - (4 weeks ago) (2014-12-14 02:08:07 +0200) <Toni Pesola> gitignore plz\n* 232b57c - (4 weeks ago) (2014-12-14 02:06:08 +0200) <Toni Pesola> Fixed package structure changes\n* 051adf5 - (4 weeks ago) (2014-12-14 02:00:38 +0200) <Toni Pesola> testing workspace\n* 481646e - (4 weeks ago) (2014-12-14 02:00:18 +0200) <Toni Pesola> Testing workspace\n* 5d58342 - (4 weeks ago) (2014-12-14 01:58:44 +0200) <Toni Pesola> gitignore update\n* 6afdb9d - (4 weeks ago) (2014-12-13 22:33:23 +0200) <Toni Pesola> no message\n* 12e4d88 - (4 weeks ago) (2014-12-13 22:13:42 +0200) <Toni Pesola> Update to gitignore\n* 7b97dbf - (4 weeks ago) (2014-12-13 22:12:55 +0200) <Toni Pesola> First commit\n",
+			"settings":
+			{
+				"buffer_size": 6369,
+				"line_ending": "Windows",
+				"name": "Git Log Graph",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "entity/World.scala",
+			"settings":
+			{
+				"buffer_size": 1743,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Ensime notes",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/E/Projects/Scala/intelli/TildeEngine/build.sbt",
+			"settings":
+			{
+				"buffer_size": 607,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 334.0,
+		"selected_items":
+		[
+			[
+				"run",
+				"SBT: Run"
+			],
+			[
+				"git gra",
+				"Git: Graph All"
+			],
+			[
+				"git pull",
+				"Git: Pull Current Branch"
+			],
+			[
+				"git fet",
+				"Git: Fetch"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"git ",
+				"Git: Push"
+			],
+			[
+				"git sta",
+				"Git: Status"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"git pu",
+				"Git: Push"
+			],
+			[
+				"GIT PUS",
+				"Git: Push"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"inspe",
+				"Ensime: Inspect Type at Point"
+			],
+			[
+				"ensime",
+				"Ensime: Notes"
+			],
+			[
+				"ens",
+				"Ensime: Notes"
+			],
+			[
+				"sbt",
+				"SBT: Start Console"
+			],
+			[
+				"sho",
+				"SBT: Show SBT Output"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/Ensime/Default.sublime-mousemap",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/Ensime/Ensime.sublime-settings",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/Entity.scala",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/User/Ensime.sublime-settings",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/World.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/game/Game.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component/CameraComponent.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component/LightSourceComponent.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component/ModelComponent.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component/PhysicsComponent.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component/SpatialComponent.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/Component.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/.ensime_session",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/system/PhysicsSystem.scala",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/Ensime/logs/client.log",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/Ensime/logs/server.log",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/SublimeSBT/README.md",
+		"/E/Projects/Scala/intelli/TildeEngine/project/Build.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/build.sbt",
+		"/E/Projects/Scala/intelli/TildeEngine/.ensime",
+		"/E/Projects/Scala/intelli/TildeEngine/.ensime_port",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/sublime-ensime/logs/server.log",
+		"/E/Projects/Random/ensime-server/build.sbt",
+		"/E/Projects/Scala/intelli/TildeEngine/project/plugins.sbt",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 2/Packages/sublime-ensime/install-ensime-server",
+		"/E/Projects/Scala/intelli/tilde/data/objects/untitled.model",
+		"/E/Projects/Scala/intelli/tilde/data/materials/test.material",
+		"/C/Users/Toni/.sbt/plugins/plugin.sbt",
+		"/E/Games/SteamLibrary/SteamApps/common/Amnesia The Dark Descent/entities/door/mansion/mansion.mat",
+		"/E/Projects/Scala/intelli/tilde/data/materials/untitled.material",
+		"/C/Users/Toni/Desktop/tulokset.csv",
+		"/G/Dropbox/Koulu/Tuotantotalous 1/Tilinpäätös Tuloslaskelma.txt"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ent",
+			"\\h",
+			"</b>",
+			"<sub></sub></td>",
+			"\\h",
+			"<sub></sub></td>",
+			"</b>",
+			" <sub></sub></td>",
+			"<td title=>",
+			"<td title=> <sub></sub></td>	</tr>",
+			"</b>",
+			"<sub></sub>*",
+			"<sub>2,5</sub>",
+			"<sub>.</sub>",
+			"<sub></sub>*",
+			"<sub>.</sub>",
+			"([\"'])(?:(?=(\\\\?))\\2.)*?\\1",
+			"</b>",
+			"\">",
+			"\"* *\"",
+			"-aho\">",
+			"</b>",
+			"<tr>",
+			"\\n",
+			"&#xA;",
+			"\\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			";",
+			"",
+			", ",
+			"0<sub></sub></td>",
+			"",
+			"<sub></sub>",
+			"&#xA;",
+			"\\n",
+			"&#xA;"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 6369,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6369,
+								6369
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git\\syntax/Git Graph.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "entity/World.scala",
+					"settings":
+					{
+						"buffer_size": 1743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1441,
+								1441
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 594.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"result_base_dir": "E:\\Projects\\Scala\\intelli\\TildeEngine",
+							"result_file_regex": "([:.a-z_A-Z0-9\\\\/-]+[.](?:scala|java)):([0-9]+)",
+							"result_line_regex": "",
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/E/Projects/Scala/intelli/TildeEngine/build.sbt",
+					"settings":
+					{
+						"buffer_size": 607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								476,
+								476
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.689823085973,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.ensime_messages":
+	{
+		"height": 118.0
+	},
+	"output.ensime_server":
+	{
+		"height": 239.0
+	},
+	"output.exec":
+	{
+		"height": 204.0
+	},
+	"output.git":
+	{
+		"height": 118.0
+	},
+	"output.sbt":
+	{
+		"height": 213.0
+	},
+	"output.sbt_error":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true
+}

@@ -55,7 +55,7 @@ class World(entitySystems: EntitySystem*) {
       changed += entity
   }
 
-  def createEntity() = {
+  def createEntity(): Entity = {
     val entity = new Entity(this)
     created += entity
     entity

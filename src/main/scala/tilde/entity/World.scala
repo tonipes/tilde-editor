@@ -49,7 +49,7 @@ class World(entitySystems: EntitySystem*) {
     changed.clear()
     destroyed.clear()
   }
-
+  
   def changed(entity: Entity): Unit = {
     if(!changed.contains(entity) && !created.contains(entity))
       changed += entity

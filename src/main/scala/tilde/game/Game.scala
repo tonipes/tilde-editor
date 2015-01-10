@@ -19,6 +19,7 @@ import tilde.util.Direction
  */
 class Game {
   var world: World = null
+  
 
   def create(): Unit = {
     // Test systems
@@ -26,7 +27,7 @@ class Game {
     val renderSystem = new RenderSystem()
     val physicsSystem = new PhysicsSystem()
     val inputSystem = new InputSystem()
-
+    
     world = new World(inputSystem, physicsSystem, cameraSystem, renderSystem)
 
     ResourceManager.createBallScene(world)

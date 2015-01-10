@@ -1,5 +1,6 @@
 package tilde.entity
 import scala.collection.mutable._
+
 /**
  * Created by Toni on 23.12.14.
  */
@@ -14,9 +15,8 @@ class World(entitySystems: EntitySystem*) {
     sys.world = this
   }
 
-  val tags = Map[String, Entity]()  // Tag is used to identify unique entities like "camera" and "player"
-
-  //val systems = HashMap[Class[_ <: EntitySystem], EntitySystem]()  // Systems alter world's state.
+  // Tag is used to identify unique entities like "camera" and "player"
+  val tags = Map[String, Entity]()  
 
   val entities = Buffer[Entity]()
 
@@ -26,26 +26,23 @@ class World(entitySystems: EntitySystem*) {
 
   // Iterates all systems and runs system with all entities that have the systems required aspect
   def update(delta: Float): Unit = {
-    //Log.debug("Starting world update", "systems: " + entitySystems.toString)
     handleChanges()
     for(sys <- entitySystems){
-      //Log.debug("Starting system", sys.toString)
       sys.begin()
       sys.processEntities(delta: Float)
       sys.end()
     }
   }
-
   def handleChanges() = {
     for(system <- entitySystems){
-      for(e <- created){ // Created
-        system.checkInterest(e)
+      for(entity <- created){ // Created
+        system.checkInterest(entity)
       }
-      for(e <- changed){  // Changed
-        system.checkInterest(e)
+      for(entity <- changed){  // Changed
+        system.checkInterest(entity)
       }
-      for(e <- destroyed){ // Destryed
-        system.removeEntity(e)
+      for(entity <- destroyed){ // Destryed
+        system.removeEntity(entity)
       }
     }
     created.clear()
@@ -53,28 +50,24 @@ class World(entitySystems: EntitySystem*) {
     destroyed.clear()
   }
 
-  def changed(e: Entity): Unit = {
-    if(!changed.contains(e) && !created.contains(e))
-      changed += e
+  def changed(entity: Entity): Unit = {
+    if(!changed.contains(e) && !created.contains(entity))
+      changed += entity
   }
 
   def createEntity() = {
-    val e = new Entity(this)
-    created += e
-    e
+    val entity = new Entity(this)
+    created += entity
+    entity
   }
 
-  def addTag(tag: String, e: Entity): Unit ={
-    //Log.debug("Tagging entity",tag + ", " + e.toString)
-    tags(tag) = e
-    //Log.debug("Tagged now", tags.toString)
-  }
+  def addTag(tag: String, entity: Entity): Unit = tags(tag) = entity
 
   def getTagged(tag: String): Option[Entity] = Some(tags(tag))
 
-  def destroyEntity(e: Entity) = {
-    val i = entities.indexOf(e)
+  def destroyEntity(entity: Entity) = {
+    val i = entities.indexOf(entity)
     if (i >= 0) entities.remove(i)
-    e.dispose()
+    entity.dispose()
   }
 }

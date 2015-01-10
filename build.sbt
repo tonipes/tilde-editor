@@ -17,3 +17,5 @@ libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl_util" % "2.9.1"
 libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl-platform" % "2.9.1"
 
 fork in (Test,run) := true
+
+javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/"))

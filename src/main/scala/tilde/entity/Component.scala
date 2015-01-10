@@ -17,11 +17,11 @@ trait ComponentObject{
   *  this id is used in bitmasking (see Aspect and entity componentStructure)
   * */
   def getID(id: Class[_ <: Component]): Int = id match{
-    case SpatialComponent.id => 1
-    case ModelComponent.id => 2
-    case CameraComponent.id => 3
-    case PhysicsComponent.id => 4
-    case LightSourceComponent.id => 5
+    case SpatialComponent.id      => 1
+    case ModelComponent.id        => 2
+    case CameraComponent.id       => 3
+    case PhysicsComponent.id      => 4
+    case LightSourceComponent.id  => 5
   }
 }
 

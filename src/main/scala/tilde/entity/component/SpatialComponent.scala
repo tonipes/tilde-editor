@@ -28,7 +28,7 @@ class SpatialComponent extends Component {
   def right(): Vector3f = QuaternionUtil.getRight(orientation)
   def forward(): Vector3f = QuaternionUtil.getForward(orientation)
 
-  def rotate(x:Float,y:Float,z:Float): Unit  = {
+  def rotate(x: Float, y: Float, z: Float): Unit  = {
     rotateX(x)
     rotateY(y)
     rotateZ(z)
@@ -73,19 +73,20 @@ class SpatialComponent extends Component {
   def getScale = scale
 
   def setPosition(vec: Vector3f): Unit = setPosition(vec.x,vec.y,vec.z)
-  def setPosition(x:Float,y:Float,z:Float): Unit  = {
+
+  def setPosition(x: Float, y: Float, z: Float): Unit  = {
     position.set(x,y,z)
     updateMatrix()
   }
 
   def setScale(vec: Vector3f): Unit  = setScale(vec.x,vec.y,vec.z)
-  def setScale(x:Float,y:Float,z:Float): Unit  = {
+  def setScale(x: Float, y: Float, z: Float): Unit  = {
     scale.set(x,y,z)
     updateMatrix()
   }
 
   def setOrientation(vec: Vector4f): Unit  = setOrientation(vec.x,vec.y,vec.z,vec.w)
-  def setOrientation(x:Float,y:Float,z:Float,w:Float): Unit  = {
+  def setOrientation(x: Float, y: Float ,z: Float, w: Float): Unit  = {
     orientation.set(x,y,z,w)
     orientation.normalise()
     updateMatrix()

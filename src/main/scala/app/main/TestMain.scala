@@ -1,49 +1,26 @@
-// package app.main
+package app.main
 
-// import argonaut._, Argonaut._
-// import scalaz._, Scalaz._
-// import tilde.graphics._
-// import tilde.entity.component._
-// /**
-//  * Created by Toni on 26.12.14.
-//  */
-// object TestMain {
+import argonaut._, Argonaut._
+import scalaz._, Scalaz._
+import tilde.graphics._
+import tilde.entity.component._
+import scala.collection.mutable.ListBuffer
 
-// class MyType(val name: String, val tpe: String, val size: Int)
+/**
+ * Created by Toni on 26.12.14.
+ */
+object TestMain {
 
-//   def main(args:Array[String]): Unit = {
-//   	val inputSingle = """{ "name": "Mark", "age": 74 }"""
-//   	val input = """
-// 	    [
-// 	      { "name": "Mark", "age": 74 },
-// 	      { "name": "Matt", "age": 22 },
-// 	      { "name": "Rick", "age": 4 },
-// 	      { "name": "John", "age": 19 },
-// 	    ]
-// 	  """
-// 	  val json = """[
-// 							    {
-// 							        "name": "apple",
-// 							        "type": "fruit",
-// 							        "size": 3
-// 							    },
-// 							    {
-// 							        "name": "jam",
-// 							        "type": "condiment",
-// 							        "size": 5
-// 							    },
-// 							    {
-// 							        "name": "beef",
-// 							        "type": "meat",
-// 							        "size": 1
-// 							    }
-// 								]"""
+  class MyType(val name: String, val tpe: String, val size: Int)
 
-// 	implicit def MyTypeCodec: CodecJson[MyType] = codec3(
-// 	  (name: String, tpe: String, size: Int) => new MyType(name, tpe, size),
-// 	  (myType: MyType) => (myType.name, myType.tpe, myType.size)
-// 		)("name", "type", "size")
+  def main(args: Array[String]): Unit = {
+    println("Start")
+    var a = List("a", "b", "c", "d", "e")
+    println(a)
+    println("index 3: " + a(3))
+    a
+    println(a)
+    println("index 3: " + a(3))
 
-//     val list = Parse.decodeValidation[List[MyType]](json)
-//   }
-// }
+  }
+}

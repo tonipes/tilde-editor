@@ -1,28 +1,25 @@
-package tilde.util
+// package tilde.util
 
-import tilde.entity.Entity
+// import tilde.entity._
+// import scala.collection.mutable._
+// /**
+//  * Created by Toni on 25.12.14.
+//  */
+// class EntityList(var size: Int = 4096) {
+//   val currentIndex = 0
+//   val emptyIndices = Buffer[Int]()
+//   val components = Map[Class[_ <: Component], Array[_ <: Component]]()
 
-/**
- * Created by Toni on 25.12.14.
- */
-class EntityList(var size: Int = 128) {
-  private var entities = Array.ofDim[Entity](size)
+//   // removes item from list
+//   def remove(index: Int): Unit = {
 
-  // removes item from list
-  def remove(index: Int): Unit = {
-    entities(index) = null
-  }
+//   }
 
-  def get(index: Int):Entity = {
-    entities(index)
-  }
+//   def getComponent[T <: Component](entity: Int, component: Class[T]): Option[T] = {
+//     Some(components(component)(entity))
+//   }
 
-  def contains(e: Entity): Boolean = {
-    for (i <- 0 until size) {
-      if (entities(i) == e) return true
-    }
-    return false
-  }
-  
-
-}
+//   def removeComponent[T <: Component](entity: Int, component: Class[T]) = {
+//     components(component)(entity) = null
+//   }
+// }

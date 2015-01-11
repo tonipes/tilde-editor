@@ -13,7 +13,6 @@ abstract class EntitySystem() {
   var world: World = null
   var entities = Buffer[Entity]()
   var started = false
-
   /**
    * Processes all entities in systems entity list
    */

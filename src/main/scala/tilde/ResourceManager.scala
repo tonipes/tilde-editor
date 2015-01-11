@@ -30,7 +30,7 @@ import scala.io.Source
   - String (and all other values)
 
   Also needed:
-  - Way to handle all different ids(names) in development ( Resource map document?)
+  - Way to handle all different ids(names) in development
   - Way to handle resource releasing ( when resource is no longer needed)
   - Some kind of "loading request system"
   -
@@ -46,7 +46,8 @@ object ResourceManager {
   
   meshes("map") = ResourceUtil.loadMesh("src/main/resources/meshes/plyTest.ply")
   
-  shaderPrograms("default") = ShaderProgram.load("src/main/resources/shaders/default.vert","src/main/resources/shaders/default.frag")
+  shaderPrograms("default") = ShaderProgram.load( "src/main/resources/shaders/default.vert",
+                                                  "src/main/resources/shaders/default.frag")
 
   def createBallScene(world: World) = {
     val entity = world.createEntity()

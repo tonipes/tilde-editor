@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"run",
+				"Running"
+			],
+			[
+				"r",
+				"reload"
+			],
+			[
 				"g",
 				"graphics	"
 			]
@@ -12,18 +20,24 @@
 	"buffers":
 	[
 		{
-			"file": "src/main/scala/tilde/ResourceManager.scala",
+			"contents": "package tilde.game\n\nimport org.lwjgl.input.Keyboard\nimport org.lwjgl.opengl._\nimport org.lwjgl.opengl.GL11._\nimport org.lwjgl.opengl.GL15._\nimport org.lwjgl.opengl.GL20._\nimport org.lwjgl.opengl.GL30._\nimport org.lwjgl.util.vector._\n\nimport tilde.entity.system._\nimport tilde._\nimport tilde.entity._\nimport tilde.entity.component._\nimport tilde.log.Log\nimport tilde.util._\n\n/**\n * Created by Toni on 13.12.2014.\n */\nclass Game {\n  var world: World = null\n  \n  def create(): Unit = {\n    // Test systems\n    val cameraSystem = new CameraSystem()\n    val renderSystem = new RenderSystem()\n    val physicsSystem = new PhysicsSystem()\n    val inputSystem = new InputSystem()\n    \n    world = new World(inputSystem, physicsSystem, \n      cameraSystem, renderSystem)\n\n    ResourceManager.createBallScene(world)\n\n    glEnable(GL_DEPTH_TEST)\n    glEnable(GL_CULL_FACE)\n    //glClearColor(0.031f, 0.663f, 1.0f, 0.0f)\n    glClearColor(0.2f, 0.2f, 0.2f, 0.0f)\n  }\n\n  def render(): Unit = {\n\n  }\n\n  def resize(width: Int, height: Int): Unit = {\n    GL11.glViewport(0,0,width,height)\n    Log.info(\"Game resize\", \"\"+ width + \", \" + height)\n  }\n\n  def update(delta: Float): Unit = {\n    world.update(delta)\n  }\n\n  def dispose() = {\n\n  }\n}\n",
+			"file": "src/main/scala/tilde/game/Game.scala",
+			"file_size": 1217,
+			"file_write_time": 130654082530000000,
 			"settings":
 			{
-				"buffer_size": 2212,
+				"buffer_size": 1224,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"contents": "package tilde.entity\n\nimport tilde.entity.component._\nimport scala.collection.mutable\nimport scala.collection.mutable.Map\n\n/**\n  * Created by Toni on 21.12.14.\n */\nclass Entity(val world: World) {\n  val active: Boolean = true\n  val components = Map[Class[_ <: Component], Component]()\n  val componentStructure = new mutable.BitSet()\n\n  def addComponent[T <: Component](component: T): Unit = {\n    components(component.getClass()) = component\n    componentStructure += component.bitId\n    world.changed(this)\n  }\n\n  def removeComponent[T <: Component](component: Class[T]): Unit = {\n    components.remove(component)\n    componentStructure -= component.asInstanceOf[Component].bitId\n    world.changed(this)\n  }\n\n  def getComponent[T <: Component](component: Class[T]): Option[T] = {\n    if (components.contains(component))\n      Some(components(component).asInstanceOf[T])\n    else\n      None\n  }\n\n  def apply[T <: Component](component: Class[T]): Option[T] = \n    getComponent(component)\n\n  def dispose() {\n    world.destroyEntity(this)\n  }\n\n  override def toString() = {\n    \"Entity\" + this.hashCode() + \" with \" + components.keys.toString\n  }\n\n}\n",
+			"file": "src/main/scala/tilde/entity/Entity.scala",
+			"file_size": 1141,
+			"file_write_time": 130653869220000000,
 			"settings":
 			{
-				"buffer_size": 88,
+				"buffer_size": 1147,
 				"line_ending": "Unix"
 			}
 		},
@@ -41,24 +55,92 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 67.0,
+		"height": 375.0,
 		"selected_items":
 		[
 			[
-				"instal",
-				"Package Control: Install Package"
+				"run",
+				"SBT: Run"
+			],
+			[
+				"ensime",
+				"Ensime: Startup"
 			],
 			[
 				"packa",
 				"Package Control: Install Package"
 			],
 			[
-				"keyma",
-				"Keymaps: Cheat Sheet"
+				"remo",
+				"Package Control: Remove Package"
 			],
 			[
 				"pack",
 				"Package Control: Install Package"
+			],
+			[
+				"e ",
+				"Ensime: Notes"
+			],
+			[
+				"ensim",
+				"Ensime: Startup"
+			],
+			[
+				"tab",
+				"View: Toggle Tabs"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"ensi",
+				"Ensime: Notes"
+			],
+			[
+				"ensime s",
+				"Ensime: Startup"
+			],
+			[
+				"sbt hi",
+				"SBT: Clear History"
+			],
+			[
+				"sbt",
+				"SBT: Start Console"
+			],
+			[
+				"key",
+				"FindKeyConflicts: All Conflicts"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Comment - To-do list"
+			],
+			[
+				"doc",
+				"Omni Docs: List modules imported in open files"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"pakc",
+				"Package Control: Add Channel"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"keyma",
+				"Keymaps: Cheat Sheet"
 			],
 			[
 				"pa",
@@ -77,23 +159,15 @@
 				"Project: Save As"
 			],
 			[
-				"ensime",
-				"Ensime: Add Import"
-			],
-			[
 				"Ensime",
 				"Ensime: Notes"
-			],
-			[
-				"package",
-				"Package Control: Install Package"
 			],
 			[
 				"",
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 449.0
+		"width": 434.0
 	},
 	"console":
 	{
@@ -120,12 +194,40 @@
 	"expanded_folders":
 	[
 		"/Development/Scala/Idea/TildeEngine/src/main/scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde"
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/component",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/game",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders"
 	],
 	"file_history":
 	[
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/EntitySystem.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/component/ModelComponent.scala",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/FileBrowser/Default.sublime-keymap",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/FileBrowser/dired.sublime-settings",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/World.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/game/Game.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SublimeSBT/README.md",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SublimeSBT/SublimeSBT.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SublimeSBT/Default (OSX).sublime-keymap",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/FindKeyConflicts/README.md",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Origami.sublime-settings",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/Input.scala",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/Origami/Origami.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/Origami/Default (OSX).sublime-keymap",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/DocBlockr/Base File.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/MacTerminal.sublime-settings",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/textures/color_measure.png",
+		"/Development/Scala/Idea/TildeEngine/.gitignore",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders/default.frag",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/objects/untitled.model",
 		"/Users/Toni/Library/Application Support/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
@@ -176,24 +278,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/main/scala/tilde/ResourceManager.scala",
+					"file": "src/main/scala/tilde/game/Game.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2212,
+						"buffer_size": 1224,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								539,
-								539
+								733,
+								733
 							]
 						],
 						"settings":
@@ -203,38 +305,46 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 387.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 1,
-					"file": "/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"file": "src/main/scala/tilde/entity/Entity.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 88,
+						"buffer_size": 1147,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								84,
-								84
+								122,
+								122
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 9.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -292,24 +402,31 @@
 				0,
 				0,
 				1,
-				1
+				2
 			],
 			[
 				1,
 				0,
 				2,
 				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.7700270027,
+			0.494312459421,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.862139917695,
 			1.0
 		]
 	},
@@ -320,7 +437,7 @@
 	},
 	"output.sbt":
 	{
-		"height": 0.0
+		"height": 65.0
 	},
 	"output.sbt_error":
 	{
@@ -360,11 +477,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 167.0,
+	"side_bar_width": 151.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

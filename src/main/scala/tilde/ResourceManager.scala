@@ -8,6 +8,7 @@ import org.lwjgl.util.vector.Vector4f
 
 import tilde.entity._
 import tilde.entity.component._
+import tilde.graphics.Model
 import tilde.log.Log
 import tilde.util._
 import tilde.graphics._
@@ -15,7 +16,7 @@ import tilde.graphics._
 import scala.collection.mutable
 import scala.collection.mutable.Map
 
-
+import scala.collection._
 import scala.io.Source
 
 /**
@@ -50,7 +51,8 @@ object ResourceManager {
                               "shaders/default.vert",
                               "shaders/default.frag")
 
-  //models("untitled") = ResourceUtil.loadModel("objects/untitled.model")
+  models("untitled") = ResourceUtil.loadModel("objects/untitled.model")
+  Log.debug(models("untitled").mesh + models("untitled").material)
 
   def createBallScene(world: World) = {
     val entity = world.createEntity()
@@ -59,6 +61,7 @@ object ResourceManager {
     entity.addComponent(spatial)
     entity.addComponent(model)
     // Camera
+    val aasd: Array[String] = Array("asd","asd34","1231")
     val camera = world.createEntity()
     val a = 60f
     val height = Display.getHeight/a

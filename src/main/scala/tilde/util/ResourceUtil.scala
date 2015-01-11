@@ -43,9 +43,7 @@ object ResourceUtil {
     codec2(Model.parse,Model.decode)("mesh", "material")
 
   def loadModel(path: String): Model = {
-    val a = Parse.decodeOption[Model](readFromFile(RESOURCE_ROOT_PATH + path))
-    Log.debug("Model _1", "" + a.get)
-    a.get
+    Parse.decodeOption[Model](readFromFile(RESOURCE_ROOT_PATH + path)).get
   }
 
   def loadMesh(path: String): Mesh = {
@@ -214,7 +212,7 @@ object ResourceUtil {
 
     // create shader
     val shaderID = glCreateShader(GL_VERTEX_SHADER)
-    glShaderSource(shaderID,shaderSource)
+    glShaderSource(shaderID,shaderSource.toCharArray())
 
     glCompileShader(shaderID)
 
@@ -231,7 +229,7 @@ object ResourceUtil {
     val shaderSource = ResourceUtil.readFromFile(path)
     // create shader
     val shaderID = glCreateShader(GL_FRAGMENT_SHADER)
-    glShaderSource(shaderID,shaderSource)
+    glShaderSource(shaderID,shaderSource.toCharArray())
 
     glCompileShader(shaderID)
 

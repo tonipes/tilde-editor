@@ -5,6 +5,6 @@ object Model{
   def decode(model: Model) = (model.mesh,model.material)
 }
 
-class Model(val mesh:String, val material: String) {
+class Model(val mesh: String, val material: String) {
 
 }

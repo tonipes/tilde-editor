@@ -13,11 +13,11 @@ import tilde.util.ResourceUtil
  */
 
 class ShaderProgram(val programID: Int,
-                    val vertexShaderID: Int = 0,
-                    val fragmentShaderID: Int = 0) {
+                    val vertexShaderID: Int,
+                    val fragmentShaderID: Int) {
 
   def setUniform(name: String,data :Float*): Unit = {
-    val dataLoc = glGetUniformLocation(programID,name.toCharArray())
+    val dataLoc = glGetUniformLocation(programID,name)
     if(data.length > 4){
       Log.error("Uniforms can't have mote than 4 values")
     }
@@ -32,7 +32,7 @@ class ShaderProgram(val programID: Int,
   }
 
   def setUniform(name: String, mat: FloatBuffer): Unit = {
-    val dataLoc = glGetUniformLocation(programID,name.toCharArray())
+    val dataLoc = glGetUniformLocation(programID,name)
     glUniformMatrix4(dataLoc,false,mat)
   }
 

@@ -44,7 +44,7 @@ object ResourceUtil {
 
   def loadModel(path: String): Model = {
     val a = Parse.decodeOption[Model](readFromFile(RESOURCE_ROOT_PATH + path))
-    Log.debug("Model _1", "" + a)
+    Log.debug("Model _1", "" + a.get)
     a.get
   }
 
@@ -190,23 +190,22 @@ object ResourceUtil {
   }
 
   def loadShader(VertPath: String,FragPath: String): ShaderProgram = {
-    val vertShaderID = loadVertexShader(RESOURCE_ROOT_PATH + VertPath)
-    val fragShaderID = loadFragmentShader(RESOURCE_ROOT_PATH + FragPath)
     val programID = glCreateProgram()
 
+    val vertShaderID = loadVertexShader(RESOURCE_ROOT_PATH + VertPath)
+    glAttachShader(programID,vertShaderID)
+
+    val fragShaderID = loadFragmentShader(RESOURCE_ROOT_PATH + FragPath)
+    glAttachShader(programID,fragShaderID)
+    Log.debug("Shader IDs",programID + ", " + vertShaderID + ", " + fragShaderID ) 
     val shaderP = new ShaderProgram(programID,vertShaderID,fragShaderID)
 
     glLinkProgram(programID)
-
     if(glGetShaderi(programID,GL_LINK_STATUS) == GL_FALSE) {
       // TODO: What to do if cant link? Exception or default shader?
       Log.error("Couldn't link shader")
-      //shaderP.dispose()
-      shaderP
     }
-    else{
-      shaderP
-    }
+    shaderP
   }
 
   private def loadVertexShader(path: String): Int = {
@@ -215,40 +214,33 @@ object ResourceUtil {
 
     // create shader
     val shaderID = glCreateShader(GL_VERTEX_SHADER)
-    glShaderSource(shaderID,shaderSource.toCharArray())
+    glShaderSource(shaderID,shaderSource)
 
     glCompileShader(shaderID)
 
     // Check for errors
     if(glGetShaderi(shaderID,GL_COMPILE_STATUS) == GL_FALSE){
       Log.error("Couldn't create vertex shader: ",
-        glGetShaderInfoLog(shaderID, glGetShaderi(shaderID, GL_INFO_LOG_LENGTH)))
-      return -1
+      glGetShaderInfoLog(shaderID, glGetShaderi(shaderID, GL_INFO_LOG_LENGTH)))
     }
-    else{
-      return shaderID
-    }
+    shaderID
   }
 
   private def loadFragmentShader(path: String): Int = {
     // load shader source
     val shaderSource = ResourceUtil.readFromFile(path)
-
     // create shader
     val shaderID = glCreateShader(GL_FRAGMENT_SHADER)
-    glShaderSource(shaderID,shaderSource.toCharArray())
+    glShaderSource(shaderID,shaderSource)
 
     glCompileShader(shaderID)
 
     // Check for errors
     if(glGetShaderi(shaderID,GL_COMPILE_STATUS) == GL_FALSE){
       Log.error("Couldn't create fragment shader: ",
-        glGetShaderInfoLog(shaderID, glGetShaderi(shaderID, GL_INFO_LOG_LENGTH)))
-      return -1
+      glGetShaderInfoLog(shaderID, glGetShaderi(shaderID, GL_INFO_LOG_LENGTH)))
     }
-    else{
-      return shaderID
-    }
+    shaderID
   } 
 
   def readFromFile(path:String): String = 

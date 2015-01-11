@@ -5,10 +5,10 @@ import java.nio.FloatBuffer
 import org.lwjgl.BufferUtils
 import tilde.ResourceManager
 import tilde.log._
-import tilde.entity.{EntitySystem, World, Entity}
-import tilde.entity.component.{LightSourceComponent, CameraComponent, ModelComponent, SpatialComponent}
+import tilde.entity._
+import tilde.entity.component._
 import tilde.graphics.ShaderProgram
-import tilde.util.{BufferCreatorUtil, Aspect, SystemUtil}
+import tilde.util._
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
 import scala.collection.mutable._
@@ -27,7 +27,7 @@ class RenderSystem() extends EntitySystem() {
   var camera: Entity = null
 
   // Multimap for all different instances to render
-  //val batches = new HashMap[ModelComponent, Set[FloatBuffer]] with MultiMap[ModelComponent, FloatBuffer]
+  val batches = new HashMap[ModelComponent, Set[FloatBuffer]] with MultiMap[ModelComponent, FloatBuffer]
   val ents = Buffer[Entity]()
   val lights = Buffer[Entity]()
 

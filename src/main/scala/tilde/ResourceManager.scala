@@ -33,21 +33,24 @@ import scala.io.Source
   - Way to handle all different ids(names) in development
   - Way to handle resource releasing ( when resource is no longer needed)
   - Some kind of "loading request system"
-  -
  */
 object ResourceManager {
 
   val textures = Map[String, Texture]()
   val meshes = Map[String,Mesh]()
   val shaderPrograms = Map[String, ShaderProgram]()
+  val models = Map[String, Model]()
 
-  textures("measure") = ResourceUtil.loadTexture("src/main/resources/textures/measure_128.png")
-  textures("grass") = ResourceUtil.loadTexture("src/main/resources/textures/measure_128.png")
+  textures("measure") = ResourceUtil.loadTexture("textures/measure_128.png")
+  textures("grass") = ResourceUtil.loadTexture("textures/measure_128.png")
   
-  meshes("map") = ResourceUtil.loadMesh("src/main/resources/meshes/plyTest.ply")
+  meshes("map") = ResourceUtil.loadMesh("meshes/plyTest.ply")
   
-  shaderPrograms("default") = ShaderProgram.load( "src/main/resources/shaders/default.vert",
-                                                  "src/main/resources/shaders/default.frag")
+  shaderPrograms("default") = ResourceUtil.loadShader( 
+                              "shaders/default.vert",
+                              "shaders/default.frag")
+
+  //models("untitled") = ResourceUtil.loadModel("objects/untitled.model")
 
   def createBallScene(world: World) = {
     val entity = world.createEntity()

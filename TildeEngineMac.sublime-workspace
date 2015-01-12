@@ -4,16 +4,24 @@
 		"selected_items":
 		[
 			[
-				"MdlC",
-				"MdlComp	(String, String)"
+				"pa",
+				"parseFull	(String)"
 			],
 			[
-				"Res",
-				"ResourceUtil	"
+				"Entity",
+				"entity	"
 			],
 			[
-				"de",
-				"debug	(String, String)"
+				"List",
+				"ListBuffer	"
+			],
+			[
+				"re",
+				"remove	(Int)"
+			],
+			[
+				"shader",
+				"shaderSource"
 			],
 			[
 				"class",
@@ -80,50 +88,26 @@
 	"buffers":
 	[
 		{
-			"file": "src/main/resources/maps/untitled.map",
-			"settings":
-			{
-				"buffer_size": 559,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/graphics/Model.scala",
-			"settings":
-			{
-				"buffer_size": 225,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/main/scala/app/main/TestMain.scala",
 			"settings":
 			{
-				"buffer_size": 407,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/util/ResourceUtil.scala",
-			"settings":
-			{
-				"buffer_size": 8299,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/entity/component/SpatialComponent.scala",
-			"settings":
-			{
-				"buffer_size": 3146,
+				"buffer_size": 979,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/main/scala/tilde/ResourceManager.scala",
+			"file": "src/main/scala/tilde/entity/Entity.scala",
 			"settings":
 			{
-				"buffer_size": 2442,
+				"buffer_size": 1141,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/resources/shaders/default.frag",
+			"settings":
+			{
+				"buffer_size": 1475,
 				"line_ending": "Windows"
 			}
 		},
@@ -145,24 +129,60 @@
 		"selected_items":
 		[
 			[
+				"ensime",
+				"Ensime: Restart"
+			],
+			[
 				"run",
 				"SBT: Run"
 			],
 			[
-				"remo",
+				"ensim",
+				"Ensime: Restart"
+			],
+			[
+				"remove",
 				"Package Control: Remove Package"
 			],
 			[
-				"kill",
-				"SBT: Kill SBT"
+				"scala",
+				"Show Scala Worksheet"
 			],
 			[
-				"list",
-				"Package Control: List Packages"
+				"remove P",
+				"Package Control: Remove Package"
 			],
 			[
-				"list pa",
-				"Package Control: List Packages"
+				"removeP",
+				"Package Control: Remove Package"
+			],
+			[
+				"ens",
+				"Ensime: Restart"
+			],
+			[
+				"ensme",
+				"Ensime: Restart"
+			],
+			[
+				"restar",
+				"Ensime: Restart"
+			],
+			[
+				"ensime ",
+				"Ensime: Restart"
+			],
+			[
+				"run ",
+				"SBT: Run"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
 			],
 			[
 				"alig",
@@ -173,20 +193,20 @@
 				"Package Control: Install Package"
 			],
 			[
-				"sbt k",
-				"SBT: Kill SBT"
+				"list",
+				"Package Control: List Packages"
 			],
 			[
-				"pack",
-				"Package Control: Install Package"
+				"sbt k",
+				"SBT: Kill SBT"
 			],
 			[
 				"sbt ki",
 				"SBT: Kill SBT"
 			],
 			[
-				"ensime",
-				"Ensime: Startup"
+				"list pa",
+				"Package Control: List Packages"
 			],
 			[
 				"package",
@@ -195,10 +215,6 @@
 			[
 				"e ",
 				"Ensime: Notes"
-			],
-			[
-				"ensim",
-				"Ensime: Startup"
 			],
 			[
 				"tab",
@@ -273,7 +289,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 402.0
+		"width": 453.0
 	},
 	"console":
 	{
@@ -299,41 +315,48 @@
 	},
 	"expanded_folders":
 	[
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/core",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/main",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/maps",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/materials",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/objects",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/shaders"
+		"/Development/Scala/Idea/TildeEngine/src/main/scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/app",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/core",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/main",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders"
 	],
 	"file_history":
 	[
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/maps/._.DS_Store",
-		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/Ensime/server/elisp/auto-complete.el",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util/ResourceUtil.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/objects/untitled.model",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/Mesh.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/main/TestMain.scala",
-		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/ShaderProgram.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/core/Core.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/shaders/default.frag",
+		"/Development/Scala/Idea/TildeEngine/.ensime_session",
+		"/Development/Scala/Idea/TildeEngine/.gitignore",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/Component.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/main/TestMain.scala (worksheet)",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/ResourceUtil.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics/ShaderProgram.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
+		"/Development/Scala/Idea/TildeEngine/TildeEngineMac.sublime-workspace",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/EntityList.scala",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/Ensime/logs/server.log",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/Ensime/logs/client.log",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/ScalaFormat.sublime-settings",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/main/Ensime notes",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/ScalaFormat/ScalaFormat.sublime-settings",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics/Model.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics/Mesh.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/main/TestMain.scala",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util/ParseUtil.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/ParseUtil.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/Model.scala",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Scala.sublime-settings",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util/ParseUtil.scala",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/AlignTab/AlignTab.sublime-settings",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/Alignment/Base File.sublime-settings",
+		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/ShaderProgram.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/Entity.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/system/RenderSystem.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/EntitySystem.scala",
@@ -344,9 +367,7 @@
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/FileBrowser/dired.sublime-settings",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/World.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/game/Game.scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SublimeSBT/README.md",
-		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Plain text.sublime-settings",
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SublimeSBT/SublimeSBT.sublime-settings",
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/SublimeSBT/Default (OSX).sublime-keymap",
@@ -362,7 +383,6 @@
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
 		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/MacTerminal.sublime-settings",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/textures/color_measure.png",
-		"/Development/Scala/Idea/TildeEngine/.gitignore",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders/default.frag",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/objects/untitled.model",
 		"/Users/Toni/Library/Application Support/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
@@ -370,8 +390,6 @@
 		"/Users/Toni/Dropbox/work/texture/pattern_brickwall_nrm.png",
 		"/Development/Scala/Idea/TildeEngine/TildeEngineMac.sublime-project",
 		"/Users/Toni/Library/Application Support/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics/Mesh.scala",
-		"/Development/Scala/Idea/TildeEngine/TildeEngineMac.sublime-workspace",
 		"/Development/Scala/Idea/TildeEngine/.ensime_lucene/segments.gen",
 		"/Development/Scala/Idea/TildeEngine/.ensime_lucene/_0.nrm",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/BufferCreatorUtil.scala",
@@ -382,13 +400,14 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 95.0,
 		"where_history":
 		[
+			"/Development/Scala/Idea/TildeEngine/"
 		]
 	},
 	"find_state":
@@ -396,10 +415,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"\")\n",
-			"}",
-			" =",
-			"material",
+			"toChar",
 			"}"
 		],
 		"highlight": true,
@@ -418,29 +434,61 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/main/resources/maps/untitled.map",
+					"file": "src/main/scala/app/main/TestMain.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 559,
+						"buffer_size": 979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								234,
-								234
+								331,
+								331
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 29.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main/scala/tilde/entity/Entity.scala",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7,
+								7
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -448,188 +496,33 @@
 					},
 					"stack_index": 2,
 					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/main/scala/tilde/graphics/Model.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 225,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								223,
-								223
-							]
-						],
-						"settings":
-						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"open_with_edit": true,
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Scala/Scala.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 2,
-					"file": "src/main/scala/app/main/TestMain.scala",
+					"file": "src/main/resources/shaders/default.frag",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 407,
+						"buffer_size": 1475,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								407,
-								407
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/main/scala/tilde/util/ResourceUtil.scala",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 8299,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								558,
-								537
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -647,73 +540,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 4,
-					"file": "src/main/scala/tilde/entity/component/SpatialComponent.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3146,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								298,
-								298
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/main/scala/tilde/ResourceManager.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2442,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 399.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 6,
+					"buffer": 3,
 					"semi_transient": false,
 					"settings":
 					{
@@ -730,120 +557,16 @@
 						],
 						"settings":
 						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
 							"result_base_dir": "/Development/Scala/Idea/TildeEngine",
 							"result_file_regex": "([:.a-z_A-Z0-9\\\\/-]+[.](?:scala|java)):([0-9]+)",
 							"result_line_regex": "",
-							"sublime_auto_complete": true,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -851,7 +574,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 25.0
 	},
 	"input":
 	{
@@ -883,24 +606,28 @@
 		"cols":
 		[
 			0.0,
-			0.482081824593,
+			0.659309021113,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.780978304842,
+			0.692477626721,
 			1.0
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 0.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
 	"output.sbt":
 	{
-		"height": 229.0
+		"height": 145.0
 	},
 	"output.sbt_error":
 	{
@@ -909,7 +636,7 @@
 	"project": "TildeEngineMac.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 46.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -944,7 +671,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 203.0,
+	"side_bar_width": 238.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -16,6 +16,8 @@ libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl_util" % "2.9.1"
 
 libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl-platform" % "2.9.1"
 
+libraryDependencies += "io.spray" %%  "spray-json" % "1.3.1"
+
 javaOptions in (Test,run) += "-Djava.library.path=lib/native/macosx"
 
 //javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71"))

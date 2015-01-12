@@ -1,5 +1,4 @@
-{
-	"name":"test",
-	"type":"testType",
-	"pos":{"x":5,"y":8}
-}
+[
+	{"type": "Dog", "name": "Wuff", "age": 23},
+	{"type": "Cat", "name": "Meow", "catchesBirds": true}
+]

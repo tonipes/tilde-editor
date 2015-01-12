@@ -1,43 +1,55 @@
- package app.main
+package app.main
 
-import argonaut._, Argonaut._
-import scalaz._,Scalaz._
-import tilde.graphics._
-import tilde.entity.component._
-import scala.collection.mutable.ListBuffer
 import tilde.util._
-import scala.util.parsing.json._
+import spray.json._
 
 
 object TestMain {
-  implicit def OtherCodec: CodecJson[Other] = codec2(
-    (x: Float, y: Float) => new Other(x, y),
-    (other: Other) => (other.x, other.y)
-    )("x", "y") 
-/**
- * Created by Toni on 26.12.14.
- */
+  import DefaultJsonProtocol._
 
-class MyType(val name: String, val tpe: String, val pos: Other){
-  override def toString(): String =  name + ", " + tpe + ", " + pos
-  
-}
+  sealed trait Animal extends Product
+  case class Dog(name: String, age: Int ) extends Animal
+  case class Cat(name: String, catchesBirds: Boolean )extends Animal
+  case class Whale(name: String, isBig: Boolean) extends Animal
 
-class Other(val x: Float,val y: Float){
-  override def toString(): String = "" + x + "," + y  
-}
+  implicit val dogFormat = jsonFormat(Dog, "name", "age")//jsonFormat2(Dog)
+  implicit val catFormat = jsonFormat(Cat, "name", "catchesBirds")//jsonFormat2(Cat)
+  implicit val whaleFormat = jsonFormat(Whale, "name", "isBig")//jsonFormat3(Whale)
 
+  implicit val animalFormat = new RootJsonFormat[Animal] {
+    def write(obj: Animal): JsValue =
+      JsObject((obj match {
+        case c: Cat => c.toJson
+        case d: Dog => d.toJson
+        case w: Whale => w.toJson
+      }).asJsObject.fields + ("type" -> JsString(obj.productPrefix)))
 
-  implicit def MyTypeCodec: CodecJson[MyType] = codec3(
-    (name: String, tpe: String, pos: Other) => new MyType(name, tpe, pos),
-    (myType: MyType) => (myType.name, myType.tpe, myType.pos)
-    )("name", "type", "pos")
+    def read(json: JsValue): Animal =
+      json.asJsObject.getFields("type") match {
+        case Seq(JsString("Cat")) => json.convertTo[Cat]
+        case Seq(JsString("Dog")) => json.convertTo[Dog]
+        case Seq(JsString("Whale")) => json.convertTo[Whale]
+      }
+  }
 
   def main(args: Array[String]): Unit = {
     val test = ResourceUtil.readFromFile("src/main/resources/"
       + "maps/test.json")
-    println("!!" + test)
-    val res = Parse.decodeOption[MyType](test)
-    println(res)
+    val json = """{"type": "Dog", "name": "Wuff", "age": 23}"""
+
+    val max: Animal = Dog("max", 23)
+    val charlie = Dog("charlie", 13)
+    val tigger = Cat("tigger",true)
+    val blue = Whale("blue",true)
+
+    val list = Array(max,charlie,tigger,blue)
+    println(list.toJson)
+    println(max.toJson)
+    println(max.toJson.convertTo[Animal])
+
+    println(test.parseJson.convertTo[List[Animal]])
+    println("""{"type": "Dog", "name": "Wuff", "age": 23}""".parseJson.convertTo[Animal])
+    println("""{"type": "Cat", "name": "Meow", "catchesBirds": true}""".parseJson.convertTo[Animal])
+
   }
 }

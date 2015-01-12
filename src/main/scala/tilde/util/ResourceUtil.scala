@@ -23,21 +23,21 @@ import scalaz._, Scalaz._
 
 object ResourceUtil {
   private val RESOURCE_ROOT_PATH = "src/main/resources/"
-  private val FLOAT_SIZE = 4
+  private val FLOAT_SIZE         = 4
 
   private val VERTEX_DATA_LENGTH = 3
   private val NORMAL_DATA_LENGTH = 3
   private val UV_DATA_LENGTH     = 2
   private val COLOR_DATA_LENGTH  = 3
 
-  private val DATA_OFFSET = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH + 
-                            UV_DATA_LENGTH     + COLOR_DATA_LENGTH
+  private val DATA_OFFSET        = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH + 
+                                   UV_DATA_LENGTH     + COLOR_DATA_LENGTH
 
-  private val VERTEX_DATA_STRIDE =  0
-  private val NORMAL_DATA_STRIDE =  VERTEX_DATA_LENGTH
-  private val UV_DATA_STRIDE =      VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH
-  private val COLOR_DATA_STRIDE =   VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH + 
-                                    UV_DATA_LENGTH
+  private val VERTEX_DATA_STRIDE = 0
+  private val NORMAL_DATA_STRIDE = VERTEX_DATA_LENGTH
+  private val UV_DATA_STRIDE     = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH
+  private val COLOR_DATA_STRIDE  = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH + 
+                                   UV_DATA_LENGTH
 
   implicit def ModelCodec: CodecJson[Model] = 
     codec2(Model.parse,Model.decode)("mesh", "material")

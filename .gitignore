@@ -32,6 +32,7 @@ tmp/
 .DS_Store
 .DS_Store?
 .ensime
+.ensime_session
 .ensime_port
 .ensime_lucene/
 ._*

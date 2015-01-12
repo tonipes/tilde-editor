@@ -18,7 +18,6 @@ object TestMain {
     var a = List("a", "b", "c", "d", "e")
     println(a)
     println("index 3: " + a(3))
-    a
     println(a)
     println("index 3: " + a(3))
 

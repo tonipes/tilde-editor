@@ -1,6 +1,5 @@
 package tilde.entity
 
-import tilde.entity.component._
 import scala.collection.mutable
 import scala.collection.mutable.Map
 /**

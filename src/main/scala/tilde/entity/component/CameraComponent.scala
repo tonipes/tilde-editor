@@ -1,3 +1,4 @@
+/*
 package tilde.entity.component
 
 import java.nio.FloatBuffer
@@ -26,3 +27,4 @@ class CameraComponent(projection: Matrix4f) extends Component {
 
 
 }
+*/

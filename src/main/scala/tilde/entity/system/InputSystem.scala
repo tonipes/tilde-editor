@@ -8,7 +8,7 @@ import org.lwjgl.opengl.Display
 import org.lwjgl.util.glu.GLU
 import tilde.Input
 import org.lwjgl.opengl.GL11._
-import tilde.entity.component.{CameraComponent, SpatialComponent}
+import tilde.entity._
 import tilde.log.Log
 import tilde.util.{Direction, MatrixUtil}
 
@@ -29,17 +29,15 @@ class InputSystem extends LogicSystem {
     if(Input.isJustPressed(Keyboard.KEY_O)){
       val height = Display.getHeight/60f
       val width = Display.getWidth/60f
-      camCamera.projectionMatrix = MatrixUtil.createOrthographicProjection(100,0.1f,-width,width,height,-height)
-      camCamera.projectionMatrix.store(camCamera.projectionBuffer)
-      camCamera.projectionBuffer.rewind()
+      camEntity.addComponent(CameraComponent(MatrixUtil.createOrthographicProjection(100,0.1f,-width,width,height,-height)))
     }
+
     if(Input.isJustPressed(Keyboard.KEY_P)){
       val height = Display.getHeight.toFloat
       val width = Display.getWidth.toFloat
-      camCamera.projectionMatrix = MatrixUtil.createPerspectiveProjection(100,0.1f,width/height,45f)
-      camCamera.projectionMatrix.store(camCamera.projectionBuffer)
-      camCamera.projectionBuffer.rewind()
+      camEntity.addComponent(CameraComponent(MatrixUtil.createPerspectiveProjection(100,0.1f,width/height,45f)))
     }
+
     if(Input.isJustPressed(Keyboard.KEY_B)) {
       val cam = world.getTagged("camera")
       //val light = world.getTagged("fireLight")

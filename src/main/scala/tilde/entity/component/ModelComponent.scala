@@ -1,3 +1,4 @@
+/*
 package tilde.entity.component
 
 import tilde.ResourceManager
@@ -22,3 +23,4 @@ class ModelComponent(val mesh: String, val texture: String) extends Component{
     mesh + ", " + texture
   }
 }
+*/

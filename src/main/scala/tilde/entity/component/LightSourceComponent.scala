@@ -1,3 +1,4 @@
+/*
 package tilde.entity.component
 
 import org.lwjgl.util.vector.Vector4f
@@ -10,7 +11,7 @@ object LightSourceComponent extends ComponentObject {
   val id = classOf[LightSourceComponent]
 }
 
-// TODO: Make support other lighning data
+// TODO: Make support other lighting data
 class LightSourceComponent( val ambient: Vector4f,
                             val diffuse: Vector4f,
                             val specular: Vector4f,
@@ -20,3 +21,4 @@ class LightSourceComponent( val ambient: Vector4f,
   def this(color: Vector4f,attenuation: Float) = this(color,color,color,attenuation,attenuation,attenuation)
   val bitId: Int = LightSourceComponent.bitID
 }
+*/

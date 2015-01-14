@@ -1,3 +1,4 @@
+/*
 package tilde.entity.component
 
 import org.lwjgl.BufferUtils
@@ -108,3 +109,4 @@ class SpatialComponent extends Component {
   }
 
 }
+*/

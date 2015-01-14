@@ -1,11 +1,9 @@
+/*
 package tilde.entity.component
 
 import org.lwjgl.util.vector.Vector3f
 import tilde.entity.{ComponentObject, Component}
 
-/**
- * Created by Toni on 26.12.14.
- */
 object PhysicsComponent extends ComponentObject{
   val id = classOf[PhysicsComponent]
 }
@@ -17,3 +15,5 @@ class PhysicsComponent extends Component {
   val speed = new Vector3f(0,0,0)
   val angularSpeed = new Vector3f(0,0,0)
 }
+
+*/

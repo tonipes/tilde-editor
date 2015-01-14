@@ -2,11 +2,9 @@ package tilde.entity.system
 
 import java.nio.FloatBuffer
 
-import org.lwjgl.BufferUtils
 import tilde.ResourceManager
 import tilde.log._
 import tilde.entity._
-import tilde.entity.component._
 import tilde.graphics.ShaderProgram
 import tilde.util._
 import org.lwjgl.opengl.GL11._
@@ -18,8 +16,8 @@ import scala.collection.mutable._
  */
 class RenderSystem() extends EntitySystem() {
   this.aspect = new Aspect(
-    Array(ModelComponent,SpatialComponent),       // Renderable Entities
-    Array(LightSourceComponent,SpatialComponent)  // Lights
+    Vector(ModelComponent,SpatialComponent),       // Renderable Entities
+    Vector(LightSourceComponent,SpatialComponent)  // Lights
   )
 
   lazy val shader: ShaderProgram = ResourceManager.shaderPrograms("default")
@@ -79,8 +77,8 @@ class RenderSystem() extends EntitySystem() {
       val transformation = ent.getComponent(SpatialComponent.id).get.getFloatBuffer
       shader.setUniform("m_model", transformation)
 
-      model.getTexture.setActiveAsUnit(0)
-      model.getTexture.bind()
+      //model.getTexture.setActiveAsUnit(0)
+      //model.getTexture.bind()
 
       model.getMesh.bindVAO()
       glEnableVertexAttribArray(0)
@@ -114,9 +112,9 @@ class RenderSystem() extends EntitySystem() {
       val amb = lightComponent.ambient
       val dif = lightComponent.diffuse
       val spec = lightComponent.specular
-      val linAt = lightComponent.linearAttenuation
-      val quAt = lightComponent.quadraticAttenuation
-      val conAt = lightComponent.constantAttenuation
+      val linAt = lightComponent.linearAtten
+      val quAt = lightComponent.quadratAtten
+      val conAt = lightComponent.constAtten
 
       shader.setUniform(ambientString(count),amb.x,amb.y,amb.z,amb.w)
       shader.setUniform(diffuseString(count),dif.x,dif.y,dif.z,dif.w)

@@ -11,7 +11,6 @@ import org.lwjgl.util.vector._
 import tilde.entity.system._
 import tilde._
 import tilde.entity._
-import tilde.entity.component._
 import tilde.log.Log
 import tilde.util._
 

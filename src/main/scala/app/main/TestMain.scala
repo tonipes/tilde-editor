@@ -8,9 +8,13 @@ object TestMain {
   import DefaultJsonProtocol._
 
   sealed trait Animal extends Product
-  case class Dog(name: String, age: Int ) extends Animal
-  case class Cat(name: String, catchesBirds: Boolean )extends Animal
-  case class Whale(name: String, isBig: Boolean) extends Animal
+
+  case class Dog( name: String, age: Int ) extends Animal{
+    def bark() = { println("Woof!")}
+  }
+
+  case class Cat( name: String, catchesBirds: Boolean ) extends Animal
+  case class Whale( name: String, isBig: Boolean ) extends Animal
 
   implicit val dogFormat = jsonFormat(Dog, "name", "age")//jsonFormat2(Dog)
   implicit val catFormat = jsonFormat(Cat, "name", "catchesBirds")//jsonFormat2(Cat)

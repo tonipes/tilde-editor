@@ -1,8 +1,6 @@
 package tilde.util
 
 import org.lwjgl.util.vector.Matrix4f
-import tilde.log.Log
-
 
 object MatrixUtil {
 

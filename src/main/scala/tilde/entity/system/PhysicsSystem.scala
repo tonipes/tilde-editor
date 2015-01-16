@@ -1,8 +1,7 @@
 package tilde.entity.system
 
-import tilde.entity.{EntitySystem, Entity}
-import tilde.entity._
-import tilde.util.{Aspect, Direction, SystemUtil}
+import tilde.entity.{Entity, EntitySystem, _}
+import tilde.util.{Aspect, Direction}
 
 /**
  * Created by Toni on 26.12.14.

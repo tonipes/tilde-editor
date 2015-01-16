@@ -3,9 +3,8 @@ package tilde.entity
 import java.nio.FloatBuffer
 
 import org.lwjgl.BufferUtils
-import org.lwjgl.util.vector.{Vector4f, Matrix4f, Quaternion, Vector3f}
+import org.lwjgl.util.vector.{Matrix4f, Quaternion, Vector3f, Vector4f}
 import tilde.ResourceManager
-import tilde.util.Direction.Direction
 import tilde.util.Direction.Direction
 import tilde.util.{Direction, QuaternionUtil}
 
@@ -13,8 +12,8 @@ import tilde.util.{Direction, QuaternionUtil}
  * Created by Toni on 21.12.14.
  */
 
-abstract class Component {
-  val bitId: Int
+abstract class Component extends Product {
+  def bitId: Int
 }
 
 trait ComponentObject{
@@ -36,16 +35,18 @@ trait ComponentObject{
 object TestComponent extends ComponentObject{
   val id = classOf[TestComponent]
 }
-case class TestComponent(position: Vector3f,orientation: Quaternion,scale: Vector3f) extends Component{
-  val bitId = TestComponent.bitID
-}
 
+case class TestComponent(position: Vector3f,orientation: Quaternion,scale: Vector3f) extends Component{
+  def bitId = TestComponent.bitID
+}
 
 object PhysicsComponent extends ComponentObject{
   val id = classOf[PhysicsComponent]
 }
-case class PhysicsComponent(speed: Vector3f, angularSpeed: Vector3f) extends Component{
-  val bitId = PhysicsComponent.bitID
+
+case class PhysicsComponent(speed: Vector3f         = new Vector3f(0,0,0),
+                            angularSpeed: Vector3f  = new Vector3f(0,0,0)) extends Component{
+  def bitId = PhysicsComponent.bitID
 }
 
 
@@ -53,7 +54,7 @@ object ModelComponent extends ComponentObject{
   val id = classOf[ModelComponent]
 }
 case class ModelComponent(model: String) extends Component{
-  val bitId = ModelComponent.bitID
+  def bitId = ModelComponent.bitID
 
   def getMaterial() = ResourceManager.models(model).material
   def getMesh()     = ResourceManager.meshes(model)
@@ -63,7 +64,7 @@ object CameraComponent extends ComponentObject{
   val id = classOf[CameraComponent]
 }
 case class CameraComponent(projection: Matrix4f) extends Component{
-  val bitId = CameraComponent.bitID
+  def bitId = CameraComponent.bitID
 
   val viewBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
   val projectionBuffer: FloatBuffer = BufferUtils.createFloatBuffer(16)
@@ -77,10 +78,12 @@ case class CameraComponent(projection: Matrix4f) extends Component{
 object SpatialComponent extends ComponentObject{
   val id = classOf[SpatialComponent]
 }
-case class SpatialComponent(position: Vector3f      = new Vector3f(0,0,0),
-                            orientation: Quaternion = new Quaternion().setIdentity(),
-                            scale: Vector3f         = new Vector3f(1,1,1)) extends Component{
-  val bitId = SpatialComponent.bitID
+
+case class SpatialComponent(position: Vector3f,
+                            orientation: Quaternion,
+                            scale: Vector3f) extends Component{
+  def bitId = SpatialComponent.bitID
+
   val matrix: Matrix4f = new Matrix4f()
 
   val transFloatBuffer = BufferUtils.createFloatBuffer(16)
@@ -112,21 +115,21 @@ case class SpatialComponent(position: Vector3f      = new Vector3f(0,0,0),
   def rotate(angle: Float, axis: Vector3f): Unit = {
     val xRot = QuaternionUtil.quatFromAxis(axis, angle)
     Quaternion.mul(xRot, orientation,orientation)
-    updateMatrix()
+    //updateMatrix()
   }
 
   def scale(vec: Vector3f): Unit = {
     scale.x = scale.x * vec.x
     scale.y = scale.y * vec.y
     scale.z = scale.z * vec.z
-    updateMatrix()
+    //updateMatrix()
   }
   def move(vec: Vector3f, amount: Float): Unit = {
     val v = new Vector3f(vec)
     v.normalise()
     v.scale(amount)
     Vector3f.add(position, v, position)
-    updateMatrix()
+    //updateMatrix()
   }
 
   def getPosition = position
@@ -137,20 +140,20 @@ case class SpatialComponent(position: Vector3f      = new Vector3f(0,0,0),
 
   def setPosition(x: Float, y: Float, z: Float): Unit  = {
     position.set(x,y,z)
-    updateMatrix()
+    //updateMatrix()
   }
 
   def setScale(vec: Vector3f): Unit  = setScale(vec.x,vec.y,vec.z)
   def setScale(x: Float, y: Float, z: Float): Unit  = {
     scale.set(x,y,z)
-    updateMatrix()
+    //updateMatrix()
   }
 
   def setOrientation(vec: Vector4f): Unit  = setOrientation(vec.x,vec.y,vec.z,vec.w)
   def setOrientation(x: Float, y: Float ,z: Float, w: Float): Unit  = {
     orientation.set(x,y,z,w)
     orientation.normalise()
-    updateMatrix()
+    //updateMatrix()
   }
 
   private def updateMatrix(): Matrix4f = {
@@ -163,6 +166,7 @@ case class SpatialComponent(position: Vector3f      = new Vector3f(0,0,0),
   def getMatrix: Matrix4f = matrix
 
   def getFloatBuffer = {
+    updateMatrix()
     matrix.store(transFloatBuffer)
     transFloatBuffer.rewind()
     transFloatBuffer
@@ -179,5 +183,5 @@ case class LightSourceComponent(ambient: Vector4f   = new Vector4f(1,1,1,1),
                                 constAtten: Float   = 1.0f,
                                 linearAtten: Float  = 1.0f,
                                 quadratAtten: Float = 1.0f) extends Component {
-  val bitId = LightSourceComponent.bitID
+  def bitId = LightSourceComponent.bitID
 }

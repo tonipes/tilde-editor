@@ -1,12 +1,11 @@
 package tilde
 
 import org.lwjgl.opengl.Display
-
+import org.lwjgl.util.vector.{Quaternion, Vector3f}
 import tilde.entity._
-import tilde.graphics.Model
+import tilde.graphics.{Model, _}
 import tilde.log.Log
 import tilde.util._
-import tilde.graphics._
 
 import scala.collection.mutable.Map
 
@@ -48,11 +47,16 @@ object ResourceManager {
   Log.debug(models("untitled").mesh + models("untitled").material)
 
   def createBallScene(world: World) = {
-    val entity = world.createEntity()
-    val spatial = new SpatialComponent()
-    val model = new ModelComponent("untitled")
-    entity.addComponent(spatial)
-    entity.addComponent(model)
+    for(x <- 0 until 100;y <- 0 until 100) {
+      val entity = world.createEntity()
+      val spatial = new SpatialComponent(new Vector3f(x, 0, y), new Quaternion().setIdentity(), new Vector3f(1, 1, 1))
+      val model = new ModelComponent("untitled")
+      entity.addComponent(spatial)
+      entity.addComponent(model)
+    }
+
+    ResourceUtil.worldToFile(world,"maps/testMap.map")
+
     // Camera
     val camera = world.createEntity()
     val a = 60f
@@ -60,7 +64,11 @@ object ResourceManager {
     val width = Display.getWidth/a
     camera.addComponent(CameraComponent(MatrixUtil.createOrthographicProjection(100,0.1f,-width,width,height,-height)))
     camera.addComponent(LightSourceComponent())
-    camera.addComponent(SpatialComponent())
+    // 0.8f,-0.2,0.5f
+    val q = new Quaternion()
+    q.set(-0.16f,-0.8f,-0.2f,0.5f)
+    q.normalise()
+    camera.addComponent(SpatialComponent(new Vector3f(5,10,-4),q,new Vector3f(1,1,1)))
     //cameraSpatial.rotate(-25,Direction.AXIS_X)
     //cameraSpatial.rotate(45,Direction.AXIS_Y)
 

@@ -84,74 +84,54 @@
 	"buffers":
 	[
 		{
-			"file": "src/main/scala/tilde/graphics/Mesh.scala",
+			"file": "src/main/resources/maps/test.json",
 			"settings":
 			{
-				"buffer_size": 920,
+				"buffer_size": 184,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/main/scala/app/main/TestMain.scala",
+			"file": "src/main/resources/maps/untitled.map",
 			"settings":
 			{
-				"buffer_size": 1931,
-				"line_ending": "Unix"
+				"buffer_size": 559,
+				"line_ending": "Windows"
 			}
 		},
 		{
+			"file": "src/main/resources/maps/testMap.map",
+			"settings":
+			{
+				"buffer_size": 2,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "{\n	\"mesh\":\"cube\",\n	\"material\":\"untitled\"\n}\n",
 			"file": "src/main/resources/objects/untitled.model",
+			"file_size": 45,
+			"file_write_time": 130654776673057664,
 			"settings":
 			{
-				"buffer_size": 42,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/entity/Component.scala",
-			"settings":
-			{
-				"buffer_size": 5522,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/graphics/Model.scala",
-			"settings":
-			{
-				"buffer_size": 225,
+				"buffer_size": 43,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/main/scala/tilde/util/ResourceUtil.scala",
+			"contents": "m00 = f00, m01 = 01, m02, m03,\nm10 = f10, m11 = 11, m12, m13,\nm20 = f20, m21 = 21, m22, m23,\nm30 = f30, m31 = 31, m32, m33: Float = 0",
 			"settings":
 			{
-				"buffer_size": 8316,
-				"line_ending": "Windows"
+				"buffer_size": 133,
+				"line_ending": "Windows",
+				"name": "m00 = f00, m01 = 01, m02, m03,"
 			}
 		},
 		{
-			"file": "src/main/scala/tilde/entity/component/SpatialComponent.scala",
+			"contents": "",
 			"settings":
 			{
-				"buffer_size": 3152,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/ResourceManager.scala",
-			"settings":
-			{
-				"buffer_size": 1991,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "src/main/scala/app/main/TestMain.scala:4: error: not found: object spray\nimport spray.json._\n       ^\nsrc/main/scala/app/main/TestMain.scala:8: error: not found: value DefaultJsonProtocol\n  import DefaultJsonProtocol._\n         ^\nsrc/main/scala/app/main/TestMain.scala:15: error: not found: value jsonFormat\n  implicit val dogFormat = jsonFormat(Dog, \"name\", \"age\")//jsonFormat2(Dog)\n                           ^\nsrc/main/scala/app/main/TestMain.scala:16: error: not found: value jsonFormat\n  implicit val catFormat = jsonFormat(Cat, \"name\", \"catchesBirds\")//jsonFormat2(Cat)\n                           ^\nsrc/main/scala/app/main/TestMain.scala:17: error: not found: value jsonFormat\n  implicit val whaleFormat = jsonFormat(Whale, \"name\", \"isBig\")//jsonFormat3(Whale)\n                             ^\nsrc/main/scala/app/main/TestMain.scala:19: error: not found: type RootJsonFormat\n  implicit val animalFormat = new RootJsonFormat[Animal] {\n                                  ^\nsrc/main/scala/app/main/TestMain.scala:20: error: not found: type JsValue\n    def write(obj: Animal): JsValue =\n                            ^\nsrc/main/scala/app/main/TestMain.scala:27: error: not found: type JsValue\n    def read(json: JsValue): Animal =\n                   ^\nsrc/main/scala/app/main/TestMain.scala:21: error: not found: value JsObject\n      JsObject((obj match {\n      ^\nsrc/main/scala/app/main/TestMain.scala:46: error: value toJson is not a member of Array[app.main.TestMain.Animal]\n    println(list.toJson)\n                 ^\nsrc/main/scala/app/main/TestMain.scala:47: error: value toJson is not a member of app.main.TestMain.Animal\n    println(max.toJson)\n                ^\nsrc/main/scala/app/main/TestMain.scala:48: error: value toJson is not a member of app.main.TestMain.Animal\n    println(max.toJson.convertTo[Animal])\n                ^\nsrc/main/scala/app/main/TestMain.scala:50: error: value parseJson is not a member of String\n    println(test.parseJson.convertTo[List[Animal]])\n                 ^\nsrc/main/scala/app/main/TestMain.scala:51: error: value parseJson is not a member of String\n    println(\"\"\"{\"type\": \"Dog\", \"name\": \"Wuff\", \"age\": 23}\"\"\".parseJson.convertTo[Animal])\n                                                             ^\nsrc/main/scala/app/main/TestMain.scala:52: error: value parseJson is not a member of String\n    println(\"\"\"{\"type\": \"Cat\", \"name\": \"Meow\", \"catchesBirds\": true}\"\"\".parseJson.convertTo[Animal])\n                                                                        ^",
-			"settings":
-			{
-				"buffer_size": 2509,
+				"buffer_size": 0,
 				"line_ending": "Unix",
 				"name": "Ensime notes",
 				"scratch": true
@@ -161,25 +141,9 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 260.0,
 		"selected_items":
 		[
-			[
-				"sbt",
-				"SBT: Compile"
-			],
-			[
-				"run",
-				"SBT: Run"
-			],
-			[
-				"list",
-				"Package Control: List Packages"
-			],
-			[
-				"ensime",
-				"Ensime: Startup"
-			],
 			[
 				"scala",
 				"Snippet: case class"
@@ -205,8 +169,16 @@
 				"SBT: Kill SBT"
 			],
 			[
+				"run",
+				"SBT: Run"
+			],
+			[
 				"remo",
 				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
 			],
 			[
 				"list pa",
@@ -231,6 +203,10 @@
 			[
 				"sbt ki",
 				"SBT: Kill SBT"
+			],
+			[
+				"ensime",
+				"Ensime: Startup"
 			],
 			[
 				"package",
@@ -259,6 +235,10 @@
 			[
 				"sbt hi",
 				"SBT: Clear History"
+			],
+			[
+				"sbt",
+				"SBT: Start Console"
 			],
 			[
 				"key",
@@ -313,7 +293,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 451.0
+		"width": 386.0
 	},
 	"console":
 	{
@@ -339,40 +319,36 @@
 	},
 	"expanded_folders":
 	[
-		"/Development/Scala/Idea/TildeEngine/",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/app",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/main",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/component",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources/maps",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources/materials",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources/meshes",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources/objects"
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/core",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/main",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/maps",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/materials",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/objects",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/shaders"
 	],
 	"file_history":
 	[
-		"/Development/Scala/Idea/TildeEngine/build.sbt",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources/maps/test.json",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/entity/component/SpatialComponent.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util/ResourceUtil.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/Model.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/main/TestMain.scala",
+		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/Mesh.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/maps/untitled.map",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/maps/._.DS_Store",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/Ensime/server/elisp/auto-complete.el",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util/ResourceUtil.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/objects/untitled.model",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/Mesh.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/main/TestMain.scala",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/ShaderProgram.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/app/core/Core.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/shaders/default.frag",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/util/ParseUtil.scala",
-		"/E/Projects/Scala/intelli/TildeEngine/src/main/scala/tilde/graphics/Model.scala",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/User/Scala.sublime-settings",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/AlignTab/AlignTab.sublime-settings",
 		"/C/Users/Toni/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
@@ -425,13 +401,14 @@
 	],
 	"find":
 	{
-		"height": 56.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 95.0,
 		"where_history":
 		[
+			"<project>"
 		]
 	},
 	"find_state":
@@ -439,6 +416,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Float",
+			"left",
+			"=",
+			"m",
+			".*\\n",
+			" ",
+			"right",
+			"left.",
+			"bitId",
 			"\")\n",
 			"}",
 			" =",
@@ -448,9 +434,12 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			",",
+			"f",
+			""
 		],
 		"reverse": false,
 		"show_context": true,
@@ -461,44 +450,45 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/main/scala/tilde/graphics/Mesh.scala",
+					"file": "src/main/resources/maps/test.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 920,
+						"buffer_size": 184,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								184,
+								184
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage"
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/main/scala/app/main/TestMain.scala",
+					"file": "src/main/resources/maps/untitled.map",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1931,
+						"buffer_size": 559,
 						"regions":
 						{
 						},
@@ -511,9 +501,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -524,19 +513,47 @@
 				},
 				{
 					"buffer": 2,
-					"file": "src/main/resources/objects/untitled.model",
+					"file": "src/main/resources/maps/testMap.map",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 42,
+						"buffer_size": 2,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								31,
-								39
+								2,
+								2
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/main/resources/objects/untitled.model",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 43,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								43,
+								43
 							]
 						],
 						"settings":
@@ -547,31 +564,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "src/main/scala/tilde/entity/Component.scala",
+					"buffer": 4,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5522,
+						"buffer_size": 133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								19,
+								19
+							],
+							[
+								50,
+								50
+							],
+							[
+								81,
+								81
+							],
+							[
+								112,
+								112
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"auto_name": "m00 = f00, m01 = 01, m02, m03,",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -579,248 +606,24 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/main/scala/tilde/graphics/Model.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 225,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								223,
-								223
-							]
-						],
-						"settings":
-						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"open_with_edit": true,
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Scala/Scala.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 5,
-					"file": "src/main/scala/tilde/util/ResourceUtil.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1178,
-								1178
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 6,
-					"file": "src/main/scala/tilde/entity/component/SpatialComponent.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3152,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 1.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "src/main/scala/tilde/ResourceManager.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1991,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 399.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2509,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -940,15 +743,13 @@
 							"result_file_regex": "([:.a-z_A-Z0-9\\\\/-]+[.](?:scala|java)):([0-9]+)",
 							"result_line_regex": "",
 							"sublime_auto_complete": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -988,21 +789,17 @@
 		"cols":
 		[
 			0.0,
-			0.603836945236,
+			0.749196125743,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.602089483412,
+			0.709822015134,
 			1.0
 		]
 	},
 	"menu_visible": true,
-	"output.exec":
-	{
-		"height": 102.0
-	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1018,7 +815,7 @@
 	"project": "TildeEngineMac.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 66.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1053,7 +850,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 256.0,
+	"side_bar_width": 69.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

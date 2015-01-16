@@ -2,11 +2,8 @@ package tilde.graphics
 
 import java.nio.FloatBuffer
 
-import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
-import tilde.ResourceManager
 import tilde.log.Log
-import tilde.util.ResourceUtil
 
 /**
  * Created by Toni on 17.12.14.

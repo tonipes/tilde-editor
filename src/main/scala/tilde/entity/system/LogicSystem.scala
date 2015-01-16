@@ -1,6 +1,6 @@
 package tilde.entity.system
 
-import tilde.entity.{EntitySystem, Entity}
+import tilde.entity.{Entity, EntitySystem}
 
 /**
  * Created by Toni on 27.12.14.

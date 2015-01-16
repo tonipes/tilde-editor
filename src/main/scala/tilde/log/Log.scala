@@ -1,7 +1,8 @@
 package tilde.log
 
-import tilde.log.Level.Level
 import java.io.PrintStream
+
+import tilde.log.Level.Level
 /**
  * Logging
  *

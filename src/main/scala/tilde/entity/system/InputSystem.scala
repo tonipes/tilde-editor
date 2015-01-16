@@ -1,13 +1,13 @@
 package tilde.entity.system
 
-import java.nio.{FloatBuffer, DoubleBuffer}
+import java.nio.{DoubleBuffer, FloatBuffer}
 
 import org.lwjgl.BufferUtils
-import org.lwjgl.input.{Mouse, Keyboard}
+import org.lwjgl.input.{Keyboard, Mouse}
 import org.lwjgl.opengl.Display
+import org.lwjgl.opengl.GL11._
 import org.lwjgl.util.glu.GLU
 import tilde.Input
-import org.lwjgl.opengl.GL11._
 import tilde.entity._
 import tilde.log.Log
 import tilde.util.{Direction, MatrixUtil}

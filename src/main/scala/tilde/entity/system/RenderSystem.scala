@@ -2,13 +2,14 @@ package tilde.entity.system
 
 import java.nio.FloatBuffer
 
-import tilde.ResourceManager
-import tilde.log._
-import tilde.entity._
-import tilde.graphics.ShaderProgram
-import tilde.util._
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
+import tilde.ResourceManager
+import tilde.entity._
+import tilde.graphics.ShaderProgram
+import tilde.log._
+import tilde.util._
+
 import scala.collection.mutable._
 
 /**
@@ -71,10 +72,10 @@ class RenderSystem() extends EntitySystem() {
     shader.setUniform("m_view", cameraComp.viewBuffer)
     shader.setUniform("m_proj", cameraComp.projectionBuffer)
 
-    //Log.debug("LightCount","" + lights.length)
     for(ent <- ents){
       val model = ent.getComponent(ModelComponent.id).get
       val transformation = ent.getComponent(SpatialComponent.id).get.getFloatBuffer
+
       shader.setUniform("m_model", transformation)
 
       //model.getTexture.setActiveAsUnit(0)

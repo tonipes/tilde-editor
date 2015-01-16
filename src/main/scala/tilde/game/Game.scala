@@ -1,18 +1,11 @@
 package tilde.game
 
-import org.lwjgl.input.Keyboard
-import org.lwjgl.opengl._
 import org.lwjgl.opengl.GL11._
-import org.lwjgl.opengl.GL15._
-import org.lwjgl.opengl.GL20._
-import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector._
-
-import tilde.entity.system._
+import org.lwjgl.opengl._
 import tilde._
 import tilde.entity._
+import tilde.entity.system._
 import tilde.log.Log
-import tilde.util._
 
 /**
  * Created by Toni on 13.12.2014.

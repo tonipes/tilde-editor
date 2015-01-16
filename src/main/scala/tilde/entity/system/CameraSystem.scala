@@ -1,9 +1,8 @@
 package tilde.entity.system
 
 import org.lwjgl.util.vector.Matrix4f
-import tilde.entity.{SpatialComponent, EntitySystem, World, Entity}
-import tilde.entity._
-import tilde.util.{Aspect, QuaternionUtil, SystemUtil}
+import tilde.entity.{Entity, EntitySystem, SpatialComponent, _}
+import tilde.util.{Aspect, QuaternionUtil}
 
 /**
  * Created by Toni on 26.12.14.

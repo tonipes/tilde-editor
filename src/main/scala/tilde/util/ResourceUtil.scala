@@ -3,19 +3,21 @@ package tilde.util
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
-import java.nio.FloatBuffer
 
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import tilde.graphics.Mesh
-import tilde.log.Log
+import org.lwjgl.util.vector.{Quaternion, Vector3f, Vector4f}
+import spray.json._
+import tilde.entity._
 import tilde.graphics._
+import tilde.log.Log
+
 import scala.io.Source
-import argonaut._, Argonaut._
-import scalaz._, Scalaz._
+
+
 
 /**
  * Created by Toni on 8.1.2015.
@@ -38,13 +40,84 @@ object ResourceUtil {
   private val UV_DATA_STRIDE     = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH
   private val COLOR_DATA_STRIDE  = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH + 
                                    UV_DATA_LENGTH
+  import spray.json.DefaultJsonProtocol._
 
-  implicit def ModelCodec: CodecJson[Model] = 
-    codec2(Model.parse,Model.decode)("mesh", "material")
 
-  def loadModel(path: String): Model = {
-    Parse.decodeOption[Model](readFromFile(RESOURCE_ROOT_PATH + path)).get
+
+
+
+  implicit val vector3Format = new RootJsonFormat[Vector3f] {
+    def write(obj: Vector3f): JsValue =
+      JsArray(JsNumber(obj.x), JsNumber(obj.y), JsNumber(obj.z))
+    def read(json: JsValue) = json match {
+      case JsArray(Vector(JsNumber(x), JsNumber(y), JsNumber(z))) =>
+        new Vector3f(x.toFloat,y.toFloat,z.toFloat)
+      case _ => deserializationError("Parse error" + "Can't parse" + json.prettyPrint + " as Vector3")
+    }
   }
+
+  implicit val vector4Format = new RootJsonFormat[Vector4f] {
+    def write(obj: Vector4f): JsValue =
+      JsArray(JsNumber(obj.x), JsNumber(obj.y), JsNumber(obj.z),JsNumber(obj.w))
+    def read(json: JsValue) = json match {
+      case JsArray(Vector(JsNumber(x), JsNumber(y), JsNumber(z),JsNumber(w))) =>
+        new Vector4f(x.toFloat,y.toFloat,z.toFloat,w.toFloat)
+      case _ => deserializationError("Parse error" + "Can't parse" + json.prettyPrint + " as Vector4")
+    }
+  }
+
+  implicit val quaternionFormat = new RootJsonFormat[Quaternion] {
+    def write(obj: Quaternion): JsValue =
+      JsArray(JsNumber(obj.x), JsNumber(obj.y), JsNumber(obj.z),JsNumber(obj.w))
+    def read(json: JsValue) = json match {
+      case JsArray(Vector(JsNumber(x), JsNumber(y), JsNumber(z),JsNumber(w))) =>
+        new Quaternion(x.toFloat,y.toFloat,z.toFloat,w.toFloat)
+      case _ => deserializationError("Parse error" + "Can't parse" + json.prettyPrint + " as Quaternion")
+    }
+  }
+
+  implicit val ModelFormat                = jsonFormat2(Model.apply)
+  //implicit val SpatialComponentFormat     = jsonFormat3(SpatialComponent.apply)
+  implicit val ModelComponentFormat       = jsonFormat1(ModelComponent.apply)
+  //implicit val CameraComponentFormat      = jsonFormat1(CameraComponent.apply)
+  implicit val PhysicsComponentFormat     = jsonFormat2(PhysicsComponent.apply)
+  implicit val LightSourceComponentFormat = jsonFormat6(LightSourceComponent.apply)
+
+  implicit val componentFormat = new RootJsonFormat[Component] {
+    def write(obj: Component): JsValue =
+      JsObject((obj match {
+        //case c: SpatialComponent     => c.toJson
+        case m: ModelComponent       => m.toJson
+        //case c: CameraComponent      => c.toJson
+        case p: PhysicsComponent     => p.toJson
+        case l: LightSourceComponent => l.toJson
+      }).asJsObject.fields + ("type" -> JsString(obj.productPrefix)))
+
+    def read(json: JsValue): Component =
+      json.asJsObject.getFields("type") match {
+        //case Seq(JsString("SpatialComponent"))     => json.convertTo(SpatialComponentFormat)
+        case Seq(JsString("ModelComponent"))       => json.convertTo[ModelComponent]
+        //case Seq(JsString("CameraComponent"))      => json.convertTo(CameraComponentFormat)
+        case Seq(JsString("PhysicsComponent"))     => json.convertTo[PhysicsComponent]
+        case Seq(JsString("LightSourceComponent")) => json.convertTo[LightSourceComponent]
+      }
+  }
+
+  implicit val entityFormat = new RootJsonFormat[Entity] {
+    def write(obj: Entity): JsValue = obj.components.values.toJson
+
+    def read(json: JsValue) = {deserializationError("Not implemented")}
+  }
+
+  implicit val worldFormat = new RootJsonFormat[World] {
+    def write(obj: World): JsValue = {
+      obj.entities.toList.toJson
+    }
+
+    def read(json: JsValue) = {deserializationError("Not implemented")}
+  }
+  def loadModel(path: String): Model =
+    ResourceUtil.readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Model]
 
   def loadMesh(path: String): Mesh = {
     // Simple function to convert int rgb to float rgb
@@ -239,15 +312,24 @@ object ResourceUtil {
       glGetShaderInfoLog(shaderID, glGetShaderi(shaderID, GL_INFO_LOG_LENGTH)))
     }
     shaderID
-  } 
+  }
 
-  def readFromFile(path:String): String = 
-    Source.fromFile(path).mkString
+  def worldToFile(world: World,path: String): Unit = {
+    Log.debug("World to file. ents length","" + world.entities.length)
+    writeToFile(path,world.toJson.prettyPrint)
+  }
 
-  def readImageFromFile(path:String): BufferedImage = 
-    ImageIO.read(new File(path))
+  def writeToFile(path: String, s: String): Unit = {
+    val file = new File(RESOURCE_ROOT_PATH + path)
+    file.createNewFile()
+    val pw = new java.io.PrintWriter(file)
+    try pw.write(s) finally pw.close()
+  }
 
-  def readLinesFromFile(path:String) = 
-    scala.io.Source.fromFile(new File(path)).getLines().toVector
+  def readFromFile(path:String): String = Source.fromFile(path).mkString
+
+  def readImageFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
+
+  def readLinesFromFile(path:String) = scala.io.Source.fromFile(new File(path)).getLines().toVector
 
 }

@@ -1,7 +1,6 @@
 package tilde.util
 
-import org.lwjgl.util.vector.{Vector3f, Matrix4f, Quaternion}
-import tilde.log.Log
+import org.lwjgl.util.vector.{Matrix4f, Quaternion, Vector3f}
 
 /*
 Functions from

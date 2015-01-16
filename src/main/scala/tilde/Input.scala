@@ -1,8 +1,8 @@
 package tilde
 
-import org.lwjgl.input.{Mouse, Keyboard}
+import org.lwjgl.input.Keyboard
+
 import scala.collection.mutable
-import scala.collection.mutable.Map
 
 /**
  * Created by Toni on 25.12.14.

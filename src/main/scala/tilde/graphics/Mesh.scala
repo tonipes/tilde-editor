@@ -1,15 +1,7 @@
 package tilde.graphics
 
-import java.io.File
-import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL15._
-import org.lwjgl.opengl.GL11._
-import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import org.lwjgl.util.vector.{Vector2f, Vector3f}
-import tilde.log.Log
-
-import scala.collection.mutable.Buffer
 
 /**
  * Created by Toni on 22.12.14.

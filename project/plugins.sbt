@@ -1,4 +1,4 @@
-logLevel := sbt.Level.Info
+logLevel := Level.Info
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 

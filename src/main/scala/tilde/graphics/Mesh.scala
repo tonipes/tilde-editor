@@ -7,8 +7,8 @@ import org.lwjgl.opengl.GL30._
  * Created by Toni on 22.12.14.
  */
 
-class Mesh( val vaoID: Int, val dataId: Int, val elemId: Int , 
-			val elemCount: Int, val dataCount: Int) {
+class Mesh( val vaoID: Int, val dataId: Int, val elemId: Int ,
+            val elemCount: Int, val dataCount: Int) {
 
   def bindVAO(): Unit = glBindVertexArray(vaoID)
 

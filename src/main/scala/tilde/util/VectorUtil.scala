@@ -1,8 +1,9 @@
-import java.nio.FloatBuffer
-
-import org.lwjgl.util.vector.Matrix4f
+package tilde.util
 
 import scala.math.pow
+/**
+ * Created by Toni on 17.1.2015.
+ */
 
 object Vec3{
   def apply = new Vec3(0,0,0)
@@ -10,41 +11,41 @@ object Vec3{
 }
 
 class Vec3(val x:Float,val y:Float,val z:Float){
-  def +(other: Vec3): Vec3 = 
+  def +(other: Vec3): Vec3 =
     new Vec3(this.x + other.x, this.y + other.y, this.z + other.z)
-  
-  def -(other: Vec3): Vec3 = 
+
+  def -(other: Vec3): Vec3 =
     Vec3(this.x - other.x, this.y - other.y, this.z - other.z)
-  
-  def neg(): Vec3 = 
+
+  def neg(): Vec3 =
     Vec3(-this.x, -this.y, -this.z)
-  
+
   def *(other: Vec3): Vec3 =
     Vec3(this.x * other.x, this.y * other.y, this.z * other.z)
-  
+
   def *(value: Float): Vec3 =
     Vec3(this.x * value, this.y * value, this.z * value)
-  
+
   def /(other: Vec3): Vec3 =
     Vec3(this.x / other.x, this.y / other.y, this.z / other.z)
-  
+
   def /(value: Float): Vec3 =
     Vec3(this.x / value, this.y / value, this.z / value)
-  
-  def dot(other: Vec3): Float = 
+
+  def dot(other: Vec3): Float =
     this.x * other.x + this.y * other.y + this.z * other.z
-    
-  def cross(other: Vec3): Vec3 = 
-   Vec3(
-     this.y * other.z - this.z * other.y,
-     this.z * other.x - this.x * other.z,
-     this.x * other.y - this.y * other.x
-   )
-  
+
+  def cross(other: Vec3): Vec3 =
+    Vec3(
+      this.y * other.z - this.z * other.y,
+      this.z * other.x - this.x * other.z,
+      this.x * other.y - this.y * other.x
+    )
+
   def length(): Float= pow(this.dot(this), 0.5).floatValue()
-  
+
   def normalize(): Vec3 = this / length
-  
+
   override def toString() = {
     "Vec3(x: " + x + " y: " + y + " z: " + z + ")"
   }
@@ -57,34 +58,34 @@ object Vec4 {
 }
 
 class Vec4(var x: Float, var y: Float, var z: Float, var w: Float) {
-  def +(other: Vec4): Vec4 = 
+  def +(other: Vec4): Vec4 =
     Vec4(this.x + other.x, this.y + other.y, this.z + other.z, this.w + other.w)
-  
-  def -(other: Vec4): Vec4 = 
+
+  def -(other: Vec4): Vec4 =
     Vec4(this.x - other.x, this.y - other.y, this.z - other.z, this.w - other.w)
-  
-  def neg(): Vec4 = 
+
+  def neg(): Vec4 =
     Vec4(-this.x, -this.y, -this.z, -this.w)
-  
+
   def *(other: Vec4): Vec4 =
     Vec4(this.x * other.x, this.y * other.y, this.z * other.z, this.w * other.w)
-  
+
   def *(value: Float): Vec4 =
     Vec4(this.x * value, this.y * value, this.z * value, this.w * value)
-  
+
   def /(other: Vec4): Vec4 =
     Vec4(this.x / other.x, this.y / other.y, this.z / other.z, this.w / other.w)
-  
+
   def /(value: Float): Vec4 =
     Vec4(this.x / value, this.y / value, this.z / value, this.w / value)
-  
-  def dot(other: Vec4): Float = 
+
+  def dot(other: Vec4): Float =
     this.x * other.x + this.y * other.y + this.z * other.z + this.w * other.w
-  
+
   def length(): Float = pow(this.dot(this), 0.5).floatValue()
-  
+
   def normalize(): Vec4 = this / length
-  
+
   def xyz(): Vec3 = Vec3(this.x, this.y, this.z)
 
   override def toString() = {
@@ -98,38 +99,38 @@ object Matrix4{
             m20: Float, m21: Float, m22: Float, m23: Float,
             m30: Float, m31: Float, m32: Float, m33: Float) =
     new Matrix4(m00, m01, m02, m03,
-                m10, m11, m12, m13,
-                m20, m21, m22, m23,
-                m30, m31, m32, m33)
+      m10, m11, m12, m13,
+      m20, m21, m22, m23,
+      m30, m31, m32, m33)
   def apply() =
     new Matrix4(1,0,0,0,
-                0,1,0,0,
-                0,0,1,0,
-                0,0,0,1)
+      0,1,0,0,
+      0,0,1,0,
+      0,0,0,1)
 }
 
 class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
               var m10: Float, var m11: Float, var m12: Float, var m13: Float,
               var m20: Float, var m21: Float, var m22: Float, var m23: Float,
               var m30: Float, var m31: Float, var m32: Float, var m33: Float){
-    /*
-      m00 m01 m02 m03
-      m10 m11 m12 m13
-      m20 m21 m22 m23
-      m30 m31 m32 m33
-    */
+  /*
+    m00 m01 m02 m03
+    m10 m11 m12 m13
+    m20 m21 m22 m23
+    m30 m31 m32 m33
+  */
 
   def setIdentity() =
     set(1,0,0,0,
-        0,1,0,0,
-        0,0,1,0,
-        0,0,0,1)
+      0,1,0,0,
+      0,0,1,0,
+      0,0,0,1)
 
   def setZero() =
     set(0,0,0,0,
-        0,0,0,0,
-        0,0,0,0,
-        0,0,0,0)
+      0,0,0,0,
+      0,0,0,0,
+      0,0,0,0)
 
   def set(f00: Float, f01: Float, f02: Float, f03: Float,
           f04: Float, f11: Float, f12: Float, f13: Float,
@@ -148,7 +149,7 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
       m20 + f.m20, m21 + f.m21, m22 + f.m22, m23 + f.m23,
       m30 + f.m30, m31 + f.m31, m32 + f.m32, m33 + f.m33)
   }
-  
+
   def -(f: Matrix4): Matrix4 = {
     Matrix4(
       m00 - f.m00, m01 - f.m01, m02 - f.m02, m03 - f.m03,
@@ -208,20 +209,26 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
 
   def toArray(): Array[Float] =
     Array(m00, m01, m02, m03,
-          m10, m11, m12, m13,
-          m20, m21, m22, m23,
-          m30, m31, m32, m33)
+      m10, m11, m12, m13,
+      m20, m21, m22, m23,
+      m30, m31, m32, m33)
 
   override def toString() =
     "Matrix4[" +
       m00 + ", " + m01 + ", " + m02 + ", " + m03 + "\n"
-      m10 + ", " + m11 + ", " + m12 + ", " + m13 + "\n"
-      m20 + ", " + m21 + ", " + m22 + ", " + m23 + "\n"
-      m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]"
+  m10 + ", " + m11 + ", " + m12 + ", " + m13 + "\n"
+  m20 + ", " + m21 + ", " + m22 + ", " + m23 + "\n"
+  m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]"
 }
 
-class Quaternion(){
-  var w,x,y,z: Float = 0
+object Quaternion{
+  def apply() =
+    new Quaternion(0,0,0,1)
+  def apply(x: Float, y: Float, z: Float, w: Float) =
+    new Quaternion(x,y,z,w)
+}
+
+class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
 
   def setIdentity() = set(0,0,0,1)
 
@@ -234,9 +241,9 @@ class Quaternion(){
 
   def *(f: Quaternion): Unit = {
     set(this.x * f.w + this.w * f.x + this.y * f.z - this.z * f.y,
-        this.y * f.w + this.w * f.y + this.z * f.x - this.x * f.z,
-        this.z * f.w + this.w * f.z + this.x * f.y - this.y * f.x,
-        this.w * f.w - this.x * f.x - this.y * f.y - this.z * f.z)
+      this.y * f.w + this.w * f.y + this.z * f.x - this.x * f.z,
+      this.z * f.w + this.w * f.z + this.x * f.y - this.y * f.x,
+      this.w * f.w - this.x * f.x - this.y * f.y - this.z * f.z)
   }
 
   def setFromVector(vec: Vec4): Unit = {

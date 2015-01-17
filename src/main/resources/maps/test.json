@@ -1,6 +1,0 @@
-[
-	{"name":"max","age":23,"type":"Dog"},
-	{"name":"charlie","age":13,"type":"Dog"},
-	{"name":"tigger","catchesBirds":true,"type":"Cat"},
-	{"name":"blue","isBig":true,"type":"Whale"}
-]

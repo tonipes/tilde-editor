@@ -3,7 +3,7 @@ package tilde.graphics
 import java.nio.FloatBuffer
 
 import org.lwjgl.opengl.GL20._
-import tilde.log.Log
+import tilde.Log
 
 /**
  * Created by Toni on 17.12.14.

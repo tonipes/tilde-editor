@@ -10,4 +10,5 @@ object ResourceManager {
   val meshes = Map[String,Mesh]()
   val shaderPrograms = Map[String, ShaderProgram]()
   val models = Map[String, Model]()
+  
 }

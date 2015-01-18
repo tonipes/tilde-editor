@@ -35,8 +35,10 @@ object MyBuild extends Build {
       scalaVersion    := buildScalaVersion,
       libraryDependencies ++= Seq(spray),
       javaOptions += "-Djava.library.path=" + newPath,
+      javaOptions += "-XstartOnFirstThread",
       javaOptions += "-XX:MaxGCPauseMillis=4"
     )
   }
+  println(System.getProperty("java.library.path"))
   lazy val root = Project(id=rootProjectId, base=file("."), settings=Settings.rootProject)
 }

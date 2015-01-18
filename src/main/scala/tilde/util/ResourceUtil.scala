@@ -230,11 +230,14 @@ class ResourceUtil {
       shaderID
     }
 
-    def readFromFile(path:String): String = Source.fromFile(path).mkString
+    def readFromFile(path:String): String = 
+      Source.fromFile(path).mkString
 
-    def readImageFromFile(path:String): BufferedImage = ImageIO.read(new File(path))
+    def readImageFromFile(path:String): BufferedImage = 
+      ImageIO.read(new File(path))
 
-    def readLinesFromFile(path:String) = scala.io.Source.fromFile(new File(path)).getLines().toVector
+    def readLinesFromFile(path:String) = 
+      scala.io.Source.fromFile(new File(path)).getLines().toVector
 
   }
 }

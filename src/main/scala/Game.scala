@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11._
 class Game {
 
   var world: World = null
+  
   def create(): Unit = {
 
     glEnable(GL_DEPTH_TEST)

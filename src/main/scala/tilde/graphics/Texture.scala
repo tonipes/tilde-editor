@@ -8,13 +8,16 @@ import org.lwjgl.opengl.GL13._
  */
 class Texture(val width: Int, val height: Int, val id: Int) {
 
-  def bind(): Unit = glBindTexture(GL_TEXTURE_2D, id)
+  def bind(): Unit = 
+    glBindTexture(GL_TEXTURE_2D, id)
 
-  def unbind(): Unit = glBindTexture(GL_TEXTURE_2D, 0)
+  def unbind(): Unit = 
+    glBindTexture(GL_TEXTURE_2D, 0)
 
-  def setActiveAsUnit(unit: Int): Unit = glActiveTexture(GL_TEXTURE0 + unit)
+  def setActiveAsUnit(unit: Int): Unit = 
+    glActiveTexture(GL_TEXTURE0 + unit)
 
   def dispose(): Unit = {
-
+    glDeleteTextures(id)
   }
 }

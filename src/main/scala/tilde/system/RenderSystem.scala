@@ -21,6 +21,7 @@ class RenderSystem extends EntitySystem{
   override protected def process(e: Entity, delta: Float): Unit = {
 
   }
+  
   override def systemEnd(): Unit = {
 
   }

@@ -10,12 +10,12 @@ class Entity(val world: World) {
   def addComponent[T <: Component](component: T): Unit = {
     components(component.getClass) = component
     compStruct = compStruct + Component.getID(component.getClass)
-   //world.changed(this)
+    world.changed(this)
   }
   def removeComponent[T <: Component](component: Class[T]): Unit = {
     components.remove(component)
     compStruct = compStruct - Component.getID(component)
-    //world.changed(this)
+    world.changed(this)
   }
 
   def dispose() = {

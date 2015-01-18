@@ -122,15 +122,15 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
 
   def setIdentity() =
     set(1,0,0,0,
-      0,1,0,0,
-      0,0,1,0,
-      0,0,0,1)
+        0,1,0,0,
+        0,0,1,0,
+        0,0,0,1)
 
   def setZero() =
     set(0,0,0,0,
-      0,0,0,0,
-      0,0,0,0,
-      0,0,0,0)
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0)
 
   def set(f00: Float, f01: Float, f02: Float, f03: Float,
           f04: Float, f11: Float, f12: Float, f13: Float,
@@ -179,7 +179,7 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
   }
 
   def rotate(angle: Float,axis: Vec3): Unit = {
-
+    // TODO: DO!
   }
 
   def scale(vec: Vec3): Unit = {
@@ -216,9 +216,9 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
   override def toString() =
     "Matrix4[" +
       m00 + ", " + m01 + ", " + m02 + ", " + m03 + "\n"
-  m10 + ", " + m11 + ", " + m12 + ", " + m13 + "\n"
-  m20 + ", " + m21 + ", " + m22 + ", " + m23 + "\n"
-  m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]"
+      m10 + ", " + m11 + ", " + m12 + ", " + m13 + "\n"
+      m20 + ", " + m21 + ", " + m22 + ", " + m23 + "\n"
+      m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]"
 }
 
 object Quaternion{

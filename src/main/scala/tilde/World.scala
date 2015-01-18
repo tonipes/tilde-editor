@@ -9,6 +9,7 @@ class World(entitySystems: EntitySystem*) {
   for(sys <- entitySystems){
     sys.world = this
   }
+  
   val tags = Map[String, Entity]()
 
   val entities = Buffer[Entity]()

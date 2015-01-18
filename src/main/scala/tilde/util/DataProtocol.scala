@@ -67,8 +67,9 @@ object DataProtocol extends DefaultJsonProtocol {
   }
 
   implicit val entityFormat = new RootJsonFormat[Entity] {
-    def write(obj: Entity) =
+    def write(obj: Entity) = {
       obj.components.values.toJson
+    }
 
     def read(value: JsValue): Entity = {
       ???

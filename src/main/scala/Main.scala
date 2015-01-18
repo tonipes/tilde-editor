@@ -57,16 +57,16 @@ object Main {
   private def start(): Unit = {
     init()
 
-    var lastFrame: Float = 0
+    var lastFrame:   Float = 0
     var currentTime: Float = 0
-    var deltaTime: Float = 0
+    var deltaTime:   Float = 0
 
 
     while (glfwWindowShouldClose(windowID) != GL_TRUE) { // Main Game loop
       // Time
       currentTime = glfwGetTime().toFloat
-      deltaTime = currentTime - lastFrame
-      lastFrame = currentTime
+      deltaTime   = currentTime - lastFrame
+      lastFrame   = currentTime
 
       update(deltaTime)
 

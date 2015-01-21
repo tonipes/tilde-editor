@@ -4,6 +4,7 @@ import scala.collection.mutable
 import scala.collection.immutable.BitSet
 
 class Entity(val world: World) {
+  val id: Int = 0
   val components = mutable.Map[Class[_ <: Component], Component]()
   var compStruct: BitSet = BitSet.empty
 

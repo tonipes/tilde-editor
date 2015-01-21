@@ -22,7 +22,7 @@ class RenderSystem extends EntitySystem{
 
   }
   
-  override def systemEnd(): Unit = {
+  override def systemEnd(): Unit = { // Render
 
   }
 }

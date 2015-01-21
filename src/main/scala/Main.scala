@@ -7,7 +7,7 @@ import org.lwjgl.glfw._
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GLContext
 import org.lwjgl.system.MemoryUtil._
-import tilde.{Entity, LightSourceComponent, SpatialComponent, ModelComponent}
+import tilde._
 import tilde.util.{Quaternion, Vec3}
 
 /**
@@ -16,6 +16,7 @@ import tilde.util.{Quaternion, Vec3}
 object Main {
 
   private var windowID: Long = 0
+  private var gameMain: Game = null
 
   var errorCallback:       GLFWErrorCallback       = null
   var keyCallback:         GLFWKeyCallback         = null
@@ -23,7 +24,9 @@ object Main {
   var mouseButtonCallback: GLFWMouseButtonCallback = null
   var scrollCallback:      GLFWScrollCallback      = null
 
-  private def init(): Unit ={
+  private def init(): Unit = {
+
+
     if (glfwInit() != GL_TRUE)
     {
       System.err.println("Error initializing GLFW")
@@ -36,13 +39,15 @@ object Main {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
 
-    windowID = glfwCreateWindow(640, 480, "Tilde Engine", NULL, NULL)
+    windowID = glfwCreateWindow(640, 480, "Tilde Engine".toCharArray(), NULL, NULL)
 
     if (windowID == NULL)
     {
       System.err.println("Error creating a window")
       System.exit(1)
     }
+
+
 
     glfwMakeContextCurrent(windowID)
 
@@ -57,6 +62,9 @@ object Main {
   private def start(): Unit = {
     init()
 
+    gameMain = new Game()
+    gameMain.create()
+    ResourceManager.models("default")
     var lastFrame:   Float = 0
     var currentTime: Float = 0
     var deltaTime:   Float = 0
@@ -85,11 +93,11 @@ object Main {
 
 
   private def update(delta: Float): Unit = {
-
+    gameMain.update(delta)
   }
 
   private def dispose(): Unit = {
-
+    gameMain.dispose()
   }
 
   def main (args: Array[String]) {

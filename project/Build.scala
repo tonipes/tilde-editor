@@ -35,8 +35,9 @@ object MyBuild extends Build {
       scalaVersion    := buildScalaVersion,
       libraryDependencies ++= Seq(spray),
       javaOptions += "-Djava.library.path=" + newPath,
-      javaOptions += "-XstartOnFirstThread",
-      javaOptions += "-XX:MaxGCPauseMillis=4"
+      javaOptions += "-XX:MaxGCPauseMillis=4",
+      //javaOptions += "-XstartOnFirstThread",
+      javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/")) 
     )
   }
   println(System.getProperty("java.library.path"))

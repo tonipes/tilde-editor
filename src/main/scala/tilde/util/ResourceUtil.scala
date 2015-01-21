@@ -14,10 +14,13 @@ import tilde.Log
 import tilde.graphics._
 import scala.io.Source
 
+import DataProtocol._
+import spray.json._
+
 /**
  * Created by Toni on 17.1.2015.
  */
-class ResourceUtil {
+object ResourceUtil {
 
   object ResourceUtil {
     private val RESOURCE_ROOT_PATH = "src/main/resources/"
@@ -37,8 +40,12 @@ class ResourceUtil {
     private val COLOR_DATA_STRIDE  = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH +
                                     UV_DATA_LENGTH
 
-    def loadModel(path: String): Model = ???
-      //ResourceUtil.readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Model]
+    def loadModel(path: String): Model =
+      readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Model]
+
+    def loadMaterial(path: String): Material = {
+      readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Material]
+    }
 
     def loadMesh(path: String): Mesh = {
       // Simple function to convert int rgb to float rgb
@@ -184,7 +191,6 @@ class ResourceUtil {
 
       val fragShaderID = loadFragmentShader(RESOURCE_ROOT_PATH + FragPath)
       glAttachShader(programID,fragShaderID)
-      Log.debug("Shader IDs",programID + ", " + vertShaderID + ", " + fragShaderID )
       val shaderP = new ShaderProgram(programID,vertShaderID,fragShaderID)
 
       glLinkProgram(programID)

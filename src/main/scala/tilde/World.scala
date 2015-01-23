@@ -65,4 +65,8 @@ class World(entitySystems: EntitySystem*) {
      entity.dispose()
   }
 
+  def dispose(): Unit = {
+    // TODO: Finish dispose
+  }
+
 }

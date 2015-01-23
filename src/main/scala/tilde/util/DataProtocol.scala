@@ -2,7 +2,7 @@ package tilde.util
 
 import spray.json._
 import tilde._
-import tilde.graphics.Model
+import tilde.graphics.{Material, Model}
 import tilde.util._
 
 /**
@@ -10,7 +10,7 @@ import tilde.util._
  */
 
 object DataProtocol extends DefaultJsonProtocol {
-  implicit val modelFormat = jsonFormat2(Model)
+
 
   implicit val vec3Format = new RootJsonFormat[tilde.util.Vec3] {
     def write(obj: Vec3) = {
@@ -18,7 +18,7 @@ object DataProtocol extends DefaultJsonProtocol {
     }
 
     def read(value: JsValue): Vec3 = value match {
-      case JsArray(Vector(JsString(x), JsNumber(y), JsNumber(z))) =>
+      case JsArray(Vector(JsNumber(x), JsNumber(y), JsNumber(z))) =>
         new Vec3(x.toFloat, y.toFloat, z.toFloat)
       case _ => deserializationError("Vector3 expected")
     }
@@ -29,7 +29,7 @@ object DataProtocol extends DefaultJsonProtocol {
       JsArray(JsNumber(obj.x),JsNumber(obj.y),JsNumber(obj.z),JsNumber(obj.w))
 
     def read(value: JsValue): Vec4 = value match {
-      case JsArray(Vector(JsString(x), JsNumber(y), JsNumber(z),JsNumber(w))) =>
+      case JsArray(Vector(JsNumber(x), JsNumber(y), JsNumber(z),JsNumber(w))) =>
         Vec4(x.toFloat, y.toFloat, z.toFloat, w.toFloat)
       case _ => deserializationError("Vector4 expected")
     }
@@ -40,15 +40,18 @@ object DataProtocol extends DefaultJsonProtocol {
       JsArray(JsNumber(obj.x),JsNumber(obj.y),JsNumber(obj.z),JsNumber(obj.w))
 
     def read(value: JsValue): Quaternion = value match {
-      case JsArray(Vector(JsString(x), JsNumber(y), JsNumber(z),JsNumber(w))) =>
+      case JsArray(Vector(JsNumber(x), JsNumber(y), JsNumber(z),JsNumber(w))) =>
         Quaternion(x.toFloat, y.toFloat, z.toFloat, w.toFloat)
       case _ => deserializationError("Quaternion expected")
     }
   }
 
+  implicit val modelFormat             = jsonFormat2(Model)
+  implicit val materialFormat          = jsonFormat5(Material)
+
   implicit val componentFormat_spatial = jsonFormat3(SpatialComponent)
-  implicit val componentFormat_model = jsonFormat1(ModelComponent)
-  implicit val componentFormat_light = jsonFormat6(LightSourceComponent)
+  implicit val componentFormat_model   = jsonFormat1(ModelComponent)
+  implicit val componentFormat_light   = jsonFormat6(LightSourceComponent)
 
   implicit val componentFormat = new RootJsonFormat[Component] {
     def write(obj: Component): JsValue =

@@ -6,11 +6,11 @@ import scala.math.pow
  */
 
 object Vec3{
-  def apply = new Vec3(0,0,0)
+  def apply() = new Vec3(0,0,0)
   def apply(x:Float,y:Float,z:Float) = new Vec3(x,y,z)
 }
 
-class Vec3(val x:Float,val y:Float,val z:Float){
+class Vec3(val x :Float, val y: Float, val z:Float){
   def +(other: Vec3): Vec3 =
     new Vec3(this.x + other.x, this.y + other.y, this.z + other.z)
 
@@ -44,7 +44,7 @@ class Vec3(val x:Float,val y:Float,val z:Float){
 
   def length(): Float= pow(this.dot(this), 0.5).floatValue()
 
-  def normalize(): Vec3 = this / length
+  def normalise(): Vec3 = this / length
 
   override def toString() = {
     "Vec3(x: " + x + " y: " + y + " z: " + z + ")"
@@ -84,7 +84,7 @@ class Vec4(var x: Float, var y: Float, var z: Float, var w: Float) {
 
   def length(): Float = pow(this.dot(this), 0.5).floatValue()
 
-  def normalize(): Vec4 = this / length
+  def normalise(): Vec4 = this / length
 
   def xyz(): Vec3 = Vec3(this.x, this.y, this.z)
 
@@ -178,8 +178,9 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
       m03 * f.m30 + m13 * f.m31 + m23 * f.m32 + m33 * f.m33)
   }
 
-  def rotate(angle: Float,axis: Vec3): Unit = {
-    // TODO: DO!
+  def rotate(angle: Float, axis: Vec3): Unit = {
+    // TODO: Can be optimized
+    this * Quaternion.fromAxisAngle(axis,angle).rotationMatrix()
   }
 
   def scale(vec: Vec3): Unit = {
@@ -214,18 +215,68 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
       m30, m31, m32, m33)
 
   override def toString() =
-    "Matrix4[" +
-      m00 + ", " + m01 + ", " + m02 + ", " + m03 + "\n"
-      m10 + ", " + m11 + ", " + m12 + ", " + m13 + "\n"
-      m20 + ", " + m21 + ", " + m22 + ", " + m23 + "\n"
+    "Matrix4[" + "\n" +
+      m00 + ", " + m01 + ", " + m02 + ", " + m03 + "\n" +
+      m10 + ", " + m11 + ", " + m12 + ", " + m13 + "\n" +
+      m20 + ", " + m21 + ", " + m22 + ", " + m23 + "\n" +
       m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]"
 }
 
 object Quaternion{
   def apply() =
     new Quaternion(0,0,0,1)
+
   def apply(x: Float, y: Float, z: Float, w: Float) =
     new Quaternion(x,y,z,w)
+
+  def fromAxisAngle(axis: Vec3, angle: Float) = {
+    val normAxis = axis.normalise()
+
+    val angleHalf = Math.toRadians((angle/2f)).toFloat
+    Quaternion(
+      axis.x * Math.sin(angleHalf).toFloat,
+      axis.y * Math.sin(angleHalf).toFloat,
+      axis.z * Math.sin(angleHalf).toFloat,
+      Math.cos(angleHalf).toFloat
+    ).normalise()
+  }
+
+  def conjugate(quat: Quaternion) = {
+    val dest = Quaternion()
+    dest.x = -quat.x
+    dest.y = -quat.y
+    dest.z = -quat.z
+    dest.w =  quat.w
+
+    dest
+  }
+
+  def fromVector(vec: Vec4): Unit = {
+    val q = Quaternion()
+    val l = Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z)
+    val sin = Math.sin(0.5 * vec.w) / l
+    q.w = Math.cos(0.5 * vec.w).toFloat
+
+    q.x = (vec.x * sin).toFloat
+    q.y = (vec.y * sin).toFloat
+    q.z = (vec.z * sin).toFloat
+    q
+  }
+
+  def rotate(vec: Vec3, q:Quaternion) = {
+    val dest = Vec3()
+    val qC = conjugate(q)
+    val qVec = new Quaternion(vec.x,vec.y,vec.z,1)
+
+//    Quaternion.mul(q, qVec, qVec)
+//    Quaternion.mul(qVec, qC, qVec)
+//
+//    dest.x = qVec.x
+//    dest.y = qVec.y
+//    dest.z = qVec.z
+
+    dest
+  }
 }
 
 class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
@@ -239,22 +290,57 @@ class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
     this.w = w
   }
 
-  def *(f: Quaternion): Unit = {
-    set(this.x * f.w + this.w * f.x + this.y * f.z - this.z * f.y,
+  def *(f: Quaternion): Quaternion = {
+    Quaternion(
+      this.x * f.w + this.w * f.x + this.y * f.z - this.z * f.y,
       this.y * f.w + this.w * f.y + this.z * f.x - this.x * f.z,
       this.z * f.w + this.w * f.z + this.x * f.y - this.y * f.x,
       this.w * f.w - this.x * f.x - this.y * f.y - this.z * f.z)
   }
 
-  def setFromVector(vec: Vec4): Unit = {
-    val l = Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z)
-    val sin = Math.sin(0.5 * vec.w) / l
-    this.w = Math.cos(0.5 * vec.w).toFloat
-
-    this.x = (vec.x * sin).toFloat
-    this.y = (vec.y * sin).toFloat
-    this.z = (vec.z * sin).toFloat
+  def normalise(): Quaternion = {
+    val len = this.length()
+    Quaternion(this.x / len, this.y / len, this.z / len, this.w / len)
   }
 
+  def length(): Float = {
+    pow(this.dot(this), 0.5).floatValue()
+  }
 
+  def dot(f: Quaternion): Float =
+    this.x * f.x + this.y * f.y + this.z * f.z + this.w * f.w
+
+  def rotationMatrix(): Matrix4 ={
+    val d = Matrix4()
+    d.setIdentity()
+    
+    val mul: Float = 2f / this.length()
+
+    d.m00 = 1 - mul * (this.y * this.y + this.z * this.z)
+    d.m10 =     mul * (this.x * this.y + this.w * this.z)
+    d.m20 =     mul * (this.x * this.z - this.w * this.y)
+
+    d.m01 =     mul * (this.x * this.y - this.w * this.z)
+    d.m11 = 1 - mul * (this.x * this.x + this.z * this.z)
+    d.m21 =     mul * (this.y * this.z + this.w * this.x)
+
+    d.m02 =     mul * (this.x * this.z + this.w * this.y)
+    d.m12 =     mul * (this.y * this.z - this.w * this.x)
+    d.m22 = 1 - mul * (this.x * this.x + this.y * this.y)
+
+    d
+  }
+
+  def getConjugate(): Quaternion = {
+    val d = Quaternion()
+    d.x = -this.x
+    d.y = -this.y
+    d.z = -this.z
+    d.w =  this.w
+
+    d
+  }
+  override def toString() = {
+    "Quaternion(x: " + x + " y: " + y + " z: " + z + " w: " + w + ")"
+  }
 }

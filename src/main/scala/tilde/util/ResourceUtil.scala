@@ -59,7 +59,7 @@ class ResourceUtil {
       }).get.split(" ")(2).toInt
 
       val vertexDataBufferLength = DATA_OFFSET * vertCount
-      val elementDataBufferLength = faceCount * 3 // *3 because 3 vertices per face
+      val elementDataBufferLength = faceCount * 3 // * 3 because 3 vertices per face
 
       val vertexDataBuffer = BufferUtils.createFloatBuffer(vertexDataBufferLength)
       val elementDataBuffer = BufferUtils.createIntBuffer(elementDataBufferLength)
@@ -123,7 +123,7 @@ class ResourceUtil {
       val elementID = glGenBuffers()
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elementID)
       glBufferData(GL_ELEMENT_ARRAY_BUFFER,elementDataBuffer,GL_STATIC_DRAW)
-      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0)
+      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0) // Why can´t unbind?
 
       glBindVertexArray(0)
 
@@ -154,10 +154,10 @@ class ResourceUtil {
         //val pix = pixels(y * bufImage.getWidth() + x)
         val pix = pixels(y * bufImage.getWidth() + x)
 
-        bytes.put(((pix >> 16) & 0xFF).toByte) // RED
-        bytes.put(((pix >> 8) & 0xFF).toByte) // GREEN
-        bytes.put((pix & 0xFF).toByte) // BLUE
-        bytes.put(((pix >> 24) & 0xFF).toByte) // ALPHA
+        bytes.put(((pix >> 16) & 0xFF).toByte)  // RED
+        bytes.put(((pix >> 8) & 0xFF).toByte)   // GREEN
+        bytes.put((pix & 0xFF).toByte)          // BLUE
+        bytes.put(((pix >> 24) & 0xFF).toByte)  // ALPHA
       }
       bytes.rewind()
 

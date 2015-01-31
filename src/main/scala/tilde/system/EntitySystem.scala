@@ -54,7 +54,8 @@ abstract class EntitySystem() {
     entities += e
   }
 
-  private def isIntrestedIn(e: Entity): Boolean = (this.compStruct & e.compStruct) == this.compStruct
+  private def isIntrestedIn(e: Entity): Boolean = 
+    (this.compStruct & e.compStruct) == this.compStruct
 
   /**
    * Processes single entity

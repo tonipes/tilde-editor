@@ -57,7 +57,16 @@ class World(entitySystems: EntitySystem*) {
 
   def addTag(tag: String, entity: Entity): Unit = tags(tag) = entity
 
-  def getTagged(tag: String): Option[Entity] = Some(tags(tag))
+  def getTagged(tag: String): Option[Entity] = {
+    if(tags.contains(tag))
+      Some(tags(tag))
+    else
+      None
+  }
+
+  def getTags(e: Entity): Vector[String] = {
+    ???
+  }
 
   def destroyEntity(entity: Entity) = {
     val index = entities.indexOf(entity)
@@ -66,7 +75,7 @@ class World(entitySystems: EntitySystem*) {
   }
 
   def dispose(): Unit = {
-    // TODO: Finish dispose
+    // TODO: Write method
   }
 
 }

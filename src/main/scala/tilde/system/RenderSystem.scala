@@ -1,7 +1,8 @@
 package tilde.system
 
-import tilde.{ModelComponent, SpatialComponent, Component, Entity}
+import tilde.{ModelComponent, SpatialComponent, Component, Entity, ResourceManager}
 import tilde.systems.EntitySystem
+import tilde.graphics.ShaderProgram
 import scala.collection.immutable.BitSet
 import scala.collection.mutable
 
@@ -14,6 +15,8 @@ class RenderSystem extends EntitySystem{
       Component.getID(classOf[SpatialComponent]) +
       Component.getID(classOf[ModelComponent])
 
+  lazy val shader: ShaderProgram = ResourceManager.shaderPrograms("default")
+
   override def systemBegin(): Unit = {
 
   }
@@ -23,6 +26,8 @@ class RenderSystem extends EntitySystem{
   }
   
   override def systemEnd(): Unit = { // Render
+    val camera = world.getTagged("camera")
+    println("Rendering end")
 
   }
 }

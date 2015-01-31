@@ -32,13 +32,13 @@ object ResourceUtil {
     private val COLOR_DATA_LENGTH  = 3
 
     private val DATA_OFFSET        = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH +
-                                      UV_DATA_LENGTH     + COLOR_DATA_LENGTH
+                                     UV_DATA_LENGTH     + COLOR_DATA_LENGTH
 
     private val VERTEX_DATA_STRIDE = 0
     private val NORMAL_DATA_STRIDE = VERTEX_DATA_LENGTH
     private val UV_DATA_STRIDE     = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH
     private val COLOR_DATA_STRIDE  = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH +
-                                    UV_DATA_LENGTH
+                                     UV_DATA_LENGTH
 
     def loadModel(path: String): Model =
       readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Model]

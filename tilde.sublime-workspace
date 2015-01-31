@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"se",
+				"serializationError	(String)"
+			],
+			[
 				"tos",
 				"tostr	toString"
 			],
@@ -84,18 +88,10 @@
 	"buffers":
 	[
 		{
-			"file": "src/main/scala/tilde/util/ResourceUtil.scala",
+			"file": "src/main/scala/tilde/util/DataProtocol.scala",
 			"settings":
 			{
-				"buffer_size": 8204,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/util/VectorUtil.scala",
-			"settings":
-			{
-				"buffer_size": 8209,
+				"buffer_size": 4047,
 				"line_ending": "Unix"
 			}
 		},
@@ -103,20 +99,50 @@
 			"file": "src/main/scala/Game.scala",
 			"settings":
 			{
-				"buffer_size": 438,
+				"buffer_size": 936,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/scala/tilde/Component.scala",
+			"settings":
+			{
+				"buffer_size": 1136,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Ensime notes",
+				"scratch": true
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 353.0,
 		"selected_items":
 		[
 			[
 				"run",
 				"SBT: Run"
+			],
+			[
+				"en",
+				"Ensime: Notes"
+			],
+			[
+				"note",
+				"Ensime: Notes"
+			],
+			[
+				"no",
+				"Ensime: Notes"
 			],
 			[
 				"sbt",
@@ -263,7 +289,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 453.0
+		"width": 440.0
 	},
 	"console":
 	{
@@ -292,20 +318,40 @@
 		"/Development/Scala/Idea/TildeEngine",
 		"/Development/Scala/Idea/TildeEngine/src",
 		"/Development/Scala/Idea/TildeEngine/src/main",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/materials",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/textures",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util"
 	],
 	"file_history":
 	[
-		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Development/Scala/Idea/TildeEngine copy/src/main/scala/tilde/entity/Entity.scala",
+		"/Development/Scala/Idea/TildeEngine copy/src/main/scala/tilde/entity/system/RenderSystem.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system/RenderSystem.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/Entity.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/Component.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/VectorUtil.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/Game.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/DataProtocol.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system/EntitySystem.scala",
+		"/Development/Scala/Idea/TildeEngine/project/Build.scala",
+		"/Development/Scala/Idea/TildeEngine/tilde.sublime-project",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/ProjectionFactory.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders/default.vert",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/ResourceUtil.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/materials/default.material",
+		"/Users/Toni/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics/Model.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/Component.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/app/main/TestMain.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics/Mesh.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/entity/component/SpatialComponent.scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
 		"/Development/Scala/Idea/TildeEngine/build.sbt",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/maps/test.json",
 		"/E/Projects/Scala/intelli/TildeEngine/src/main/resources/maps/untitled.map",
@@ -376,9 +422,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 95.0,
 		"where_history":
 		[
+			"<project>"
 		]
 	},
 	"find_state":
@@ -386,6 +433,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getComponent",
+			"m",
+			"r",
+			".",
 			"    ",
 			"\")\n",
 			"}",
@@ -394,7 +445,7 @@
 			"}"
 		],
 		"highlight": true,
-		"in_selection": false,
+		"in_selection": true,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
@@ -414,19 +465,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/main/scala/tilde/util/ResourceUtil.scala",
+					"file": "src/main/scala/tilde/util/DataProtocol.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8204,
+						"buffer_size": 4047,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1127,
-								1127
+								176,
+								176
 							]
 						],
 						"settings":
@@ -436,7 +487,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3188.0,
+						"translation.y": 1077.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -444,19 +495,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "src/main/scala/tilde/util/VectorUtil.scala",
-					"semi_transient": true,
+					"file": "src/main/scala/Game.scala",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8209,
+						"buffer_size": 936,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								634,
+								634
 							]
 						],
 						"settings":
@@ -466,7 +517,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1106.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -474,19 +525,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "src/main/scala/Game.scala",
+					"file": "src/main/scala/tilde/Component.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 438,
+						"buffer_size": 1136,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								181,
-								181
+								76,
+								76
 							]
 						],
 						"settings":
@@ -500,6 +551,47 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"result_base_dir": "/Development/Scala/Idea/TildeEngine",
+							"result_file_regex": "([:.a-z_A-Z0-9\\\\/-]+[.](?:scala|java)):([0-9]+)",
+							"result_line_regex": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -521,17 +613,31 @@
 				0,
 				0,
 				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
 				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.507902406847,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.789640591966,
 			1.0
 		]
 	},
@@ -546,7 +652,7 @@
 	},
 	"output.sbt":
 	{
-		"height": 229.0
+		"height": 256.0
 	},
 	"output.sbt_error":
 	{
@@ -590,7 +696,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 182.0,
+	"side_bar_width": 139.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

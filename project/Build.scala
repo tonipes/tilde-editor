@@ -36,8 +36,8 @@ object MyBuild extends Build {
       libraryDependencies ++= Seq(spray),
       javaOptions += "-Djava.library.path=" + newPath,
       javaOptions += "-XX:MaxGCPauseMillis=4",
-      //javaOptions += "-XstartOnFirstThread",
-      javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/")) 
+      javaOptions += "-XstartOnFirstThread"
+      //javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/")) 
     )
   }
   println(System.getProperty("java.library.path"))

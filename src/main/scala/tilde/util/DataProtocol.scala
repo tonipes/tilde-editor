@@ -6,11 +6,10 @@ import tilde.graphics.{Material, Model}
 import tilde.util._
 
 /**
- * Created by Toni on 17.1.2015.
+ * Here is all code for parsing and decoding json files.
  */
 
 object DataProtocol extends DefaultJsonProtocol {
-
 
   implicit val vec3Format = new RootJsonFormat[tilde.util.Vec3] {
     def write(obj: Vec3) = {
@@ -34,6 +33,30 @@ object DataProtocol extends DefaultJsonProtocol {
       case _ => deserializationError("Vector4 expected")
     }
   }
+
+  // implicit val mat4Format = new RootJsonFormat[Matrix4] {
+  //   def write(obj: Matrix4) =
+  //     JsArray(
+  //       JsNumber(obj.m00),JsNumber(obj.m01),JsNumber(obj.m02),JsNumber(obj.m03),
+  //       JsNumber(obj.m10),JsNumber(obj.m11),JsNumber(obj.m12),JsNumber(obj.m13),
+  //       JsNumber(obj.m20),JsNumber(obj.m21),JsNumber(obj.m22),JsNumber(obj.m23),
+  //       JsNumber(obj.m30),JsNumber(obj.m31),JsNumber(obj.m32),JsNumber(obj.m33))
+
+  //   def read(value: JsValue): Matrix4 = value match {
+  //     case JsArray(Vector(
+  //       JsNumber(m00),JsNumber(m01),JsNumber(m02),JsNumber(m03),
+  //       JsNumber(m10),JsNumber(m11),JsNumber(m12),JsNumber(m13),
+  //       JsNumber(m20),JsNumber(m21),JsNumber(m22),JsNumber(m23),
+  //       JsNumber(m30),JsNumber(m31),JsNumber(m32),JsNumber(m33))) =>
+
+  //       Matrix4(m00.toFloat,m01.toFloat,m02.toFloat,m03.toFloat,
+  //               m10.toFloat,m11.toFloat,m12.toFloat,m13.toFloat,
+  //               m20.toFloat,m21.toFloat,m22.toFloat,m23.toFloat,
+  //               m30.toFloat,m31.toFloat,m32.toFloat,m33.toFloat)
+
+  //     case _ => deserializationError("Matrix4 expected")
+  //   }
+  // }
 
   implicit val quaternionFormat = new RootJsonFormat[Quaternion] {
     def write(obj: Quaternion) =
@@ -59,6 +82,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case c: ModelComponent       => c.toJson
         case c: SpatialComponent     => c.toJson
         case c: LightSourceComponent => c.toJson
+        case _ =>  serializationError("Component expected")
       }).asJsObject.fields + ("type" -> JsString(obj.productPrefix)))
 
     def read(json: JsValue): Component =
@@ -66,6 +90,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case Seq(JsString("SpatialComponent"))     => json.convertTo[SpatialComponent]
         case Seq(JsString("ModelComponent"))       => json.convertTo[ModelComponent]
         case Seq(JsString("LightSourceComponent")) => json.convertTo[LightSourceComponent]
+        case _ => deserializationError("Component expected")
       }
   }
 

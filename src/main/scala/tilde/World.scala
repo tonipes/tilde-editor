@@ -35,6 +35,7 @@ class World(entitySystems: EntitySystem*) {
     for(system <- entitySystems){
       for(entity <- changed){  // Changed
         system.checkInterest(entity)
+        entity.changed = false
       }
       for(entity <- destroyed){ // Destroyed
         system.removeEntity(entity)
@@ -49,8 +50,10 @@ class World(entitySystems: EntitySystem*) {
    * @param entity entity to add to changed list
    */
   def changed(entity: Entity): Unit = {
-//    if(!changed.contains(entity))
-//      changed += entity
+    if(entity.changed != true){
+      entity.changed = true
+      changed += entity
+    }
   }
 
   /**
@@ -59,8 +62,7 @@ class World(entitySystems: EntitySystem*) {
    * @return created entity
    */
   def createEntity(data: EntityData) = {
-    val entity = new Entity(this)
-    data.components.foreach(e => entity.addComponent(e))
+    val entity = new Entity(this, data.components)
     data.tags.foreach(t => addTag(t,entity))
     entities += entity
     entity

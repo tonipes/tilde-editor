@@ -1,8 +1,10 @@
 package tilde.system
 
+import java.nio.FloatBuffer
+
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
-import tilde.util.Matrix4
+import tilde.util.{BufferCreator, Matrix4}
 import tilde.{ModelComponent, SpatialComponent, Component, Entity, ResourceManager}
 import tilde.systems.EntitySystem
 import tilde.graphics.ShaderProgram
@@ -21,40 +23,41 @@ class RenderSystem extends EntitySystem{
   // GL setup
   glEnable(GL_DEPTH_TEST)
   glEnable(GL_CULL_FACE)
-  glClearColor(0.5f, 0.5f, 0.5f, 0.5f)
+  glClearColor(0.5f, 0.5f, 1f, 1f)
 
   lazy val shader: ShaderProgram = ResourceManager.shaderPrograms("default")
 
   override def systemBegin(): Unit = {
     shader.bind()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
   }
 
   override protected def process(e: Entity, delta: Float): Unit = {
     // TODO: Batch entities
+    e.getComponent(Component.spatial).get.position.y -= 0.0001f
+
   }
   
   override def systemEnd(): Unit = { // Render
     val camera = world.getTagged("camera")
-
+    //println(s"Renderer end with ${entities.length} entities")
     if(!camera.isDefined) throw new IllegalStateException("No camera found!")
-
-    val cameraPos = camera.get.getComponent(Component.spatial).get.position
+    val cameraSpat = camera.get.getComponent(Component.spatial).get
+    val cameraPos = cameraSpat.position
 
     // set uniform
     shader.setUniform("c_position",cameraPos.x,cameraPos.y,cameraPos.z)
-    shader.setUniform("l_position",cameraPos.x,cameraPos.y,cameraPos.z)
-    shader.setUniform("l_color",0.5f,0.5f,0.5f,0.5f)
-    //shader.setUniform("m_view", cameraComp.viewBuffer)
-    //shader.setUniform("m_proj", cameraComp.projectionBuffer)
+    shader.setUniform("m_view", getFloatBuffer(cameraSpat))
+    shader.setUniform("m_proj", BufferCreator.createFloatBuffer(ResourceManager.getProjection))
 
     // render entities
     for(ent <- this.entities){
+
       val model    = ResourceManager.models(ent.getComponent(Component.model).get.model)
       val mesh     = ResourceManager.meshes(model.mesh)
-      val material = ResourceManager.materials(model.material)
-
-      val transformation = ent.getComponent(Component.spatial).get // toFloatBuffer
+      //println(s"Drawing model with ${mesh.elemCount} elements")
+      shader.setUniform("m_model", getFloatBuffer(ent.getComponent(Component.spatial).get))
 
       mesh.bindVAO()
       glEnableVertexAttribArray(0)
@@ -73,11 +76,13 @@ class RenderSystem extends EntitySystem{
     shader.unbind()
   }
 
-  private def getFloatBuffer(spat: SpatialComponent): Matrix4 = {
+  private def getFloatBuffer(spat: SpatialComponent): FloatBuffer = {
     val mat: Matrix4 = Matrix4()
     mat.scale(spat.scale)
     mat.translate(spat.position)
-    mat * spat.orientation.rotationMatrix()
+    val m = mat * spat.orientation.rotationMatrix()
+    println(s"Entity transMatrix $m")
+    BufferCreator.createFloatBuffer(m)
   }
 
 }

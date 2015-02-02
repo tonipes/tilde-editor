@@ -61,5 +61,5 @@ object ResourceManager {
     shaderPrograms.clear()
   }
 
-  val getProjection = ProjectionFactory.createPerspectiveProjection(100f,0.1f,800/600,90f)
+  val getProjection = ProjectionFactory.createOrthographicProjection(1000f,0.01f,-2f,2f,-2f,2f)
 }

@@ -2,10 +2,20 @@ package tilde
 
 import scala.collection.mutable
 import scala.collection.immutable.BitSet
-class Entity(val world: World) {
+class Entity(val world: World, compData: Vector[Component]) {
   val id: Int = 0
+
   val components = mutable.Map[Class[_ <: Component], Component]()
   var compStruct: BitSet = BitSet.empty
+
+  var changed = false
+
+  compData.foreach(c =>{
+    components(c.getClass) = c
+    compStruct = compStruct + c.getID
+  })
+  world.changed(this)
+  //println(s"entity created $compStruct. Comps $components ")
 
   /**
    * Adds component to entity

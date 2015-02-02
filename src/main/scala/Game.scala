@@ -1,6 +1,7 @@
 import tilde.util._
 import tilde._
 import tilde.system._
+import scala.collection.mutable
 import scala.collection.mutable.Buffer
 import org.lwjgl.opengl.GL11._
 import tilde.graphics._
@@ -16,15 +17,8 @@ class Game {
   lazy val mapData = ResourceManager.loadMap("maps/default.map")
 
   def create(): Unit = {
-    world.createEntities(mapData)
-
-    val startTime = System.currentTimeMillis()
-    for(i <- 1 until 700){
-      val startTimeIn = System.currentTimeMillis()
-      mapData.foreach(a => world.createEntity(a))
-      println(s"Inside Time took ${System.currentTimeMillis() - startTimeIn} i= $i")
-    }
-    println(s"Time took ${System.currentTimeMillis() - startTime} world has ${world.getEntityCount()}")
+    for(i <- 0 until 1)
+      world.createEntities(mapData)
   }
 
   def render(): Unit = {

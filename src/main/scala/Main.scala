@@ -42,7 +42,7 @@ object Main {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
 
-    windowID = glfwCreateWindow(640, 480, "Tilde Engine".toCharArray(), NULL, NULL)
+    windowID = glfwCreateWindow(480*2, 480*2, "Tilde Engine".toCharArray(), NULL, NULL)
 
     if (windowID == NULL)
     {

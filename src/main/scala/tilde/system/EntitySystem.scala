@@ -32,12 +32,8 @@ abstract class EntitySystem() {
    */
   def checkInterest(e: Entity): Unit = {
     // if compStruct is empty, system is not interested in any entities
-    if(!compStruct.isEmpty) {
-      val contains = entities.contains(e)
-      val interest = this.isIntrestedIn(e)
-      if (contains && !interest) removeEntity(e)
-      if (!contains && interest) addEntity(e)
-    }
+    if(!compStruct.isEmpty && this.isIntrestedIn(e))
+      addEntity(e)
   }
 
   /**
@@ -55,9 +51,8 @@ abstract class EntitySystem() {
    * Adds entity to systems entity list
    * @param e Entity add
    */
-  private def addEntity(e: Entity): Unit = {
+  private def addEntity(e: Entity): Unit =
     entities += e
-  }
 
   /**
    * Checks if system is interested in entity

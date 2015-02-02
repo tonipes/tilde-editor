@@ -10,7 +10,7 @@ object Vec3{
   def apply(x:Float,y:Float,z:Float) = new Vec3(x,y,z)
 }
 
-class Vec3(val x :Float, val y: Float, val z:Float){
+class Vec3(var x :Float, var y: Float, var z:Float){
   def +(other: Vec3): Vec3 =
     new Vec3(this.x + other.x, this.y + other.y, this.z + other.z)
 

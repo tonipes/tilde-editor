@@ -18,6 +18,7 @@ class Texture(val width: Int, val height: Int, val id: Int) {
     glActiveTexture(GL_TEXTURE0 + unit)
 
   def dispose(): Unit = {
+    unbind()
     glDeleteTextures(id)
   }
 }

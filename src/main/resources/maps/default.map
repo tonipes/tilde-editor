@@ -1,0 +1,1412 @@
+{
+	"entities":
+	[{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	},{
+	  "tags": ["chest","camera"],
+	  "components": [{
+	    "position": [4.0, 4.0, 4.0],
+	    "orientation": [0.0, 0.0, 0.0, 1.0],
+	    "scale": [1.0, 1.0, 1.0],
+	    "type": "SpatialComponent"
+	  }, {
+	    "model": "models/default.model",
+	    "type": "ModelComponent"
+	  }]
+	}]
+}

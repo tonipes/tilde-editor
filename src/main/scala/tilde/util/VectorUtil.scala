@@ -120,26 +120,31 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
     m30 m31 m32 m33
   */
 
-  def setIdentity() =
+  def setIdentity() ={
     set(1,0,0,0,
         0,1,0,0,
         0,0,1,0,
         0,0,0,1)
+    this
+  }
 
-  def setZero() =
+  def setZero() ={
     set(0,0,0,0,
         0,0,0,0,
         0,0,0,0,
         0,0,0,0)
+    this
+  }
 
   def set(f00: Float, f01: Float, f02: Float, f03: Float,
-          f04: Float, f11: Float, f12: Float, f13: Float,
+          f10: Float, f11: Float, f12: Float, f13: Float,
           f20: Float, f21: Float, f22: Float, f23: Float,
           f30: Float, f31: Float, f32: Float, f33: Float): Unit ={
     m00 = f00; m01 = f01; m02 = f02; m03 = f03
-    m10 = f04; m11 = f23; m12 = f12; m13 = f13
+    m10 = f10; m11 = f11; m12 = f12; m13 = f13
     m20 = f20; m21 = f21; m22 = f22; m23 = f23
     m30 = f30; m31 = f31; m32 = f32; m33 = f33
+    this
   }
 
   def +(f: Matrix4): Matrix4 = {
@@ -180,23 +185,25 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
 
   def rotate(angle: Float, axis: Vec3): Unit = {
     // TODO: Can be optimized
-    this * Quaternion.fromAxisAngle(axis,angle).rotationMatrix()
+    val mat = this * Quaternion.fromAxisAngle(axis,angle).rotationMatrix()
   }
 
-  def scale(vec: Vec3): Unit = {
+  def scale(vec: Vec3): Matrix4 = {
     m00 = m00 * vec.x; m01 = m01 * vec.x; m02 = m02 * vec.x; m03 = m03 * vec.x
     m10 = m10 * vec.y; m11 = m11 * vec.y; m12 = m12 * vec.y; m13 = m13 * vec.y
     m20 = m20 * vec.z; m21 = m21 * vec.z; m22 = m22 * vec.z; m23 = m23 * vec.z
+    this
   }
 
-  def translate(vec: Vec3): Unit = {
-    m03 = m03 + m00 * vec.x + m10 * vec.y + m20 * vec.z
-    m13 = m13 + m11 * vec.x + m11 * vec.y + m21 * vec.z
-    m23 = m23 + m12 * vec.x + m12 * vec.y + m22 * vec.z
-    m33 = m33 + m13 * vec.x + m13 * vec.y + m23 * vec.z
+  def translate(vec: Vec3): Matrix4 = {
+    m03 = m00 * vec.x + m10 * vec.y + m02 * vec.z + 1.0f * m03
+    m13 = m10 * vec.x + m11 * vec.y + m12 * vec.z + 1.0f * m13
+    m23 = m20 * vec.x + m21 * vec.y + m22 * vec.z + 1.0f * m23
+    m33 = m30 * vec.x + m31 * vec.y + m32 * vec.z + 1.0f * m33
+    this
   }
 
-  def transpose(): Unit = {
+  def transpose(): Matrix4 = {
     val v00 = m00; val v01 = m10; val v02 = m20; val v03 = m30
     val v10 = m01; val v11 = m11; val v12 = m21; val v13 = m31
     val v20 = m02; val v21 = m12; val v22 = m22; val v23 = m32
@@ -206,6 +213,7 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
     m10 = v10; m11 = v11 ;m12 = v12; m13 = v13
     m20 = v20; m21 = v21 ;m22 = v22; m23 = v23
     m30 = v30; m31 = v31 ;m32 = v32; m33 = v33
+    this
   }
 
   def toArray(): Array[Float] =
@@ -313,20 +321,23 @@ class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
   def rotationMatrix(): Matrix4 ={
     val d = Matrix4()
     d.setIdentity()
-    
-    val mul: Float = 2f / this.length()
 
-    d.m00 = 1 - mul * (this.y * this.y + this.z * this.z)
-    d.m10 =     mul * (this.x * this.y + this.w * this.z)
-    d.m20 =     mul * (this.x * this.z - this.w * this.y)
+    val q = this.normalise()
 
-    d.m01 =     mul * (this.x * this.y - this.w * this.z)
-    d.m11 = 1 - mul * (this.x * this.x + this.z * this.z)
-    d.m21 =     mul * (this.y * this.z + this.w * this.x)
+    //val mul: Float = 2f / q.length()
+    val mul = 2f
 
-    d.m02 =     mul * (this.x * this.z + this.w * this.y)
-    d.m12 =     mul * (this.y * this.z - this.w * this.x)
-    d.m22 = 1 - mul * (this.x * this.x + this.y * this.y)
+    d.m00 = 1 - mul * (q.y * q.y + q.z * q.z)
+    d.m10 =     mul * (q.x * q.y + q.w * q.z)
+    d.m20 =     mul * (q.x * q.z - q.w * q.y)
+
+    d.m01 =     mul * (q.x * q.y - q.w * q.z)
+    d.m11 = 1 - mul * (q.x * q.x + q.z * q.z)
+    d.m21 =     mul * (q.y * q.z + q.w * q.x)
+
+    d.m02 =     mul * (q.x * q.z + q.w * q.y)
+    d.m12 =     mul * (q.y * q.z - q.w * q.x)
+    d.m22 = 1 - mul * (q.x * q.x + q.y * q.y)
 
     d
   }

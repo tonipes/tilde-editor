@@ -1,10 +1,11 @@
 package tilde.util
 
 object ProjectionFactory {
-  def createPerspectiveProjection(zFar:   Float,
-                                  zNear:  Float,
-                                  aspect: Float,
-                                  fov:    Float ): Matrix4 = {
+  def createPerspectiveProjection(
+                                   zFar:   Float,
+                                   zNear:  Float,
+                                   aspect: Float,
+                                   fov:    Float ): Matrix4 = {
     val matrix = Matrix4()
     val scaleY: Float = 1f / Math.tan(Math.toRadians(fov / 2f).toFloat).toFloat
     val scaleX: Float = scaleY.toFloat / aspect.toFloat
@@ -20,12 +21,13 @@ object ProjectionFactory {
     matrix
   }
 
-  def createOrthographicProjection(zFar:   Float,
-                                   zNear:  Float,
-                                   left:   Float,
-                                   right:  Float,
-                                   top:    Float,
-                                   bottom: Float ): Matrix4  ={
+  def createOrthographicProjection(
+                                    zFar:   Float,
+                                    zNear:  Float,
+                                    left:   Float,
+                                    right:  Float,
+                                    top:    Float,
+                                    bottom: Float ): Matrix4  ={
     val matrix = Matrix4()
 
     matrix.m00 =  2 / (right - left)

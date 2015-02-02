@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
 
 import org.lwjgl.BufferUtils
-import tilde.Log
+import tilde.{EntityData, Log}
 import tilde.graphics._
 import scala.io.Source
 
@@ -21,10 +21,8 @@ import spray.json._
  * Created by Toni on 17.1.2015.
  */
 object ResourceUtil {
-
-  object ResourceUtil {
     private val RESOURCE_ROOT_PATH = "src/main/resources/"
-    private val FLOAT_SIZE         = 4
+    private val FLOAT_SIZE         = 4 //sizeOf ??
 
     private val VERTEX_DATA_LENGTH = 3
     private val NORMAL_DATA_LENGTH = 3
@@ -40,13 +38,28 @@ object ResourceUtil {
     private val COLOR_DATA_STRIDE  = VERTEX_DATA_LENGTH + NORMAL_DATA_LENGTH +
                                      UV_DATA_LENGTH
 
+  /**
+   * Loads model
+   * @param path Path to file
+   * @return Loaded model
+   */
     def loadModel(path: String): Model =
       readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Model]
 
+  /**
+   * Loads material
+   * @param path Path to file
+   * @return Loaded material
+   */
     def loadMaterial(path: String): Material = {
       readFromFile(RESOURCE_ROOT_PATH + path).parseJson.convertTo[Material]
     }
 
+   /**
+   * Loads mesh. Supports .ply format
+   * @param path Path to file
+   * @return Loaded mesh
+   */
     def loadMesh(path: String): Mesh = {
       // Simple function to convert int rgb to float rgb
       def intColorToFloat(i: Float): Float = (i / 255)
@@ -138,10 +151,14 @@ object ResourceUtil {
         elementDataBufferLength,vertexDataBufferLength)
     }
 
+  /**
+   * Loads texture
+   * @param path Path to texture
+   * @return Loaded texture
+   */
     def loadTexture(path: String): Texture = {
       var bufImage: BufferedImage = null
       try {
-
         bufImage = readImageFromFile(RESOURCE_ROOT_PATH +path)
 
       } catch{
@@ -158,7 +175,6 @@ object ResourceUtil {
       val bytes = BufferUtils.createByteBuffer(pixels.length * 4)
 
       for (x <- 0 until bufImage.getWidth; y <- 0 until bufImage.getHeight) {
-        //val pix = pixels(y * bufImage.getWidth() + x)
         val pix = pixels(y * bufImage.getWidth() + x)
 
         bytes.put(((pix >> 16) & 0xFF).toByte)  // RED
@@ -183,6 +199,12 @@ object ResourceUtil {
       new Texture(bufImage.getWidth, bufImage.getHeight, texID)
     }
 
+  /**
+   * Loads shaders and creates shaderProgram
+   * @param VertPath Path to vertex shader file
+   * @param FragPath Path to fragment shader file
+   * @return Loaded shaderprogram
+   */
     def loadShader(VertPath: String,FragPath: String): ShaderProgram = {
       val programID = glCreateProgram()
 
@@ -201,6 +223,11 @@ object ResourceUtil {
       shaderP
     }
 
+  /**
+   * Loads vertex shader
+   * @param path Path to shader file
+   * @return Shader id
+   */
     private def loadVertexShader(path: String): Int = {
       // load shader source
       val shaderSource = ResourceUtil.readFromFile(path)
@@ -219,6 +246,11 @@ object ResourceUtil {
       shaderID
     }
 
+  /**
+   * Loads fragment shader
+   * @param path Path to shader file
+   * @return Shader id
+   */
     private def loadFragmentShader(path: String): Int = {
       // load shader source
       val shaderSource = ResourceUtil.readFromFile(path)
@@ -236,14 +268,39 @@ object ResourceUtil {
       shaderID
     }
 
+  /**
+   * Loads map
+   * @param path Path to map file
+   * @return All entityData
+   */
+    def loadMap(path: String): Vector[EntityData] = {
+      val data = readFromFile(RESOURCE_ROOT_PATH + path)
+      val ents = data.parseJson.asJsObject.getFields("entities")(0).asInstanceOf[JsArray].elements
+      val obj = ents.map(v => v.convertTo[EntityData])
+      obj
+    }
+
+  /**
+   * Reads file to string
+   * @param path Path to file
+   * @return Entire file in string
+   */
     def readFromFile(path:String): String = 
       Source.fromFile(path).mkString
 
+  /**
+   * Reads image file to BufferedImage
+   * @param path Path to file
+   * @return Loaded bufferedImage
+   */
     def readImageFromFile(path:String): BufferedImage = 
       ImageIO.read(new File(path))
 
+  /**
+   * Reads file to string vector
+   * @param path Path to file
+   * @return Vector containing all lines from the file
+   */
     def readLinesFromFile(path:String) = 
       scala.io.Source.fromFile(new File(path)).getLines().toVector
-
-  }
 }

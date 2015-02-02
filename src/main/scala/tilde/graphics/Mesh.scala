@@ -32,6 +32,8 @@ class Mesh( val vaoID: Int, val dataID: Int, val elemID: Int ,
     glBindBuffer(GL_ARRAY_BUFFER,0)
 
   def dispose(): Unit = {
+    // TODO: Is unbinding good idea?
+    unbind()
     glDeleteBuffers(dataID)
     glDeleteBuffers(elemID)
     glDeleteVertexArrays(vaoID)

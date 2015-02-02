@@ -3,7 +3,8 @@ package tilde.util
 import spray.json._
 import tilde._
 import tilde.graphics.{Material, Model}
-import tilde.util._
+import tilde.system.RenderSystem
+import scala.collection.mutable.Buffer
 
 /**
  * Here is all code for parsing and decoding json files.
@@ -94,14 +95,35 @@ object DataProtocol extends DefaultJsonProtocol {
       }
   }
 
-  implicit val entityFormat = new RootJsonFormat[Entity] {
-    def write(obj: Entity) = {
-      obj.components.values.toJson
+  implicit val entityFormat = new RootJsonFormat[EntityData] {
+    def write(obj: EntityData) = {
+      JsObject(
+        "tags"       -> obj.tags.toJson,
+        "components" -> obj.components.toJson
+      )
     }
+    def read(json: JsValue): EntityData = {
+      val compJson = json.asJsObject.getFields("components")(0).asInstanceOf[JsArray].elements
+      val comps = compJson.map(f => f.convertTo[Component]).toVector
 
-    def read(value: JsValue): Entity = {
-      ???
+      val tagsJson = json.asJsObject.getFields("tags")(0).asInstanceOf[JsArray].elements
+      val tags = tagsJson.map(c => c.convertTo[String]).toVector
+      EntityData(comps,tags)
     }
   }
 
+//  implicit val worldFormat = new RootJsonFormat[World] {
+//    def write(obj: World) = {
+//      JsObject("entities" -> obj.getEntityData().toJson)
+//    }
+//    def read(json: JsValue): World = {
+//      // TODO: Figure out proper way to handle entitySystems
+//      val entJson = json.asJsObject.getFields("entities")
+//      val ent = entJson.map(c => c.convertTo[EntityData]).toVector
+//
+//      val world = new World(new RenderSystem())
+//      ent.foreach(e => world.createEntity(e))
+//      world
+//    }
+//  }
 }

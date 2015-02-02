@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GLContext
 import org.lwjgl.system.MemoryUtil._
 import tilde._
 import tilde.util.{Quaternion, Vec3}
-
+import scala.collection.mutable.Buffer
 /**
  * Created by Toni on 17.1.2015.
  */
@@ -24,9 +24,12 @@ object Main {
   var mouseButtonCallback: GLFWMouseButtonCallback = null
   var scrollCallback:      GLFWScrollCallback      = null
 
+  // debug
+  val debugInterval = 0.1f;
+  var timeSinceLastDebugPrint: Float = 0;
+  var frameTimes = Buffer[Float]()
+
   private def init(): Unit = {
-
-
     if (glfwInit() != GL_TRUE)
     {
       System.err.println("Error initializing GLFW")
@@ -47,13 +50,11 @@ object Main {
       System.exit(1)
     }
 
-
-
     glfwMakeContextCurrent(windowID)
 
     GLContext.createFromCurrent()
 
-    glfwSwapInterval(1) // vsync
+    glfwSwapInterval(0) // vsync
 
     glfwShowWindow(windowID)
 
@@ -62,13 +63,18 @@ object Main {
   private def start(): Unit = {
     init()
 
+    val gameCreationStartTime = System.currentTimeMillis()
+
     gameMain = new Game()
     gameMain.create()
-    ResourceManager.models("default")
+
+    val gameCreationTime = System.currentTimeMillis() - gameCreationStartTime
+    println(s"Game loaded in ${gameCreationTime/1000.0f}s")
+
+    //ResourceManager.models("default")
     var lastFrame:   Float = 0
     var currentTime: Float = 0
     var deltaTime:   Float = 0
-
 
     while (glfwWindowShouldClose(windowID) != GL_TRUE) { // Main Game loop
       // Time
@@ -80,6 +86,13 @@ object Main {
 
       glfwPollEvents()
       glfwSwapBuffers(windowID)
+
+      if(timeSinceLastDebugPrint >= debugInterval)
+        printDebugData()
+      else{
+        frameTimes += deltaTime
+        timeSinceLastDebugPrint += deltaTime
+      }
     }
 
     // Game ended
@@ -91,6 +104,17 @@ object Main {
     System.exit(0)
   }
 
+  private def printDebugData(): Unit = {
+    val frames = frameTimes.toVector
+    val maxFrame = frames.max * 1000
+    val minFrame = frames.min * 1000
+    val avgSec = (frames.sum) / frames.length
+    val avgFrame = avgSec * 1000
+
+    Log.info(f"frames : ${frames.length},  AVG: $avgFrame%.2f ms, MIN: $minFrame%.2f ms, MAX: $maxFrame%.2f ms, FPS: ${1/avgSec}")
+    frameTimes.clear
+    timeSinceLastDebugPrint = 0
+  }
 
   private def update(delta: Float): Unit = {
     gameMain.update(delta)

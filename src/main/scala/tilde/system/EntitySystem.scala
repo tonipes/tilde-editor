@@ -7,7 +7,7 @@ import scala.collection.mutable._
 abstract class EntitySystem() {
   var world: World = null
   var compStruct: BitSet
-  private var entities = Buffer[Entity]()
+  protected var entities = Buffer[Entity]()
   private var started = false
 
   /**
@@ -31,7 +31,8 @@ abstract class EntitySystem() {
    * @param e Entity to check
    */
   def checkInterest(e: Entity): Unit = {
-    if(!compStruct.isEmpty) { // if compStruct is empty, system is not interested in any entities
+    // if compStruct is empty, system is not interested in any entities
+    if(!compStruct.isEmpty) {
       val contains = entities.contains(e)
       val interest = this.isIntrestedIn(e)
       if (contains && !interest) removeEntity(e)
@@ -50,10 +51,18 @@ abstract class EntitySystem() {
     }
   }
 
+  /**
+   * Adds entity to systems entity list
+   * @param e Entity add
+   */
   private def addEntity(e: Entity): Unit = {
     entities += e
   }
 
+  /**
+   * Checks if system is interested in entity
+   * @param e Entity to check
+   */
   private def isIntrestedIn(e: Entity): Boolean = 
     (this.compStruct & e.compStruct) == this.compStruct
 

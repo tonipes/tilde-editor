@@ -1,33 +1,30 @@
-import tilde.util.{Quaternion, Vec3}
-import tilde.{ResourceManager, World}
-import tilde.{Component,SpatialComponent,ModelComponent}
+import tilde.util._
+import tilde._
 import tilde.system._
+import scala.collection.mutable.Buffer
 import org.lwjgl.opengl.GL11._
 import tilde.graphics._
 import tilde.util.DataProtocol._
 import spray.json._
-import tilde.util.ProjectionFactory
+
 /**
  * Created by Toni on 17.1.2015.
  */
 class Game {
 
-  var world: World = null
-  
+  lazy val world: World = new World(new RenderSystem())
+  lazy val mapData = ResourceManager.loadMap("maps/default.map")
+
   def create(): Unit = {
-    world = new World(new RenderSystem())
+    world.createEntities(mapData)
 
-    // Testing
-    val ent = world.createEntity()
-    ent.addComponent(new SpatialComponent(Vec3(1,1,1)))
-    ent.addComponent(new ModelComponent("default"))
-    println(ent.toJson.prettyPrint)
-
-    println(ent.getComponent(Component.spatial))
-
-    glEnable(GL_DEPTH_TEST)
-    glEnable(GL_CULL_FACE)
-    glClearColor(0.2f, 0.2f, 0.2f, 0.0f)
+    val startTime = System.currentTimeMillis()
+    for(i <- 1 until 700){
+      val startTimeIn = System.currentTimeMillis()
+      mapData.foreach(a => world.createEntity(a))
+      println(s"Inside Time took ${System.currentTimeMillis() - startTimeIn} i= $i")
+    }
+    println(s"Time took ${System.currentTimeMillis() - startTime} world has ${world.getEntityCount()}")
   }
 
   def render(): Unit = {

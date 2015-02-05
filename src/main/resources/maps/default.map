@@ -9,15 +9,92 @@
 	    "type": "SpatialComponent"
 	  }]
 	},{
-	  "tags": ["chest"],
-	  "components": [{
-	    "position": [0.0, 0.0, 0.0],
-	    "orientation": [0.0, 0.0, 0.0, 1.0],
-	    "scale": [2.0, 2.0, 2.0],
-	    "type": "SpatialComponent"
-	  }, {
-	    "model": "models/default.model",
-	    "type": "ModelComponent"
-	  }]
-	}]
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 0.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 0.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 0.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 0.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 0.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 0.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 0.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 0.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      }]
 }

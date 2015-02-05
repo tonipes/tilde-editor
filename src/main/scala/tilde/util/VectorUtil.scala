@@ -14,8 +14,22 @@ class Vec3(var x :Float, var y: Float, var z:Float){
   def +(other: Vec3): Vec3 =
     new Vec3(this.x + other.x, this.y + other.y, this.z + other.z)
 
+  def += (other: Vec3): Unit = {
+    val n = this + other
+    x = n.x
+    y = n.y
+    z = n.z
+  }
+
   def -(other: Vec3): Vec3 =
     Vec3(this.x - other.x, this.y - other.y, this.z - other.z)
+
+  def -= (other: Vec3): Unit = {
+    val n = this - other
+    x = n.x
+    y = n.y
+    z = n.z
+  }
 
   def neg(): Vec3 =
     Vec3(-this.x, -this.y, -this.z)
@@ -23,14 +37,42 @@ class Vec3(var x :Float, var y: Float, var z:Float){
   def *(other: Vec3): Vec3 =
     Vec3(this.x * other.x, this.y * other.y, this.z * other.z)
 
+  def *= (other: Vec3): Unit = {
+    val n = this * other
+    x = n.x
+    y = n.y
+    z = n.z
+  }
+
   def *(value: Float): Vec3 =
     Vec3(this.x * value, this.y * value, this.z * value)
+
+  def *= (other: Float): Unit = {
+    val n = this * other
+    x = n.x
+    y = n.y
+    z = n.z
+  }
 
   def /(other: Vec3): Vec3 =
     Vec3(this.x / other.x, this.y / other.y, this.z / other.z)
 
+  def /= (other: Vec3): Unit = {
+    val n = this / other
+    x = n.x
+    y = n.y
+    z = n.z
+  }
+
   def /(value: Float): Vec3 =
     Vec3(this.x / value, this.y / value, this.z / value)
+
+  def /= (other: Float): Unit = {
+    val n = this / other
+    x = n.x
+    y = n.y
+    z = n.z
+  }
 
   def dot(other: Vec3): Float =
     this.x * other.x + this.y * other.y + this.z * other.z
@@ -42,7 +84,7 @@ class Vec3(var x :Float, var y: Float, var z:Float){
       this.x * other.y - this.y * other.x
     )
 
-  def length(): Float= pow(this.dot(this), 0.5).floatValue()
+  def length(): Float = pow(this.dot(this), 0.5).floatValue()
 
   def normalise(): Vec3 = this / length
 
@@ -102,11 +144,29 @@ object Matrix4{
       m10, m11, m12, m13,
       m20, m21, m22, m23,
       m30, m31, m32, m33)
+
   def apply() =
     new Matrix4(1,0,0,0,
       0,1,0,0,
       0,0,1,0,
       0,0,0,1)
+
+  def getScale(v: Vec3) = {
+    new Matrix4(
+      v.x, 0, 0, 0,
+      0, v.y, 0, 0,
+      0, 0, v.z, 0,
+      0, 0, 0, 1)
+  }
+
+  def getTransformation(v: Vec3) = {
+    new Matrix4(
+      1, 0, 0, v.x,
+      0, 1, 0, v.y,
+      0, 0, 1, v.z,
+      0, 0, 0, 1)
+  }
+
 }
 
 class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
@@ -120,7 +180,7 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
     m30 m31 m32 m33
   */
 
-  def setIdentity() ={
+  def setIdentity(): Matrix4 ={
     set(1,0,0,0,
         0,1,0,0,
         0,0,1,0,
@@ -128,7 +188,7 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
     this
   }
 
-  def setZero() ={
+  def setZero(): Matrix4 ={
     set(0,0,0,0,
         0,0,0,0,
         0,0,0,0,
@@ -139,12 +199,19 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
   def set(f00: Float, f01: Float, f02: Float, f03: Float,
           f10: Float, f11: Float, f12: Float, f13: Float,
           f20: Float, f21: Float, f22: Float, f23: Float,
-          f30: Float, f31: Float, f32: Float, f33: Float): Unit ={
+          f30: Float, f31: Float, f32: Float, f33: Float): Matrix4 ={
     m00 = f00; m01 = f01; m02 = f02; m03 = f03
     m10 = f10; m11 = f11; m12 = f12; m13 = f13
     m20 = f20; m21 = f21; m22 = f22; m23 = f23
     m30 = f30; m31 = f31; m32 = f32; m33 = f33
     this
+  }
+
+  def set(m: Matrix4): Matrix4 = {
+    set(m.m00,m.m01,m.m02,m.m03,
+        m.m10,m.m11,m.m12,m.m13,
+        m.m20,m.m21,m.m22,m.m23,
+        m.m30,m.m31,m.m32,m.m33)
   }
 
   def +(f: Matrix4): Matrix4 = {
@@ -188,21 +255,6 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
     val mat = this * Quaternion.fromAxisAngle(axis,angle).rotationMatrix()
   }
 
-  def scale(vec: Vec3): Matrix4 = {
-    m00 = m00 * vec.x; m01 = m01 * vec.x; m02 = m02 * vec.x; m03 = m03 * vec.x
-    m10 = m10 * vec.y; m11 = m11 * vec.y; m12 = m12 * vec.y; m13 = m13 * vec.y
-    m20 = m20 * vec.z; m21 = m21 * vec.z; m22 = m22 * vec.z; m23 = m23 * vec.z
-    this
-  }
-
-  def translate(vec: Vec3): Matrix4 = {
-    m03 = m00 * vec.x + m10 * vec.y + m02 * vec.z + 1.0f * m03
-    m13 = m10 * vec.x + m11 * vec.y + m12 * vec.z + 1.0f * m13
-    m23 = m20 * vec.x + m21 * vec.y + m22 * vec.z + 1.0f * m23
-    m33 = m30 * vec.x + m31 * vec.y + m32 * vec.z + 1.0f * m33
-    this
-  }
-
   def transpose(): Matrix4 = {
     val v00 = m00; val v01 = m10; val v02 = m20; val v03 = m30
     val v10 = m01; val v11 = m11; val v12 = m21; val v13 = m31
@@ -213,6 +265,7 @@ class Matrix4(var m00: Float, var m01: Float, var m02: Float, var m03: Float,
     m10 = v10; m11 = v11 ;m12 = v12; m13 = v13
     m20 = v20; m21 = v21 ;m22 = v22; m23 = v23
     m30 = v30; m31 = v31 ;m32 = v32; m33 = v33
+    
     this
   }
 
@@ -239,12 +292,12 @@ object Quaternion{
 
   def fromAxisAngle(axis: Vec3, angle: Float) = {
     val normAxis = axis.normalise()
-
     val angleHalf = Math.toRadians((angle/2f)).toFloat
+    val sin = Math.sin(angleHalf).toFloat
     Quaternion(
-      axis.x * Math.sin(angleHalf).toFloat,
-      axis.y * Math.sin(angleHalf).toFloat,
-      axis.z * Math.sin(angleHalf).toFloat,
+      axis.x * sin,
+      axis.y * sin,
+      axis.z * sin,
       Math.cos(angleHalf).toFloat
     ).normalise()
   }
@@ -259,7 +312,7 @@ object Quaternion{
     dest
   }
 
-  def fromVector(vec: Vec4): Unit = {
+  def fromVector(vec: Vec4): Quaternion = {
     val q = Quaternion()
     val l = Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z)
     val sin = Math.sin(0.5 * vec.w) / l
@@ -291,7 +344,7 @@ class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
 
   def setIdentity() = set(0,0,0,1)
 
-  def set(x:Float, y:Float, z:Float, w:Float): Unit ={
+  def set(x:Float, y:Float, z:Float, w:Float): Unit = {
     this.x = x
     this.y = y
     this.z = z
@@ -306,9 +359,21 @@ class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
       this.w * f.w - this.x * f.x - this.y * f.y - this.z * f.z)
   }
 
+  def *=(f: Quaternion) = {
+    val a = this * f
+    x = a.x
+    y = a.y
+    z = a.z
+    w = a.w
+  }
+
   def normalise(): Quaternion = {
     val len = this.length()
     Quaternion(this.x / len, this.y / len, this.z / len, this.w / len)
+  }
+
+  def rotate(vec: Vec3) = {
+
   }
 
   def length(): Float = {
@@ -327,17 +392,17 @@ class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){
     //val mul: Float = 2f / q.length()
     val mul = 2f
 
-    d.m00 = 1 - mul * (q.y * q.y + q.z * q.z)
-    d.m10 =     mul * (q.x * q.y + q.w * q.z)
-    d.m20 =     mul * (q.x * q.z - q.w * q.y)
+    d.m00 = 1 - mul * (q.y * q.y + q.z * q.z) // +
+    d.m10 =     mul * (q.x * q.y + q.w * q.z) // +
+    d.m20 =     mul * (q.x * q.z - q.w * q.y) // -
 
-    d.m01 =     mul * (q.x * q.y - q.w * q.z)
-    d.m11 = 1 - mul * (q.x * q.x + q.z * q.z)
-    d.m21 =     mul * (q.y * q.z + q.w * q.x)
+    d.m01 =     mul * (q.x * q.y - q.w * q.z) // -
+    d.m11 = 1 - mul * (q.x * q.x + q.z * q.z) // +
+    d.m21 =     mul * (q.y * q.z + q.w * q.x) // +
 
-    d.m02 =     mul * (q.x * q.z + q.w * q.y)
-    d.m12 =     mul * (q.y * q.z - q.w * q.x)
-    d.m22 = 1 - mul * (q.x * q.x + q.y * q.y)
+    d.m02 =     mul * (q.x * q.z + q.w * q.y) // +
+    d.m12 =     mul * (q.y * q.z - q.w * q.x) // -
+    d.m22 = 1 - mul * (q.x * q.x + q.y * q.y) // +
 
     d
   }

@@ -1,7 +1,7 @@
 package tilde
 
 import tilde.graphics._
-import tilde.util.{ProjectionFactory, ResourceUtil}
+import tilde.util.{Matrix4, ProjectionFactory, ResourceUtil}
 import scala.collection.mutable.Map
 
 /**
@@ -60,6 +60,7 @@ object ResourceManager {
     shaderPrograms.foreach(a => a._2.dispose())
     shaderPrograms.clear()
   }
-
-  val getProjection = ProjectionFactory.createOrthographicProjection(1000f,0.01f,-2f,2f,-2f,2f)
+  val getProjection = ProjectionFactory.createPerspectiveProjection(1000f,0.01f, 1/1f,75f)
+  //val getProjection = ProjectionFactory.createOrthographicProjection(1000f,0.001f,-1.5f,1.5f,-1.5f,1.5f)
+  //val getProjection = Matrix4()
 }

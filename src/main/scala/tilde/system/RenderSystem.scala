@@ -4,11 +4,12 @@ import java.nio.FloatBuffer
 
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL20._
-import tilde.util.{BufferCreator, Matrix4}
+import tilde.util.{Quaternion, BufferCreator, Matrix4}
 import tilde.{ModelComponent, SpatialComponent, Component, Entity, ResourceManager}
 import tilde.systems.EntitySystem
 import tilde.graphics.ShaderProgram
 import scala.collection.immutable.BitSet
+import tilde.util.Vec3
 import scala.collection.mutable
 
 /**
@@ -35,7 +36,10 @@ class RenderSystem extends EntitySystem{
 
   override protected def process(e: Entity, delta: Float): Unit = {
     // TODO: Batch entities
-    e.getComponent(Component.spatial).get.position.y -= 0.0001f
+    //e.getComponent(Component.spatial).get.position.y += 0.001f
+    //e.getComponent(Component.spatial).get.position.z += 0.01f
+    //e.getComponent(Component.spatial).get.orientation *= Quaternion.fromAxisAngle(Vec3(1,1,1),1f)
+    //println(e.getComponent(Component.spatial).get.position.z)
 
   }
   
@@ -46,14 +50,16 @@ class RenderSystem extends EntitySystem{
     val cameraSpat = camera.get.getComponent(Component.spatial).get
     val cameraPos = cameraSpat.position
 
+    //cameraPos.-=(Vec3(0,0,0.01f))
+    cameraSpat.orientation *= Quaternion.fromAxisAngle(Vec3(0,1,0),0.5f)
+
     // set uniform
     shader.setUniform("c_position",cameraPos.x,cameraPos.y,cameraPos.z)
-    shader.setUniform("m_view", getFloatBuffer(cameraSpat))
+    shader.setUniform("m_view", getCameraFloatBuffer(cameraSpat))
     shader.setUniform("m_proj", BufferCreator.createFloatBuffer(ResourceManager.getProjection))
 
     // render entities
     for(ent <- this.entities){
-
       val model    = ResourceManager.models(ent.getComponent(Component.model).get.model)
       val mesh     = ResourceManager.meshes(model.mesh)
       //println(s"Drawing model with ${mesh.elemCount} elements")
@@ -77,12 +83,19 @@ class RenderSystem extends EntitySystem{
   }
 
   private def getFloatBuffer(spat: SpatialComponent): FloatBuffer = {
-    val mat: Matrix4 = Matrix4()
-    mat.scale(spat.scale)
-    mat.translate(spat.position)
-    val m = mat * spat.orientation.rotationMatrix()
-    println(s"Entity transMatrix $m")
-    BufferCreator.createFloatBuffer(m)
+    val scale = Matrix4.getScale(spat.scale)
+    val trans = Matrix4.getTransformation(spat.position)
+    val rotate = spat.orientation.rotationMatrix()
+
+    BufferCreator.createFloatBuffer( (rotate * trans * scale).transpose() )
+  }
+
+  private def getCameraFloatBuffer(spat: SpatialComponent): FloatBuffer = {
+    val scale = Matrix4.getScale(spat.scale)
+    val trans = Matrix4.getTransformation(spat.position.neg())
+    val rotate = spat.orientation.getConjugate().rotationMatrix()
+
+    BufferCreator.createFloatBuffer( (rotate * trans * scale).transpose() )
   }
 
 }

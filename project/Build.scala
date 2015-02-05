@@ -38,8 +38,8 @@ object MyBuild extends Build {
       javaOptions += "-XX:MaxGCPauseMillis=4",
       javaOptions += "-Xms1G",
       javaOptions += "-Xmx2G",
-      //javaOptions += "-XstartOnFirstThread",
-      javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/"))
+      javaOptions += "-XstartOnFirstThread"
+      //javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/"))
     )
   }
 //  if(system == "mac")

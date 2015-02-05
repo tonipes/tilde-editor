@@ -25,7 +25,7 @@ object Main {
   var scrollCallback:      GLFWScrollCallback      = null
 
   // debug
-  val debugInterval = 0.1f;
+  val debugInterval = 1f;
   var timeSinceLastDebugPrint: Float = 0;
   var frameTimes = Buffer[Float]()
 
@@ -42,7 +42,7 @@ object Main {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
 
-    windowID = glfwCreateWindow(480*2, 480*2, "Tilde Engine".toCharArray(), NULL, NULL)
+    windowID = glfwCreateWindow(480, 480, "Tilde Engine".toCharArray(), NULL, NULL)
 
     if (windowID == NULL)
     {
@@ -54,7 +54,7 @@ object Main {
 
     GLContext.createFromCurrent()
 
-    glfwSwapInterval(0) // vsync
+    glfwSwapInterval(1) // vsync
 
     glfwShowWindow(windowID)
 

@@ -16,10 +16,10 @@ out vec3 vertColor;
 void main()
 {
     // Color from vertex
-    vertColor = color;//vec3(0.5,0.5,0.5);
+    vertColor = color; //vec3(0.5,0.5,0.5);
 
     // Position in projection (final)
-    gl_Position = m_proj * m_view * m_model* vec4(pos, 1.0);
+    gl_Position = m_proj * m_view * m_model * vec4(pos, 1.0);
 
 
 }

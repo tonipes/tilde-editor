@@ -1,4 +1,5 @@
 import sbt.Keys._
+import sbt.Settings
 import sbt._
 
 object MyBuild extends Build { 
@@ -13,7 +14,6 @@ object MyBuild extends Build {
   val lwjglVersion = "3.0"
 
   object Settings {
-
     lazy val lwjglNative = {
       def os = System.getProperty("os.name").toLowerCase match {
         case "linux" => ("linux", ":");
@@ -27,7 +27,7 @@ object MyBuild extends Build {
     val newPath = 
         System.getProperty("java.library.path") + lwjglNative._2 + lwjglNative._1
 
-    lazy val rootProject = Defaults.defaultSettings ++ Seq(
+    var rootProject = Defaults.defaultSettings ++ Seq(
       fork in run := true,
       unmanagedBase := baseDirectory.value / "lib",
       organization    := buildOrganization,
@@ -38,14 +38,16 @@ object MyBuild extends Build {
       javaOptions += "-XX:MaxGCPauseMillis=4",
       javaOptions += "-Xms1G",
       javaOptions += "-Xmx2G",
-      javaOptions += "-XstartOnFirstThread"
+      javaOptions += "-verbose:gc -XX:+PrintGCTimeStamps -XX:+PrintGCDetail"
+      //javaOptions += "-XstartOnFirstThread"
       //javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/"))
     )
+    if(lwjglNative._1 == "mac")
+      rootProject = rootProject ++ Seq(javaOptions += "-XstartOnFirstThread")
+    else if(lwjglNative._1 == "windows")
+      rootProject = rootProject ++ Seq(javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/")))
   }
-//  if(system == "mac")
-//    rootProject = rootProject.get ++ Seq(javaOptions += "-XstartOnFirstThread")
-//  else if(system == "win")
-//    rootProject = rootProject.get ++ Seq(javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/")))
-  //println(System.getProperty("java.library.path"))
+
+  println(System.getProperty("java.library.path"))
   lazy val root = Project(id=rootProjectId, base=file("."), settings=Settings.rootProject)
 }

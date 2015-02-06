@@ -1,6 +1,7 @@
 import tilde.util._
 import tilde._
 import tilde.system._
+import scala.collection.immutable.BitSet
 import scala.collection.mutable
 import scala.collection.mutable.Buffer
 import org.lwjgl.opengl.GL11._

@@ -60,7 +60,7 @@ object ResourceManager {
     shaderPrograms.foreach(a => a._2.dispose())
     shaderPrograms.clear()
   }
-  val getProjection = ProjectionFactory.createPerspectiveProjection(1000f,0.01f, 1/1f,75f)
+  val getProjection = ProjectionFactory.createPerspectiveProjection(1000f,0.01f, 8/6f,50f)
   //val getProjection = ProjectionFactory.createOrthographicProjection(1000f,0.001f,-1.5f,1.5f,-1.5f,1.5f)
   //val getProjection = Matrix4()
 }

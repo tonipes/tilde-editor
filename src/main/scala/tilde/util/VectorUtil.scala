@@ -67,12 +67,7 @@ class Vec3(var x :Float, var y: Float, var z:Float){
   def /(value: Float): Vec3 =
     Vec3(this.x / value, this.y / value, this.z / value)
 
-  def /= (other: Float): Unit = {
-    val n = this / other
-    x = n.x
-    y = n.y
-    z = n.z
-  }
+
 
   def dot(other: Vec3): Float =
     this.x * other.x + this.y * other.y + this.z * other.z
@@ -103,8 +98,18 @@ class Vec4(var x: Float, var y: Float, var z: Float, var w: Float) {
   def +(other: Vec4): Vec4 =
     Vec4(this.x + other.x, this.y + other.y, this.z + other.z, this.w + other.w)
 
+  def += (other: Vec4): Unit = {
+    val n = this + other
+    x = n.x; y = n.y; z = n.z; w = n.w;
+  }
+
   def -(other: Vec4): Vec4 =
     Vec4(this.x - other.x, this.y - other.y, this.z - other.z, this.w - other.w)
+
+  def -= (other: Vec4): Unit = {
+    val n = this - other
+    x = n.x; y = n.y; z = n.z; w = n.w;
+  }
 
   def neg(): Vec4 =
     Vec4(-this.x, -this.y, -this.z, -this.w)
@@ -112,11 +117,26 @@ class Vec4(var x: Float, var y: Float, var z: Float, var w: Float) {
   def *(other: Vec4): Vec4 =
     Vec4(this.x * other.x, this.y * other.y, this.z * other.z, this.w * other.w)
 
+  def *= (other: Vec4): Unit = {
+    val n = this * other
+    x = n.x; y = n.y; z = n.z; w = n.w;
+  }
+
   def *(value: Float): Vec4 =
     Vec4(this.x * value, this.y * value, this.z * value, this.w * value)
 
+  def *= (value: Float): Unit = {
+    val n = this * value
+    x = n.x; y = n.y; z = n.z; w = n.w;
+  }
+
   def /(other: Vec4): Vec4 =
     Vec4(this.x / other.x, this.y / other.y, this.z / other.z, this.w / other.w)
+
+  def /= (value: Vec4): Unit = {
+    val n = this / value
+    x = n.x; y = n.y; z = n.z; w = n.w;
+  }
 
   def /(value: Float): Vec4 =
     Vec4(this.x / value, this.y / value, this.z / value, this.w / value)
@@ -302,16 +322,6 @@ object Quaternion{
     ).normalise()
   }
 
-  def conjugate(quat: Quaternion) = {
-    val dest = Quaternion()
-    dest.x = -quat.x
-    dest.y = -quat.y
-    dest.z = -quat.z
-    dest.w =  quat.w
-
-    dest
-  }
-
   def fromVector(vec: Vec4): Quaternion = {
     val q = Quaternion()
     val l = Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z)
@@ -324,20 +334,30 @@ object Quaternion{
     q
   }
 
-  def rotate(vec: Vec3, q:Quaternion) = {
-    val dest = Vec3()
-    val qC = conjugate(q)
-    val qVec = new Quaternion(vec.x,vec.y,vec.z,1)
-
-//    Quaternion.mul(q, qVec, qVec)
-//    Quaternion.mul(qVec, qC, qVec)
+//  def conjugate(quat: Quaternion) = {
+//    val dest = Quaternion()
+//    dest.x = -quat.x
+//    dest.y = -quat.y
+//    dest.z = -quat.z
+//    dest.w =  quat.w
 //
-//    dest.x = qVec.x
-//    dest.y = qVec.y
-//    dest.z = qVec.z
+//    dest
+//  }
 
-    dest
-  }
+//  def rotate(vec: Vec3, q:Quaternion) = {
+//    val dest = Vec3()
+//    val qC = conjugate(q)
+//    val qVec = new Quaternion(vec.x,vec.y,vec.z,1)
+//
+////    Quaternion.mul(q, qVec, qVec)
+////    Quaternion.mul(qVec, qC, qVec)
+////
+////    dest.x = qVec.x
+////    dest.y = qVec.y
+////    dest.z = qVec.z
+//
+//    dest
+//  }
 }
 
 class Quaternion(var x: Float, var y: Float, var z: Float, var w: Float){

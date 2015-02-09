@@ -133,12 +133,11 @@ case class Vec3(var x :Float, var y: Float, var z:Float) extends Serializable{
     val num10 = quat.w * num
     val num11 = quat.w * num2
     val num12 = quat.w * num3
+
     val x = (1f - (num5 + num6)) * this.x + (num7 - num12) * this.y + (num8 + num11) * this.z
     val y = (num7 + num12) * this.x + (1f - (num4 + num6)) * this.y + (num9 - num10) * this.z
     val z = (num8 - num11) * this.x + (num9 + num10) * this.y + (1f - (num4 + num5)) * this.z
-//    val x = 2*(other.x*this.z*other.z + other.y*this.z*other.w - other.x*this.y*other.w + other.y*this.y*other.z) + this.x*(other.x*other.x + other.y*other.y - other.z*other.z - other.w*other.w)
-//    val y = 2*(other.x*this.x*other.w + other.y*this.x*other.z - other.x*this.z*other.y + other.z*this.z*other.w) + this.y*(other.x*other.x - other.y*other.y + other.z*other.z - other.w*other.w)
-//    val z = 2*(other.x*this.y*other.y - other.x*this.x*other.z + other.y*this.x*other.w + other.z*this.y*other.w) + this.z*(other.x*other.x - other.y*other.y - other.z*other.z + other.w*other.w)
+
     Vec3(x,y,z)
   }
 

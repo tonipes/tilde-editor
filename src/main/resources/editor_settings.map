@@ -1,0 +1,14 @@
+{
+	"entities":
+	[{
+      "tags": ["camera"],
+      "components": [{
+        "position": [0.0, 0.0, 0.0],
+        "orientation": [0.0, 0.0, 0.0, 1.0],
+        "scale": [1.0, 1.0, 1.0],
+        "type": "SpatialComponent"
+      },{
+        "type": "InputComponent"
+      }]
+    }]
+}

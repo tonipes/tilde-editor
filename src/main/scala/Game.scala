@@ -18,8 +18,9 @@ class Game {
 
   lazy val world: World = new World(new EditorInputSystem(),new RenderSystem())
   lazy val mapData = ResourceManager.loadMap("maps/default.map")
-
+  lazy val editorSettings = ResourceManager.loadMap("editor_settings.map")
   def create(): Unit = {
+    world.createEntities(editorSettings)
     world.createEntities(mapData)
 //    val testing = new ObjectOutputStream(new FileOutputStream("test.obj"))
 //    testing.writeObject(world.getEntityData())

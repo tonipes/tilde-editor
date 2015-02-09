@@ -12,8 +12,11 @@ import scala.collection.immutable.BitSet
  */
 
 class EditorInputSystem() extends EntitySystem{
+  // TODO: This is only for testing puroses
   override var compStruct: BitSet = BitSet.empty + Component.getID(classOf[InputComponent])
 
+  private val camMovBtn = GLFW_MOUSE_BUTTON_RIGHT
+  private val camMovMod = GLFW_KEY_LEFT_CONTROL
   private var cameraPanBase: Option[Vec3] = None
 
   private var cameraRotBase: Option[Vec3] = None
@@ -28,7 +31,6 @@ class EditorInputSystem() extends EntitySystem{
    * @param e Entity to process
    */
   override protected def process(e: Entity, delta: Float): Unit = {
-    // TODO: THIS IS ONLY FOR TESTING PURPOSES
     val testSpat = world.getTagged("test").get.getComponent(Component.spatial).get
     val spat = e.getComponent(Component.spatial).get
 
@@ -52,23 +54,23 @@ class EditorInputSystem() extends EntitySystem{
 
   private def cameraRotate(cameraSpat: SpatialComponent)= {
 
-    if(Input.isMouseJustPressed(GLFW_MOUSE_BUTTON_MIDDLE) && !Input.isPressed(GLFW_KEY_LEFT_SHIFT)){
+    if(Input.isMouseJustPressed(camMovBtn) && !Input.isPressed(camMovMod)){
       cameraRotBase = Some(Vec3(cameraSpat.position))
       cameraRotBaseOrientation = Some(Quaternion(cameraSpat.orientation))
     }
-    else if(Input.isMouseJustReleased(GLFW_MOUSE_BUTTON_MIDDLE)){
+    else if(Input.isMouseJustReleased(camMovBtn)){
       cameraRotBase = None
       cameraRotBaseOrientation = None
     }
-    if(Input.isMousePressed(GLFW_MOUSE_BUTTON_MIDDLE) && cameraRotBase.isDefined){
-      val mMov   = Input.mouseDrag(GLFW_MOUSE_BUTTON_MIDDLE)
+    if(Input.isMousePressed(camMovBtn) && cameraRotBase.isDefined){
+      val mMov   = Input.mouseDrag(camMovBtn)
       val rotX   = Quaternion.fromAxisAngle(Vec3(mMov.y,mMov.x,0),cRotFac)
       //val rotY   = Quaternion.fromAxisAngle(Vec3(0,1,0),mMov.x * cRotFac)
       val pivot  = Vec3(0,0,0)
       val dir    = Vec3(cameraRotBase.get.x,cameraRotBase.get.y,cameraRotBase.get.z)
       val diff = rotX
       val newPos = dir * diff
-      println(s"Rotate. dir:$dir, newPos:$newPos + diff:$diff")
+
       cameraSpat.orientation.setIdentity()
       cameraSpat.orientation *= (cameraRotBaseOrientation.get*diff)
       cameraSpat.position.x = newPos.x
@@ -78,15 +80,15 @@ class EditorInputSystem() extends EntitySystem{
   }
 
   private def cameraPanning(cameraSpat: SpatialComponent) ={
-    if(Input.isMouseJustPressed(GLFW_MOUSE_BUTTON_MIDDLE) && Input.isPressed(GLFW_KEY_LEFT_SHIFT)){
+    if(Input.isMouseJustPressed(camMovBtn) && Input.isPressed(camMovMod)){
       cameraPanBase = Some(Vec3(cameraSpat.position))
     }
-    else if(Input.isMouseJustReleased(GLFW_MOUSE_BUTTON_MIDDLE)){
+    else if(Input.isMouseJustReleased(camMovBtn)){
       cameraPanBase = None
     }
 
-    if(Input.isMousePressed(GLFW_MOUSE_BUTTON_MIDDLE) && cameraPanBase.isDefined){
-      val mMov   = Input.mouseDrag(GLFW_MOUSE_BUTTON_MIDDLE)
+    if(Input.isMousePressed(camMovBtn) && cameraPanBase.isDefined){
+      val mMov   = Input.mouseDrag(camMovBtn)
       val cUp    = cameraSpat.orientation.getUp().normalise()
       val cRight = cameraSpat.orientation.getRight().normalise()
       val yMov   = cUp*mMov.y*cPanFac

@@ -1,30 +1,32 @@
 {
 	"entities":
 	[{
-	  "tags": ["camera"],
-	  "components": [{
-	    "position": [0.0, 0.0, 0.0],
-	    "orientation": [0.0, 0.0, 0.0, 1.0],
-	    "scale": [1.0, 1.0, 1.0],
-	    "type": "SpatialComponent"
-	  }]
-	},{
-        "tags": ["box"],
+      "tags": ["camera"],
+      "components": [{
+        "position": [0.0, 0.0, 0.0],
+        "orientation": [0.0, 0.0, 0.0, 1.0],
+        "scale": [1.0, 1.0, 1.0],
+        "type": "SpatialComponent"
+      },{
+        "type": "InputComponent"
+      }]
+    },{
+        "tags": ["box","test"],
         "components": [{
-          "position": [-5.0, 0.0, -5.0],
+          "position": [0.0, 0.0, -5.0],
           "orientation": [0.0, 0.0, 0.0, 1.0],
-          "scale": [1, 1, 0.5],
+          "scale": [1, 1, 1],
           "type": "SpatialComponent"
         }, {
-          "model": "models/default.model",
+          "model": "models/sanic.model",
           "type": "ModelComponent"
         }]
       },{
         "tags": ["box"],
         "components": [{
-          "position": [0.0, 0.0, -5.0],
+          "position": [0.0, 0.0, 0.0],
           "orientation": [0.0, 0.0, 0.0, 1.0],
-          "scale": [1, 1, 1],
+          "scale": [0.2, 0.2, 0.2],
           "type": "SpatialComponent"
         }, {
           "model": "models/default.model",
@@ -49,7 +51,7 @@
           "scale": [1, 1, 1],
           "type": "SpatialComponent"
         }, {
-          "model": "models/default.model",
+          "model": "models/icosphere.model",
           "type": "ModelComponent"
         }]
       },{
@@ -89,6 +91,358 @@
         "tags": ["box"],
         "components": [{
           "position": [-5.0, 0.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 5.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/sanic.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 5.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [2, 2, 2],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 5.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 5.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/icosphere.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 5.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 5.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 5.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 5.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 10.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/sanic.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 10.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [2, 2, 2],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 10.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 10.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/icosphere.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 10.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 10.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 10.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 10.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 15.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/sanic.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 15.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [2, 2, 2],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 15.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 15.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/icosphere.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 15.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 15.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 15.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 15.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 20.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/sanic.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 20.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [2, 2, 2],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 20.0, -5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 20.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/icosphere.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [0.0, 20.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 20.0, 5.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [5.0, 20.0, 0.0],
+          "orientation": [0.0, 0.0, 0.0, 1.0],
+          "scale": [1, 1, 1],
+          "type": "SpatialComponent"
+        }, {
+          "model": "models/default.model",
+          "type": "ModelComponent"
+        }]
+      },{
+        "tags": ["box"],
+        "components": [{
+          "position": [-5.0, 20.0, 0.0],
           "orientation": [0.0, 0.0, 0.0, 1.0],
           "scale": [1, 1, 1],
           "type": "SpatialComponent"

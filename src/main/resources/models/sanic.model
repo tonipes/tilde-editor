@@ -1,0 +1,4 @@
+{
+	"mesh":"meshes/sanic.ply",
+	"material":"materials/default.material"
+}

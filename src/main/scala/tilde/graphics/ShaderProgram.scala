@@ -18,6 +18,9 @@ class ShaderProgram(val programID: Int,
     if(data.length > 4){
       Log.error("Uniforms can't have mote than 4 values")
     }
+    else if(dataLoc == -1){
+      Log.error("Did not found uniform location with name " + name)
+    }
     else {
       data.length match {
         case 1 => glUniform1f(dataLoc, data(0))
@@ -25,6 +28,16 @@ class ShaderProgram(val programID: Int,
         case 3 => glUniform3f(dataLoc, data(0),data(1),data(2))
         case 4 => glUniform4f(dataLoc, data(0),data(1),data(2),data(3))
       }
+    }
+  }
+
+  def setUniform(name: String,data :Int): Unit = {
+    val dataLoc = glGetUniformLocation(programID,name)
+    if(dataLoc == -1){
+      Log.error("Did not found uniform location with name " + name)
+    }
+    else {
+       glUniform1i(dataLoc, data)
     }
   }
 

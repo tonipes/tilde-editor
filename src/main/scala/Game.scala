@@ -1,3 +1,5 @@
+import java.io.{FileOutputStream, ObjectOutputStream}
+
 import tilde.util._
 import tilde._
 import tilde.system._
@@ -14,12 +16,15 @@ import spray.json._
  */
 class Game {
 
-  lazy val world: World = new World(new RenderSystem())
+  lazy val world: World = new World(new EditorInputSystem(),new RenderSystem())
   lazy val mapData = ResourceManager.loadMap("maps/default.map")
 
   def create(): Unit = {
-    for(i <- 0 until 1)
-      world.createEntities(mapData)
+    world.createEntities(mapData)
+//    val testing = new ObjectOutputStream(new FileOutputStream("test.obj"))
+//    testing.writeObject(world.getEntityData())
+//    testing.close()
+
   }
 
   def render(): Unit = {

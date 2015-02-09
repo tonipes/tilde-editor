@@ -40,9 +40,9 @@ object Main {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
+    //glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
 
-    windowID = glfwCreateWindow(800, 600, "Tilde Engine".toCharArray(), NULL, NULL)
+    windowID = glfwCreateWindow(1024, 1024, "Tilde Engine".toCharArray(), NULL, NULL)
 
     if (windowID == NULL)
     {
@@ -65,6 +65,8 @@ object Main {
 
     val gameCreationStartTime = System.currentTimeMillis()
 
+    Input.init(windowID)
+
     gameMain = new Game()
     gameMain.create()
 
@@ -83,7 +85,7 @@ object Main {
       lastFrame   = currentTime
 
       update(deltaTime)
-
+      Input.updateState()
       glfwPollEvents()
       glfwSwapBuffers(windowID)
 

@@ -1,8 +1,7 @@
 package tilde
 
 import tilde.systems.EntitySystem
-import scala.collection.mutable.Buffer
-import scala.collection.mutable.Map
+import scala.collection.mutable.{ArrayBuffer, Buffer, Map}
 
 class World(entitySystems: EntitySystem*) {
 
@@ -10,11 +9,12 @@ class World(entitySystems: EntitySystem*) {
     sys.world = this
   }
 
-  private val tags = Map[String, Entity]()
+  private val entities = ArrayBuffer[Entity]()
+  private val changed = ArrayBuffer[Entity]()
+  private val destroyed = ArrayBuffer[Entity]()
 
-  private val entities = Buffer[Entity]()
-  private val changed = Buffer[Entity]()
-  private val destroyed = Buffer[Entity]()
+  private val tags = Map[String, Entity]()
+  private val groups = Map[String,Vector[Entity]]()
 
   /**
    * Updates world. Runs all systems

@@ -1,6 +1,6 @@
 package tilde.util
 
-import java.nio.FloatBuffer
+import java.nio.{ByteBuffer, IntBuffer, ShortBuffer, FloatBuffer}
 
 import org.lwjgl.BufferUtils
 
@@ -31,6 +31,34 @@ object BufferCreator {
     buff.put(m.y)
     buff.put(m.z)
     buff.put(m.w)
+    buff.rewind()
+    buff
+  }
+
+  def createFloatBuffer(f: Float*):FloatBuffer = {
+    createFloatBuffer(f.toArray)
+  }
+
+  def createFloatBuffer(f: Array[Float]):FloatBuffer = {
+    val buff = BufferUtils.createFloatBuffer(f.length)
+    f.foreach(a => buff.put(a))
+    buff.rewind()
+    buff
+  }
+
+  def createShortBuffer(s: Short*): ShortBuffer = {
+    val buff = BufferUtils.createShortBuffer(s.length)
+    s.foreach(a => buff.put(a))
+    buff.rewind()
+    buff
+  }
+
+  def createIntBuffer(s: Int*): IntBuffer =
+    createIntBuffer(s.toArray)
+
+  def createIntBuffer(s: Array[Int]): IntBuffer = {
+    val buff = BufferUtils.createIntBuffer(s.length)
+    s.foreach(a => buff.put(a))
     buff.rewind()
     buff
   }

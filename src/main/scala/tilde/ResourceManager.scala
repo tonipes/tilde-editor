@@ -17,6 +17,15 @@ object ResourceManager {
   shaderPrograms("default") =
     ResourceUtil.loadShader("shaders/default.vert","shaders/default.frag")
 
+  shaderPrograms("passthrough") =
+    ResourceUtil.loadShader("shaders/passthrough.vert", "shaders/passthrough.frag")
+
+  shaderPrograms("grid") =
+    ResourceUtil.loadShader("shaders/grid.vert", "shaders/grid.frag")
+
+  textures("measure") = ResourceUtil.loadTexture("textures/measure.png")
+  textures("measure_128") = ResourceUtil.loadTexture("textures/measure_128.png")
+
   val load_model:PartialFunction[Component, Unit] = {
     case q: ModelComponent => {
       // TODO: Make sure to check if already loaded before loading. What if using textures?
@@ -28,7 +37,6 @@ object ResourceManager {
       materials(model.material) = material
     }
   }
-
 
   val load_else: PartialFunction[Component, Unit] = { case _ =>  }
 
@@ -60,7 +68,6 @@ object ResourceManager {
     shaderPrograms.foreach(a => a._2.dispose())
     shaderPrograms.clear()
   }
-  val getProjection = ProjectionFactory.createPerspectiveProjection(1000f,0.01f, 8/6f,50f)
-  //val getProjection = ProjectionFactory.createOrthographicProjection(1000f,0.001f,-1.5f,1.5f,-1.5f,1.5f)
-  //val getProjection = Matrix4()
+
+  val getProjection = ProjectionFactory.createPerspectiveProjection(1000f,0.01f, 1/1f,75f)
 }

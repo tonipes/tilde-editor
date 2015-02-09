@@ -143,7 +143,7 @@ object ResourceUtil {
       val elementID = glGenBuffers()
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elementID)
       glBufferData(GL_ELEMENT_ARRAY_BUFFER,elementDataBuffer,GL_STATIC_DRAW)
-      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0) // Why can´t unbind?
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0)
 
       glBindVertexArray(0)
 
@@ -159,7 +159,7 @@ object ResourceUtil {
     def loadTexture(path: String): Texture = {
       var bufImage: BufferedImage = null
       try {
-        bufImage = readImageFromFile(RESOURCE_ROOT_PATH +path)
+        bufImage = readImageFromFile(RESOURCE_ROOT_PATH + path)
 
       } catch{
         case e: Exception => {
@@ -194,7 +194,8 @@ object ResourceUtil {
       glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, bufImage.getWidth(), bufImage.getHeight(),
         0, GL_RGBA, GL_UNSIGNED_BYTE, bytes)
 
-      glGenerateMipmap(GL_TEXTURE_2D)
+      //glGenerateMipmap(GL_TEXTURE_2D)
+      glBindTexture(GL_TEXTURE_2D, 0)
 
       new Texture(bufImage.getWidth, bufImage.getHeight, texID)
     }

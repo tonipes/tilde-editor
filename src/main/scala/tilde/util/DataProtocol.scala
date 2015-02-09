@@ -75,6 +75,7 @@ object DataProtocol extends DefaultJsonProtocol {
 
   implicit val componentFormat_spatial = jsonFormat3(SpatialComponent)
   implicit val componentFormat_model   = jsonFormat1(ModelComponent)
+  implicit val componentFormat_input   = jsonFormat0(InputComponent)
   implicit val componentFormat_light   = jsonFormat6(LightSourceComponent)
 
   implicit val componentFormat = new RootJsonFormat[Component] {
@@ -83,6 +84,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case c: ModelComponent       => c.toJson
         case c: SpatialComponent     => c.toJson
         case c: LightSourceComponent => c.toJson
+        case c: InputComponent       => c.toJson
         case _ =>  serializationError("Component expected")
       }).asJsObject.fields + ("type" -> JsString(obj.productPrefix)))
 
@@ -91,6 +93,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case Seq(JsString("SpatialComponent"))     => json.convertTo[SpatialComponent]
         case Seq(JsString("ModelComponent"))       => json.convertTo[ModelComponent]
         case Seq(JsString("LightSourceComponent")) => json.convertTo[LightSourceComponent]
+        case Seq(JsString("InputComponent"))       => json.convertTo[InputComponent]
         case _ => deserializationError("Component expected")
       }
   }
@@ -102,6 +105,7 @@ object DataProtocol extends DefaultJsonProtocol {
         "components" -> obj.components.toJson
       )
     }
+
     def read(json: JsValue): EntityData = {
       val compJson = json.asJsObject.getFields("components")(0).asInstanceOf[JsArray].elements
       val comps = compJson.map(f => f.convertTo[Component]).toVector

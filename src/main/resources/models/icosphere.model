@@ -1,0 +1,4 @@
+{
+	"mesh":"meshes/icosphere.ply",
+	"material":"materials/default.material"
+}

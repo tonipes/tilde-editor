@@ -51,7 +51,7 @@ abstract class EntitySystem() {
    * Adds entity to systems entity list
    * @param e Entity add
    */
-  private def addEntity(e: Entity): Unit =
+  protected def addEntity(e: Entity): Unit =
     entities += e
 
   /**

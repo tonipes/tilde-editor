@@ -22,18 +22,23 @@ class Mesh( val vaoID: Int, val dataID: Int, val elemID: Int ,
   def bindElem(): Unit = 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elemID)
 
+  def unbindElem(): Unit =
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0)
+
   def bufferData(): Unit = 
     glBufferData(GL_ARRAY_BUFFER, dataID,GL_STATIC_DRAW)
 
   def bufferElem(): Unit = 
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, elemID,GL_STATIC_DRAW)
 
-  def unbind(): Unit = 
+  def unbindData(): Unit =
     glBindBuffer(GL_ARRAY_BUFFER,0)
 
   def dispose(): Unit = {
     // TODO: Is unbinding good idea?
-    unbind()
+    unbindData()
+    unbindElem()
+    unbindVAO()
     glDeleteBuffers(dataID)
     glDeleteBuffers(elemID)
     glDeleteVertexArrays(vaoID)

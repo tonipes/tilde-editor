@@ -36,9 +36,12 @@ object MyBuild extends Build {
       libraryDependencies ++= Seq(spray),
       javaOptions += "-Djava.library.path=" + newPath,
       javaOptions += "-XX:MaxGCPauseMillis=4",
-      javaOptions += "-Xms1G",
-      javaOptions += "-Xmx2G",
-      javaOptions += "-verbose:gc -XX:+PrintGCTimeStamps -XX:+PrintGCDetail"
+      javaOptions += "-XX:+UseConcMarkSweepGC",
+      javaOptions += "-XX:MaxHeapFreeRatio=70",
+      javaOptions += "-Xms1g",
+      javaOptions += "-Xmx1g"
+
+      //javaOptions += "-verbose:gc -XX:+PrintGCTimeStamps -XX:+PrintGCDetail"
       //javaOptions += "-XstartOnFirstThread"
       //javaHome := Some(file("C:/Program Files/Java/jdk1.7.0_71/"))
     )

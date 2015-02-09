@@ -88,4 +88,4 @@ object EntityData{
  * @param components Entity's components
  * @param tags Entity's tags
  */
-case class EntityData(components: Vector[Component], tags: Vector[String])
+case class EntityData(components: Vector[Component], tags: Vector[String]) extends Serializable

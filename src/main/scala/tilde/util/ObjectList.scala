@@ -4,9 +4,6 @@ import tilde.Entity
 
 import scala.reflect.ClassTag
 
-/**
- * Created by Toni on 1.2.2015.
- */
 class ObjectList[T:ClassTag](val cap: Int = 32){
   private var data = Array.ofDim[T](cap)
   private var size = 0

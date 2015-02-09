@@ -23,8 +23,8 @@ object ResourceManager {
   shaderPrograms("grid") =
     ResourceUtil.loadShader("shaders/grid.vert", "shaders/grid.frag")
 
-  textures("measure") = ResourceUtil.loadTexture("textures/measure.png")
-  textures("measure_128") = ResourceUtil.loadTexture("textures/measure_128.png")
+  //textures("measure") = ResourceUtil.loadTexture("textures/measure.png")
+  //textures("measure_128") = ResourceUtil.loadTexture("textures/measure_128.png")
 
   val load_model:PartialFunction[Component, Unit] = {
     case q: ModelComponent => {

@@ -3,8 +3,8 @@
 	[{
       "tags": ["camera"],
       "components": [{
-        "position": [0.0, 0.0, 0.0],
-        "orientation": [0.0, 0.0, 0.0, 1.0],
+        "position": [-6.3033576, 8.553005, -6.2320933],
+        "orientation": [-0.117276035, -0.87713635, -0.27224562, 0.3778465],
         "scale": [1.0, 1.0, 1.0],
         "type": "SpatialComponent"
       },{

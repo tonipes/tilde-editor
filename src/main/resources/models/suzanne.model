@@ -1,4 +1,4 @@
 {
-	"mesh":"meshes/box.ply",
+	"mesh":"meshes/suzanne.ply",
 	"material":"materials/default.material"
 }

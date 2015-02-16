@@ -47,7 +47,7 @@ object MeshFactory {
     new Mesh(vaoID,vertexDataID,elementID,elemCount,vertCount)
   }
 
-  def createGridMesh(width:Float, height:Float, divX:Int, divY:Int)= {
+  def createGridMesh(width:Float, height:Float, divX:Int, divY:Int): Mesh = {
     val col = Vec3(0.5f,0.5f,0.5f)
     val halfWidth = width/2f
     val halfHeight = width/2f
@@ -116,4 +116,69 @@ object MeshFactory {
 
   }
 
+  def createTransformManipulator(size: Int = 1): Mesh = {
+    val p_center = Vec3(0,0,0)
+
+    val elements = Vector(0,1,2,3,4,5)
+    val p_axis = Vector(Vec3(size,0,0),Vec3(0,size,0),Vec3(0,0,size))
+    val colors = Vector(Vec3(1,0,0),Vec3(0,1,0),Vec3(0,0,1))
+
+    val vertCount = p_axis.length * 2 * 6 // 2 verts per line, 6 data per vert
+    val elemCount = elements.length
+
+    val vertData = BufferUtils.createFloatBuffer(vertCount)
+    val elemData = BufferUtils.createIntBuffer(elemCount)
+
+    for(i <- p_axis.indices){
+      val p = p_axis(i)
+      val c = colors(i)
+
+      // Center with color
+      vertData.put(p_center.x)
+      vertData.put(p_center.y)
+      vertData.put(p_center.z)
+
+      vertData.put(c.x)
+      vertData.put(c.y)
+      vertData.put(c.y)
+
+      // End with color
+      vertData.put(p.x)
+      vertData.put(p.y)
+      vertData.put(p.z)
+
+      vertData.put(c.x)
+      vertData.put(c.y)
+      vertData.put(c.y)
+
+    }
+    vertData.rewind()
+
+    for(e <- elements){
+      elemData.put(e)
+    }
+    elemData.rewind()
+
+    val vaoID = glGenVertexArrays()
+    val vertexDataID = glGenBuffers()
+    val elementID = glGenBuffers()
+
+    glBindVertexArray(vaoID)
+
+    glBindBuffer(GL_ARRAY_BUFFER, vertexDataID)
+    glBufferData(GL_ARRAY_BUFFER, vertData, GL_STATIC_DRAW)
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 6*4, 0)
+    glVertexAttribPointer(1, 3, GL_FLOAT, false, 6*4, 3*4)
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,elementID)
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,elemData,GL_STATIC_DRAW)
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0)
+
+    glBindVertexArray(0)
+
+    new Mesh(vaoID,vertexDataID,elementID,elemCount,vertCount)
+  }
 }

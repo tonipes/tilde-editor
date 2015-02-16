@@ -28,19 +28,20 @@ class EditorRenderSystem extends EntitySystem{
   glEnable(GL_DEPTH_TEST)
   glEnable(GL_CULL_FACE)
   glEnable(GL_TEXTURE_2D)
-  //glEnable(GL_LINE_SMOOTH)
 
-  glLineWidth(0.5f)
+  glLineWidth(1f)
+  glEnable(GL_LINE_SMOOTH)
+  glHint(GL_LINE_SMOOTH_HINT,  GL_NICEST)
 
-  glViewport(0,0,1024*2,1024*2)
+  glViewport(0,0,1024,1024)
 
   lazy val defaultShader: ShaderProgram = ResourceManager.shaderPrograms("default")
   lazy val passthroughShader: ShaderProgram = ResourceManager.shaderPrograms("passthrough")
   lazy val gridShader: ShaderProgram = ResourceManager.shaderPrograms("grid")
 
-  lazy val framebuffer = new sgEngine.graphics.Framebuffer(1024*2,1024*2,"diffuse","normal")
+  lazy val framebuffer = new sgEngine.graphics.Framebuffer(1024,1024,"diffuse","normal")
   lazy val screenPlane = MeshFactory.createScreenMesh()
-  val grid = MeshFactory.createGridMesh(8,8,16,16)
+  val grid = MeshFactory.createGridMesh(8,8,16,16) // MeshFactory.createTransformManipulator(5)//
 
   override def addEntity(e: Entity) = {
     val model = e.getComponent(Component.model).get
@@ -113,6 +114,7 @@ class EditorRenderSystem extends EntitySystem{
 
     gridShader.unbind()
   }
+
   private def renderScene(viewBuffer: FloatBuffer, projectionBuffer: FloatBuffer) = {
     defaultShader.bind()
     defaultShader.setUniform("m_view", viewBuffer)

@@ -11,14 +11,14 @@ layout(location = 1) in vec3 norm;
 layout(location = 2) in vec2 tex;
 layout(location = 3) in vec3 color;
 
-out vec3 normal;
-out vec3 vertColor;
+out vec3 fragNormal;
+out vec3 fragVertColor;
 
 void main()
 {
     // Color from vertex
-    vertColor = color;
-    normal = (m_model * vec4(norm, 0)).xyz;
+    fragVertColor = color;
+    fragNormal = (m_model * vec4(norm, 0)).xyz;
 
     // Position in projection (final)
     vec4 world = m_model * vec4(pos, 1.0);

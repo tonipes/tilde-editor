@@ -10,7 +10,7 @@ import scala.collection.immutable.BitSet
  */
 
 abstract class LogicSystem extends EntitySystem(){
-  override var compStruct: BitSet = BitSet.empty
+  override var compStruct: Vector[BitSet] = Vector()
 
   override def processEntities(delta: Float) = {
     processSystem(delta: Float)

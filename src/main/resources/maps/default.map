@@ -10,6 +10,14 @@
         }, {
           "model": "models/suzanne.model",
           "type": "ModelComponent"
+        },{
+          "ambient": [1,1,1,1],
+          "diffuse": [1,1,1,1],
+          "specular": [1,1,1,1],
+          "constAtten": 1.0,
+          "linearAtten": 1.0,
+          "quadratAtten": 1.0,
+          "type": "LightSourceComponent"
         }]
       },{
         "tags": ["box"],

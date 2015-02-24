@@ -1,6 +1,7 @@
 package sgEngine
 
 import sgEngine.graphics._
+import sgEngine.resources.{Mesh, Model, Texture, Material}
 import sgEngine.util.{Matrix4, ProjectionFactory, ResourceUtil}
 import scala.collection.mutable.Map
 

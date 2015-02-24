@@ -92,18 +92,29 @@
 	"buffers":
 	[
 		{
-			"file": "src/main/scala/tilde/system/RenderSystem.scala",
+			"contents": "package sgEngine\n\n/**\n * Created by Toni on 17.1.2015.\n */\nimport sgEngine.util._\n\nobject Component{\n  val spatial = classOf[SpatialComponent]\n  val model   = classOf[ModelComponent]\n  val light   = classOf[LightSourceComponent]\n  val input   = classOf[InputComponent]\n\n  def getID[T <: Component](component: T): Int = getID(component.getClass)\n\n  def getID[T <: Component](component: Class[T]): Int =\n    component match {\n      case q if q == classOf[SpatialComponent]      => 1\n      case q if q == classOf[ModelComponent]        => 2\n      case q if q == classOf[LightSourceComponent]  => 3\n      case q if q == classOf[InputComponent]        => 4\n      case q if q == classOf[FollowCameraComponent] => 5\n  }\n}\n\nabstract class Component extends Product{\n  def getID = Component.getID(this)\n}\n\ncase class SpatialComponent(\n  position:    Vec3       = Vec3(0,0,0),\n  orientation: Quaternion = Quaternion(0,0,0,1),\n  scale:       Vec3       = Vec3(1,1,1) ) extends Component {\n\n  def move(direction: Vec3, amount: Float): Unit = {\n    val v = Vec3(direction).normalise()\n    v *= amount\n    position += v\n  }\n\n  def forward(): Vec3 = orientation.getForward()\n  def up()     : Vec3 = orientation.getUp()\n  def right()  : Vec3 = orientation.getRight()\n}\n\ncase class ModelComponent(model: String = \"\") extends Component\n\ncase class LightSourceComponent(\n  ambient:      Vec4  = Vec4(1,1,1,1),\n  diffuse:      Vec4  = Vec4(1,1,1,1),\n  specular:     Vec4  = Vec4(1,1,1,1),\n  constAtten:   Float = 1.0f,\n  linearAtten:  Float = 1.0f,\n  quadratAtten: Float = 1.0f ) extends Component\n\ncase class EditorInputComponent() extends Component\n\ncase class FollowCameraComponent(lookAt: Vec3) extends Component \n\ncase class BehaviourComponent(behaviour: Vector[Behaviour]) extends Component",
+			"file": "src/main/scala/sgEngine/Component.scala",
+			"file_size": 1775,
+			"file_write_time": 130692400430000000,
 			"settings":
 			{
-				"buffer_size": 2904,
+				"buffer_size": 1776,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/main/scala/tilde/util/ProjectionFactory.scala",
+			"file": "src/main/scala/sgEngine/graphics/Material.scala",
 			"settings":
 			{
-				"buffer_size": 1406,
+				"buffer_size": 359,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/scala/sgEditor/systems/EditorInputSystem.scala",
+			"settings":
+			{
+				"buffer_size": 5373,
 				"line_ending": "Unix"
 			}
 		},
@@ -111,39 +122,7 @@
 			"file": "src/main/resources/shaders/default.vert",
 			"settings":
 			{
-				"buffer_size": 458,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/Main.scala",
-			"settings":
-			{
-				"buffer_size": 3357,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/util/VectorUtil.scala",
-			"settings":
-			{
-				"buffer_size": 10420,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/resources/maps/default.map",
-			"settings":
-			{
-				"buffer_size": 479,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/main/scala/tilde/ResourceManager.scala",
-			"settings":
-			{
-				"buffer_size": 1782,
+				"buffer_size": 548,
 				"line_ending": "Unix"
 			}
 		},
@@ -161,9 +140,17 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 338.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"ensiem",
+				"Ensime: Notes"
+			],
+			[
+				"ensime",
+				"Ensime: Restart"
+			],
 			[
 				"run",
 				"SBT: Run"
@@ -187,10 +174,6 @@
 			[
 				"list",
 				"Package Control: List Packages"
-			],
-			[
-				"ensime",
-				"Ensime: Startup"
 			],
 			[
 				"scala",
@@ -325,7 +308,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 333.0
+		"width": 453.0
 	},
 	"console":
 	{
@@ -353,35 +336,37 @@
 	[
 		"/Development/Scala/Idea/TildeEngine",
 		"/Development/Scala/Idea/TildeEngine/project",
+		"/Development/Scala/Idea/TildeEngine/project/target",
 		"/Development/Scala/Idea/TildeEngine/src",
 		"/Development/Scala/Idea/TildeEngine/src/main",
-		"/Development/Scala/Idea/TildeEngine/src/main/resources",
+		"/Development/Scala/Idea/TildeEngine/src/main/java",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/maps",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/materials",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/textures",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/graphics",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util"
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/sgEditor/systems",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/sgEngine",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/sgEngine/graphics"
 	],
 	"file_history":
 	[
+		"/Development/Scala/Idea/TildeEngine/src/main/resources/maps/default.map",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/Main.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system/RenderSystem.scala",
+		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/VectorUtil.scala",
 		"/Development/Scala/Idea/TildeEngine/project/Build.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/ResourceManager.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/ResourceUtil.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/meshes/untitled.ply",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/World.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system/EntitySystem.scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/system/RenderSystem.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/Component.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/DataProtocol.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/sgEngine.Game.scala",
 		"/Development/Scala/Idea/TildeEngine copy/src/main/scala/tilde/entity/Entity.scala",
 		"/Development/Scala/Idea/TildeEngine copy/src/main/scala/tilde/entity/system/RenderSystem.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/Entity.scala",
-		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/VectorUtil.scala",
 		"/Development/Scala/Idea/TildeEngine/tilde.sublime-project",
 		"/Development/Scala/Idea/TildeEngine/src/main/scala/tilde/util/ProjectionFactory.scala",
 		"/Development/Scala/Idea/TildeEngine/src/main/resources/shaders/default.vert",
@@ -500,24 +485,24 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/main/scala/tilde/system/RenderSystem.scala",
+					"file": "src/main/scala/sgEngine/Component.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2904,
+						"buffer_size": 1776,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2847,
-								2847
+								1698,
+								1698
 							]
 						],
 						"settings":
@@ -527,19 +512,83 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 408.0,
+						"translation.y": 184.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/main/scala/tilde/util/ProjectionFactory.scala",
-					"semi_transient": true,
+					"file": "src/main/scala/sgEngine/graphics/Material.scala",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1406,
+						"buffer_size": 359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								359,
+								359
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/main/scala/sgEditor/systems/EditorInputSystem.scala",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								431,
+								431
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "src/main/resources/shaders/default.vert",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 548,
 						"regions":
 						{
 						},
@@ -548,36 +597,6 @@
 							[
 								0,
 								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 111.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/main/resources/shaders/default.vert",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 458,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								436,
-								436
 							]
 						],
 						"settings":
@@ -588,132 +607,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/main/scala/Main.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3357,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								868,
-								868
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 692.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/main/scala/tilde/util/VectorUtil.scala",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10420,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10163,
-								10163
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4540.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"file": "src/main/resources/maps/default.map",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 479,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								281,
-								281
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/main/scala/tilde/ResourceManager.scala",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1782,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -723,7 +617,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"semi_transient": false,
 					"settings":
 					{
@@ -749,7 +643,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -789,7 +683,7 @@
 		"cols":
 		[
 			0.0,
-			0.581999288571,
+			0.720820271135,
 			1.0
 		],
 		"rows":
@@ -846,7 +740,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

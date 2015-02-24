@@ -1,13 +1,13 @@
 package sgEngine.util
 
 import sgEditor.systems.EditorRenderSystem
+import sgEngine.resources.{Model, Material}
 import spray.json._
 import sgEngine._
-import sgEngine.graphics.{Material, Model}
 import scala.collection.mutable.Buffer
 
 /**
- * Here is all code for parsing and decoding json files.
+ * Here is all code for parsing and decoding json files usin spray json.
  */
 
 object DataProtocol extends DefaultJsonProtocol {
@@ -75,7 +75,7 @@ object DataProtocol extends DefaultJsonProtocol {
 
   implicit val componentFormat_spatial = jsonFormat3(SpatialComponent)
   implicit val componentFormat_model   = jsonFormat1(ModelComponent)
-  implicit val componentFormat_input   = jsonFormat0(InputComponent)
+  implicit val componentFormat_input   = jsonFormat0(EditorInputComponent)
   implicit val componentFormat_light   = jsonFormat6(LightSourceComponent)
 
   implicit val componentFormat = new RootJsonFormat[Component] {
@@ -84,7 +84,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case c: ModelComponent       => c.toJson
         case c: SpatialComponent     => c.toJson
         case c: LightSourceComponent => c.toJson
-        case c: InputComponent       => c.toJson
+        case c: EditorInputComponent       => c.toJson
         case _ =>  serializationError("Component expected")
       }).asJsObject.fields + ("type" -> JsString(obj.productPrefix)))
 
@@ -93,7 +93,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case Seq(JsString("SpatialComponent"))     => json.convertTo[SpatialComponent]
         case Seq(JsString("ModelComponent"))       => json.convertTo[ModelComponent]
         case Seq(JsString("LightSourceComponent")) => json.convertTo[LightSourceComponent]
-        case Seq(JsString("InputComponent"))       => json.convertTo[InputComponent]
+        case Seq(JsString("InputComponent"))       => json.convertTo[EditorInputComponent]
         case _ => deserializationError("Component expected")
       }
   }

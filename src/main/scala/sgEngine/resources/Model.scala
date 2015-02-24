@@ -1,4 +1,4 @@
-package sgEngine.graphics
+package sgEngine.resources
 
 /**
  * Created by Toni on 17.1.2015.

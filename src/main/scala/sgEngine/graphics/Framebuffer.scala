@@ -12,7 +12,7 @@ class Framebuffer(val width: Int, val height: Int, textures: String*) {
   val framebufferID = glGenFramebuffers()
   val depthBufferID = glGenRenderbuffers()
 
-  val attachments = Array.tabulate[Int](textures.length)(i =>GL_COLOR_ATTACHMENT0 + i)
+  val attachments = Array.tabulate[Int](textures.length)(i => GL_COLOR_ATTACHMENT0 + i)
 
   glBindFramebuffer(GL_FRAMEBUFFER, framebufferID)
   textureMap.foreach(f => {
@@ -47,6 +47,7 @@ class Framebuffer(val width: Int, val height: Int, textures: String*) {
   def unbind() = {
     glBindFramebuffer(GL_FRAMEBUFFER, 0)
   }
+
   def activateTextures(shader: ShaderProgram) = {
     for(i <- textures.indices){
       glActiveTexture(GL_TEXTURE0 + i)

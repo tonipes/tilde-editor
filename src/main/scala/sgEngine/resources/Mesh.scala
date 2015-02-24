@@ -1,4 +1,4 @@
-package sgEngine.graphics
+package sgEngine.resources
 
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL30._

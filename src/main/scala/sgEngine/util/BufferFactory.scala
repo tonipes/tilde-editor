@@ -5,7 +5,7 @@ import java.nio.{ByteBuffer, IntBuffer, ShortBuffer, FloatBuffer}
 import org.lwjgl.BufferUtils
 
 /**
- * Created by Toni on 1.2.2015.
+ * Methods to easily create java.nio buffers for loading data to gpu
  */
 object BufferFactory {
 

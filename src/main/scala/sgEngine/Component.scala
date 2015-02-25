@@ -19,6 +19,7 @@ object Component{
       case q if q == classOf[ModelComponent]       => 2
       case q if q == classOf[LightSourceComponent] => 3
       case q if q == classOf[InputComponent]       => 4
+      case q if q == classOf[EditorInputComponent] => 5
   }
 }
 
@@ -53,3 +54,5 @@ case class LightSourceComponent(
   quadratAtten: Float = 1.0f ) extends Component
 
 case class InputComponent() extends Component
+
+case class EditorInputComponent() extends Component

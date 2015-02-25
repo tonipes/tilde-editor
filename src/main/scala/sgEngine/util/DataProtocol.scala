@@ -9,7 +9,6 @@ import scala.collection.mutable.Buffer
 /**
  * Here is all code for parsing and decoding json files.
  */
-
 object DataProtocol extends DefaultJsonProtocol {
 
   implicit val vec3Format = new RootJsonFormat[sgEngine.util.Vec3] {
@@ -73,10 +72,11 @@ object DataProtocol extends DefaultJsonProtocol {
   implicit val modelFormat             = jsonFormat2(Model)
   implicit val materialFormat          = jsonFormat5(Material)
 
-  implicit val componentFormat_spatial = jsonFormat3(SpatialComponent)
-  implicit val componentFormat_model   = jsonFormat1(ModelComponent)
-  implicit val componentFormat_input   = jsonFormat0(InputComponent)
-  implicit val componentFormat_light   = jsonFormat6(LightSourceComponent)
+  implicit val componentFormat_spatial     = jsonFormat3(SpatialComponent)
+  implicit val componentFormat_model       = jsonFormat1(ModelComponent)
+  implicit val componentFormat_input       = jsonFormat0(InputComponent)
+  implicit val componentFormat_editorInput = jsonFormat0(EditorInputComponent)
+  implicit val componentFormat_light       = jsonFormat6(LightSourceComponent)
 
   implicit val componentFormat = new RootJsonFormat[Component] {
     def write(obj: Component): JsValue =
@@ -94,6 +94,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case Seq(JsString("ModelComponent"))       => json.convertTo[ModelComponent]
         case Seq(JsString("LightSourceComponent")) => json.convertTo[LightSourceComponent]
         case Seq(JsString("InputComponent"))       => json.convertTo[InputComponent]
+        case Seq(JsString("EditorInputComponent")) => json.convertTo[EditorInputComponent]
         case _ => deserializationError("Component expected")
       }
   }

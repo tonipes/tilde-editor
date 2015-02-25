@@ -149,7 +149,7 @@ class EditorRenderSystem extends EntitySystem{
     defaultShader.unbind()
   }
 
-  private def renderToScreen() ={
+  private def renderToScreen() = {
     framebuffer.activateTextures(passthroughShader)
 
     screenPlane.bindVAO()

@@ -22,11 +22,11 @@ object MeshFactory {
        a, -a, 0f, 1f, 0f, // bottom right
        a,  a, 0f, 1f, 1f) // top right
 
-    val elemData = BufferFactory.createIntBuffer(0,1,2,0,2,3)
+    val elemData = BufferFactory.createIntBuffer(0, 1, 2, 0, 2, 3)
 
-    val vaoID = glGenVertexArrays()
+    val vaoID        = glGenVertexArrays()
     val vertexDataID = glGenBuffers()
-    val elementID = glGenBuffers()
+    val elementID    = glGenBuffers()
 
     glBindVertexArray(vaoID)
 
@@ -47,18 +47,18 @@ object MeshFactory {
     new Mesh(vaoID,vertexDataID,elementID,elemCount,vertCount)
   }
 
-  def createGridMesh(width:Float, height:Float, divX:Int, divY:Int): Mesh = {
+  def createGridMesh(width: Float, height: Float, divX: Int, divY: Int): Mesh = {
     val col = Vec3(0.5f,0.5f,0.5f)
-    val halfWidth = width/2f
-    val halfHeight = width/2f
+    val halfWidth  = width / 2f
+    val halfHeight = width / 2f
 
-    val xDivSize = width/divX
-    val yDivSize = height/divY
+    val xDivSize = width / divX
+    val yDivSize = height / divY
 
-    val xValues = Vector.tabulate(divX+1)(i => -halfWidth + i*xDivSize)
-    val yValues = Vector.tabulate(divY+1)(i => -halfHeight + i*yDivSize)
+    val xValues = Vector.tabulate(divX + 1)(i => -halfWidth + i * xDivSize)
+    val yValues = Vector.tabulate(divY + 1)(i => -halfHeight + i * yDivSize)
 
-    val elemCount =  (divX+1 + divY+1) * 2
+    val elemCount =  (divX + 1 + divY + 1) * 2
     //val elemCount =  2
     val vertCount = (xValues.length*yValues.length) * 6
 
@@ -81,14 +81,14 @@ object MeshFactory {
     // Elements
 
     for(x <- xValues.indices){ // Vertical lines
-      val first = x*(divY+1)
+      val first = x*(divY + 1)
       elemData.put(first)
       elemData.put(first + (divY))
     }
     for(y <- yValues.indices){ // Vertical lines
     val first = y
       elemData.put(first)
-      elemData.put(first + (divY+1)*divX)
+      elemData.put(first + (divY+1) * divX)
     }
     elemData.rewind()
 
@@ -120,8 +120,8 @@ object MeshFactory {
     val p_center = Vec3(0,0,0)
 
     val elements = Vector(0,1,2,3,4,5)
-    val p_axis = Vector(Vec3(size,0,0),Vec3(0,size,0),Vec3(0,0,size))
-    val colors = Vector(Vec3(1,0,0),Vec3(0,1,0),Vec3(0,0,1))
+    val p_axis   = Vector(Vec3(size,0,0),Vec3(0,size,0),Vec3(0,0,size))
+    val colors   = Vector(Vec3(1,0,0),Vec3(0,1,0),Vec3(0,0,1))
 
     val vertCount = p_axis.length * 2 * 6 // 2 verts per line, 6 data per vert
     val elemCount = elements.length
@@ -159,9 +159,9 @@ object MeshFactory {
     }
     elemData.rewind()
 
-    val vaoID = glGenVertexArrays()
+    val vaoID        = glGenVertexArrays()
     val vertexDataID = glGenBuffers()
-    val elementID = glGenBuffers()
+    val elementID    = glGenBuffers()
 
     glBindVertexArray(vaoID)
 

@@ -13,7 +13,9 @@ import scala.collection.immutable.BitSet
 
 class EditorInputSystem() extends EntitySystem{
   // TODO: This is only for testing puroses
-  override var compStruct: BitSet = BitSet.empty + Component.getID(classOf[EditorInputComponent])
+  override var compStruct: Vector[BitSet] = Vector(BitSet.empty +
+  Component.getID(classOf[EditorInputComponent])
+    )
 
   private val camMovBtn = GLFW_MOUSE_BUTTON_RIGHT
   private val camMovMod = GLFW_KEY_LEFT_SHIFT

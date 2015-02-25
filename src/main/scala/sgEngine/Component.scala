@@ -9,17 +9,17 @@ object Component{
   val spatial = classOf[SpatialComponent]
   val model   = classOf[ModelComponent]
   val light   = classOf[LightSourceComponent]
-  val input   = classOf[InputComponent]
+  val input   = classOf[EditorInputComponent]
 
   def getID[T <: Component](component: T): Int = getID(component.getClass)
 
   def getID[T <: Component](component: Class[T]): Int =
     component match {
-      case q if q == classOf[SpatialComponent]     => 1
-      case q if q == classOf[ModelComponent]       => 2
-      case q if q == classOf[LightSourceComponent] => 3
-      case q if q == classOf[InputComponent]       => 4
-      case q if q == classOf[EditorInputComponent] => 5
+      case q if q == classOf[SpatialComponent]      => 1
+      case q if q == classOf[ModelComponent]        => 2
+      case q if q == classOf[LightSourceComponent]  => 3
+      case q if q == classOf[EditorInputComponent]  => 4
+      case q if q == classOf[FollowCameraComponent] => 5
   }
 }
 
@@ -53,6 +53,8 @@ case class LightSourceComponent(
   linearAtten:  Float = 1.0f,
   quadratAtten: Float = 1.0f ) extends Component
 
-case class InputComponent() extends Component
-
 case class EditorInputComponent() extends Component
+
+case class FollowCameraComponent(lookAt: Vec3) extends Component
+
+case class BehaviourComponent(beh: Vector[Behaviour]) extends Component

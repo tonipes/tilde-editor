@@ -1,4 +1,4 @@
-package sgEngine.graphics
+package sgEngine.resources
 
 import sgEngine.util.Vec4
 

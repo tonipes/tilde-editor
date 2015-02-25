@@ -28,6 +28,10 @@ class Entity(val world: World, compData: Vector[Component]) {
     world.changed(this)
   }
 
+  def containsComponent[T <: Component](comp: Class[T]): Boolean = {
+    this.compStruct.contains(Component.getID(comp))
+  }
+
   /**
    * Removes component from entity
    * @param comp Class of component to remove

@@ -6,7 +6,7 @@ import scala.collection.mutable._
 
 abstract class EntitySystem() {
   var world: World = null
-  var compStruct: BitSet
+  var compStruct: Vector[BitSet]
   protected var entities = Buffer[Entity]()
   private var started = false
 
@@ -58,8 +58,9 @@ abstract class EntitySystem() {
    * Checks if system is interested in entity
    * @param e Entity to check
    */
-  private def isIntrestedIn(e: Entity): Boolean = 
-    (this.compStruct & e.compStruct) == this.compStruct
+  private def isIntrestedIn(e: Entity): Boolean =
+    this.compStruct.exists(s => (s & e.compStruct) == s )
+    //(this.compStruct & e.compStruct) == this.compStruct
 
   /**
    * Processes single entity

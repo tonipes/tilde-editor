@@ -5,10 +5,10 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL15._
 import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
-import sgEngine.graphics.Mesh
+import sgEngine.resources.Mesh
 
 /**
- * Created by Toni on 8.2.2015.
+ * Methods to create meshes
  */
 object MeshFactory {
 

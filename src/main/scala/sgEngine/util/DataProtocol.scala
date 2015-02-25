@@ -1,13 +1,13 @@
 package sgEngine.util
 
 import sgEditor.systems.EditorRenderSystem
+import sgEngine.resources.{Model, Material}
 import spray.json._
 import sgEngine._
-import sgEngine.graphics.{Material, Model}
 import scala.collection.mutable.Buffer
 
 /**
- * Here is all code for parsing and decoding json files.
+ * Here is all code for parsing and decoding json files usin spray json.
  */
 object DataProtocol extends DefaultJsonProtocol {
 
@@ -84,7 +84,7 @@ object DataProtocol extends DefaultJsonProtocol {
         case c: ModelComponent       => c.toJson
         case c: SpatialComponent     => c.toJson
         case c: LightSourceComponent => c.toJson
-        case c: InputComponent       => c.toJson
+        case c: EditorInputComponent       => c.toJson
         case _ =>  serializationError("Component expected")
       }).asJsObject.fields + ("type" -> JsString(obj.productPrefix)))
 

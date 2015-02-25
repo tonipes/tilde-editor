@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL20._
 import org.lwjgl.opengl.GL30._
 
 import org.lwjgl.BufferUtils
+import sgEngine.resources.{Mesh, Model, Texture, Material}
 import sgEngine.{EntityData, Log}
 import sgEngine.graphics._
 import scala.io.Source
